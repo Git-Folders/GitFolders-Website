@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+:root {
+  --primary: #f0f6fc;
+  --accent: #0366d6;
+  --accent-hover: #024e9d;
+  --text-primary: #24292e;
+  --text-secondary: var(--color-gray-600);
+  --text-placeholder: var(--color-gray-400);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #f0f6fc;
+    --accent: #0366d6;
+    --accent-hover: #024e9d;
+    --text-primary: #24292e;
+    --text-secondary: var(--color-gray-600);
+    --text-placeholder: var(--color-gray-400);
+  }
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-placeholder: var(--text-placeholder);
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}

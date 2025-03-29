@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Hero from "src/sections/Hero.astro";
 ---
 
 <!doctype html>
@@ -8,10 +10,11 @@ import "../styles/global.css";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <!--   <meta name="generator" content={Astro.generator} /> -->
+    <title>Git Folders</title>
   </head>
   <body>
-    <h1 class="text-4xl font-bold text-red-500 underline">Hello world!</h1>
+    <Navbar />
+    <Hero />
   </body>
 </html>

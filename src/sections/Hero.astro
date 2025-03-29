@@ -1,0 +1,76 @@
+---
+import { ROUTES } from "@constants/Navbar_Constants";
+import { ArrowRight, Folder } from "src/utils/Icons";
+import StatBox from "src/components/StatBox.astro";
+
+const linkToOpen = ROUTES.waitlist.path;
+
+type Stat = {
+  value: string;
+  label: string;
+};
+const stats: Stat[] = [
+  { value: "75.2%", label: "Time Saved" },
+  { value: "20k+", label: "Active Users" },
+  { value: "4.8/5", label: "User Rating" },
+];
+const heroImage = {
+  url: "https://images.unsplash.com/photo-1630514969818-94aefc42ec47?auto=format&fit=crop&w=800&q=80", //  "https://images.unsplash.com/photo-1618477388954-7852f32655ec"
+  alt: "Dashboard preview",
+};
+---
+
+<section
+  class="bg-primary flex min-h-screen items-center justify-center px-4 py-20 md:px-16"
+>
+  <div class="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2">
+    <div class="text-left text-balance">
+      {/* <TrustMetric /> */}
+      <h1
+        class="text-text-primary mb-6 text-5xl leading-tight font-bold md:text-6xl"
+      >
+        Organize GitHub <span class="text-accent">Repositories</span> Like Never
+        Before
+      </h1>
+      <p class="text-text-secondary mb-8 text-xl">
+        "Transform cluttered repositories into a streamlined, organized
+        workspace. The missing folder structure for your GitHub repositories."
+      </p>
+      <div class="flex items-center gap-x-4">
+        <a
+          href={linkToOpen}
+          class="group bg-accent hover:bg-accent-hover flex cursor-pointer items-center gap-x-2 rounded-lg px-5 py-4 text-lg font-semibold text-white transition-colors md:px-8 md:py-4"
+        >
+          <span>Join Waitlist</span>
+          <ArrowRight
+            className="h-5 w-5 transition-transform group-hover:translate-x-2"
+          />
+        </a>
+        {/* <UserMetric /> */}
+      </div>
+      <div class="mt-8 grid w-fit grid-cols-3 gap-8">
+        {stats.map((stat) => <StatBox value={stat.value} label={stat.label} />)}
+      </div>
+    </div>
+    <div class="relative h-full">
+      <div
+        class="relative h-[50vh] w-full overflow-hidden rounded-lg shadow-2xl md:h-[100vh]"
+      >
+        <img
+          src={heroImage.url}
+          alt={heroImage.alt}
+          class="h-full w-full object-cover"
+        />
+      </div>
+      <div
+        class="absolute -bottom-6 -left-2 flex items-center gap-x-3 rounded-lg bg-white p-3 shadow-lg md:-left-6 md:p-4"
+      >
+        <Folder className="text-accent h-10 w-10 animate-pulse" />
+        <div>
+          <h3 class="font-semibold">Smart Organization</h3>
+          <p class="text-text-secondary text-sm">Drag & Drop Repositories</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

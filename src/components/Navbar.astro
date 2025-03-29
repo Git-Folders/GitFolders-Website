@@ -1,0 +1,41 @@
+---
+import { NAME, ROUTES } from "@constants/Navbar_Constants";
+import { FolderTree } from "../utils/Icons";
+---
+
+<nav
+  class="fixed top-0 z-50 flex h-16 w-full items-center justify-between rounded-b-md bg-white/70 px-4 shadow-sm backdrop-blur-md md:px-16"
+>
+  <!-- Logo Container -->
+  <a href={ROUTES.home.path}>
+    <div class="flex cursor-pointer items-center gap-x-2">
+      <!--   TODO: Logo Goes Here  -->
+      <FolderTree className="text-accent h-auto w-6" />
+      <span class="text-lg font-semibold">{NAME}</span>
+    </div>
+  </a>
+  <!-- Nav options Container -->
+  <div class="flex items-center gap-x-2">
+    <!-- ! Activate after Launch -->
+    <!--  <a
+      href={ROUTES.login.path}
+      class="hover:text-accent text-text-primary cursor-pointer px-3 py-2 font-medium transition-all"
+    >
+      {ROUTES.login.name}
+    </a>
+    <a
+      href={ROUTES.signup.path}
+      class="bg-accent hover:bg-accent-hover cursor-pointer rounded-lg px-3 py-2 font-medium text-white transition-all hover:rounded-md"
+    >
+      {ROUTES.signup.name}
+    </a> -->
+
+    <!-- ! Deactivate after Launch -->
+    <a
+      href={ROUTES.waitlist.path}
+      class="bg-accent hover:bg-accent-hover cursor-pointer rounded-lg px-3 py-2 font-medium text-white transition-all hover:rounded-md"
+    >
+      {ROUTES.waitlist.name}
+    </a>
+  </div>
+</nav>

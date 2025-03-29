@@ -1,0 +1,40 @@
+---
+import { CTA_Link } from "@/NavRoutes";
+import { ArrowRight } from "@/utils/Icons";
+
+const bgImage =
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80";
+//https://images.unsplash.com/photo-1522071820081-009f0129c71c
+
+const linkToOpen = CTA_Link;
+---
+
+<section
+  class="bg-accent relative overflow-hidden px-4 pt-6 pb-20 text-white md:px-16 md:pt-20"
+>
+  <div class="pointer-events-none absolute inset-0 opacity-10">
+    <div
+      style={{ backgroundImage: `url(${bgImage})` }}
+      class={`absolute inset-0 bg-cover bg-center`}
+    >
+    </div>
+  </div>
+  <div class="relative z-10 mx-auto flex max-w-4xl flex-col px-4 text-center">
+    <h2 class="mb-6 text-4xl font-bold">
+      Ready to organize your GitHub repositories?
+    </h2>
+    <p class="mb-10 text-xl opacity-90">
+      Join thousands of developers who are already enjoying a cleaner, more
+      organized GitHub experience.
+    </p>
+    <a
+      href={linkToOpen}
+      class="group text-accent hover:text-accent-hover z-50 flex cursor-pointer items-center gap-x-2 self-center rounded-lg bg-white px-5 py-4 text-lg font-semibold transition-colors hover:bg-gray-200 md:px-8 md:py-4"
+    >
+      Join Waitlist
+      <ArrowRight
+        className="h-5 w-5 transition-transform group-hover:translate-x-2"
+      />
+    </a>
+  </div>
+</section>

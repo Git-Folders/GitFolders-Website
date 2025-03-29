@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+import { FeatureIcon, type Feature } from "./Features.tsx";
+
+type FeatureCardProps = {
+  feature: Feature;
+};
+
+const { feature } = Astro.props as FeatureCardProps;
+const { icon, title, description, image } = feature;
+---
+
+<div
+  class="group overflow-hidden rounded-xl bg-white shadow-lg transition-all hover:shadow-xl"
+>
+  <div class="h-48 overflow-hidden">
+    <Image
+      src={image}
+      alt={title}
+      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+      height={1000}
+      width={1000}
+    />
+  </div>
+  <div class="p-6">
+    <div class="mb-4"><FeatureIcon icon={icon} /></div>
+    <h3 class="text-text-primary mb-3 text-xl font-semibold">
+      {title}
+    </h3>
+    <p class="text-text-secondary">{description}</p>
+  </div>
+</div>

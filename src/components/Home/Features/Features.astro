@@ -1,0 +1,27 @@
+---
+import FeatureCard from "./Components/FeatureCard.astro";
+import {
+  Features as featuresList,
+  type Feature,
+} from "./Components/Features.tsx";
+---
+
+<section class="bg-primary px-4 pt-6 pb-20 md:px-16 md:pt-20">
+  <div class="mx-auto max-w-7xl space-y-10">
+    <div class="space-y-4 text-center">
+      <h2 class="text-text-primary text-4xl font-bold">
+        Everything you need to organize your GitHub workflow
+      </h2>
+      <p class="text-text-secondary mx-auto max-w-2xl text-xl text-balance">
+        Powerful features designed for developers
+      </p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        featuresList.map((feature: Feature) => (
+          <FeatureCard feature={feature} />
+        ))
+      }
+    </div>
+  </div>
+</section>

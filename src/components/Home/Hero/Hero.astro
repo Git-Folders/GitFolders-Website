@@ -1,23 +1,28 @@
 ---
-import { ROUTES } from "@constants/Navbar_Constants";
-import { ArrowRight, Folder } from "src/utils/Icons";
-import StatBox from "src/components/StatBox.astro";
+import { Image } from "astro:assets";
+import { CTA_Link } from "@/NavRoutes.ts";
 
-const linkToOpen = ROUTES.waitlist.path;
+import { ArrowRight, Folder } from "@utils/Icons.tsx";
 
-type Stat = {
-  value: string;
-  label: string;
-};
+// TODO: Enable when required
+/* import TrustMetric from "./componentsTrustMetric.astro";
+import UserMetric from "./componentsUserMetric.astro"; */
+
+import StatBox, { type Stat } from "./Components/StatBox.astro";
+
+const linkToOpen = CTA_Link;
+
 const stats: Stat[] = [
   { value: "75.2%", label: "Time Saved" },
   { value: "20k+", label: "Active Users" },
   { value: "4.8/5", label: "User Rating" },
 ];
+
 const heroImage = {
-  url: "https://images.unsplash.com/photo-1630514969818-94aefc42ec47?auto=format&fit=crop&w=800&q=80", //  "https://images.unsplash.com/photo-1618477388954-7852f32655ec"
+  url: "https://images.unsplash.com/photo-1630514969818-94aefc42ec47?auto=format&fit=crop&w=800&q=80",
+  //  "https://images.unsplash.com/photo-1618477388954-7852f32655ec"
   alt: "Dashboard preview",
-};
+} as const;
 ---
 
 <section
@@ -56,10 +61,13 @@ const heroImage = {
       <div
         class="relative h-[50vh] w-full overflow-hidden rounded-lg shadow-2xl md:h-[100vh]"
       >
-        <img
+        <Image
           src={heroImage.url}
           alt={heroImage.alt}
           class="h-full w-full object-cover"
+          width={1000}
+          height={1000}
+          loading="eager"
         />
       </div>
       <div

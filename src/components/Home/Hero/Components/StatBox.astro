@@ -1,9 +1,9 @@
 ---
-type Props = {
+export type Stat = {
   value: string;
   label: string;
 };
-const { value, label } = Astro.props;
+const { value, label } = Astro.props as Stat;
 ---
 
 <div class="text-center">

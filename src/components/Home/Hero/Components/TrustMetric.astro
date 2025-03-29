@@ -1,0 +1,11 @@
+---
+import { Star } from "@utils/Icons";
+import UserCount from "./UserCount";
+---
+
+<div class="mb-4 flex items-center space-x-2">
+  <Star className="h-5 w-5 text-yellow-400" />
+  <span class="text-text-secondary">
+    Trusted by <UserCount client:load /> developers
+  </span>
+</div>

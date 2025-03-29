@@ -1,0 +1,11 @@
+---
+import { Users } from "@utils/Icons";
+import UserCount from "./UserCount";
+---
+
+<div class="hidden items-center gap-x-2 md:flex">
+  <Users className="text-text-secondary/90 h-5 w-5" />
+  <span class="text-text-secondary"
+    >Join <UserCount client:load /> developers</span
+  >
+</div>

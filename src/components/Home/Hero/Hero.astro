@@ -10,8 +10,6 @@ import UserMetric from "./componentsUserMetric.astro"; */
 
 import StatBox, { type Stat } from "./Components/StatBox.astro";
 
-const linkToOpen = CTA_Link;
-
 const stats: Stat[] = [
   { value: "75.2%", label: "Time Saved" },
   { value: "20k+", label: "Active Users" },
@@ -43,10 +41,10 @@ const heroImage = {
       </p>
       <div class="flex items-center gap-x-4">
         <a
-          href={linkToOpen}
+          href={CTA_Link.path}
           class="group bg-accent hover:bg-accent-hover flex cursor-pointer items-center gap-x-2 rounded-lg px-5 py-4 text-lg font-semibold text-white transition-colors md:px-8 md:py-4"
         >
-          <span>Join Waitlist</span>
+          <span>{CTA_Link.name}</span>
           <ArrowRight
             className="h-5 w-5 transition-transform group-hover:translate-x-2"
           />

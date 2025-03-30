@@ -1,0 +1,33 @@
+---
+const targetUrl = "/welcome";
+const delay = 300; // in milliseconds
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Redirecting..." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>Redirecting...</title>
+    <!-- Meta refresh for browsers that support it -->
+    <meta http-equiv="refresh" content={`${delay / 1000}; url=${targetUrl}`} />
+  </head>
+  <body>
+    <p>
+      You are being redirected to <a href={targetUrl}>this page. </a>
+      <script is:inline>
+        // Rename variables to avoid conflicts with frontmatter names.
+        const redirectTargetUrl = "{targetUrl}";
+        const redirectDelay = { delay };
+        // Redirect after the specified delay
+        setTimeout(() => {
+          window.location.href = redirectTargetUrl;
+        }, redirectDelay);
+      </script>
+    </p>
+  </body>
+</html>

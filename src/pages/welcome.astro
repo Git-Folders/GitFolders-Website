@@ -1,0 +1,55 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { PAYMENT_LINK } from "@/NavRoutes";
+---
+
+<Layout>
+  <div
+    class="from-primary flex min-h-screen items-center justify-center bg-gradient-to-b to-white px-4 py-6 md:px-16 md:py-20"
+  >
+    <div
+      class="container mx-auto w-full max-w-3xl space-y-6 rounded-xl border border-gray-300 bg-gradient-to-b from-gray-200 to-gray-100 p-6 shadow-lg shadow-gray-300"
+    >
+      <div class="flex flex-col gap-y-4">
+        <h1
+          class="text-text-primary cursor-default text-center text-4xl font-bold md:text-6xl"
+        >
+          Welcome to GitFolders!
+        </h1>
+        <p
+          class="text-text-secondary cursor-default text-center text-lg font-medium"
+        >
+          Your GitHub just got an upgrade. Organize your repositories
+          effortlessly.
+        </p>
+      </div>
+
+      <div
+        class="container mx-auto max-w-md rounded-xl border border-gray-200 bg-gray-50 px-6 py-4"
+      >
+        <p class="text-text-primary mb-4 cursor-default font-medium">
+          Your account is set up! Here’s what you can do next:
+        </p>
+        <ul
+          class="text-text-secondary mb-6 cursor-default list-inside list-disc text-left"
+        >
+          <li>Create and manage custom repository folders</li>
+          <li>Sync seamlessly between local and cloud storage</li>
+          <li>Access your organized GitHub from anywhere</li>
+          <li>Enjoy a clean, distraction-free GitHub experience</li>
+        </ul>
+        <div class="flex flex-col items-center gap-1">
+          <a
+            href={PAYMENT_LINK}
+            class="bg-accent hover:bg-accent-hover inline-block rounded-lg px-6 py-3 font-medium text-white transition-colors"
+          >
+            Subscribe Now
+          </a>
+          <p class="text-text-placeholder cursor-default text-sm">
+            Subscribe to continue.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

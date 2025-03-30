@@ -5,11 +5,22 @@ import { z } from "zod";
 import Input from "@components/FormComponents/Input";
 import Button from "@components/FormComponents/Button";
 import { Github } from "lucide-react";
+import { supabase } from "@lib/supabase";
+import { REDIRECT_PATH, REDIRECT_LINK } from "@/NavRoutes";
 
 const waitlistFormSchema = z.object({
   name: z.string().min(1, "Name Required"),
   email: z.string().email("Invalid Email"),
-  password: z.string().min(8, "Password must be at least 8 characters long"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters long")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/\d/, "Password must contain at least one digit")
+    .regex(
+      /[^a-zA-Z\d]/,
+      "Password must contain at least one special character",
+    ),
 });
 
 export type waitlistFormFields = z.infer<typeof waitlistFormSchema>;
@@ -42,6 +53,13 @@ const Form = () => {
       setIsGitHubSignup(true);
       console.log("GitHub Signup");
       //TODO: Handle GitHub Signup
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "github",
+        options: {
+          redirectTo: REDIRECT_LINK,
+        },
+      });
+      if (error) throw error;
     } catch (error) {
       throw new Error("Something went wrong. Please try again.");
     } finally {
@@ -55,17 +73,29 @@ const Form = () => {
       console.log("Email Signup");
       console.log(data);
       //TODO: Handle Email Signup
-      //const { name, email, password } = data;
+      const { name, email, password } = data;
+      const response = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            display_name: name,
+          },
+        },
+      });
+
+      if (response.error) throw response.error;
+
       //* Show success message
       setSubmitted(true);
     } catch (error) {
+      setSubmitted(false);
       setError("root", { message: "Something went wrong. Please try again." });
     } finally {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       reset();
       setSubmitted(false);
       // TODO:Handle redirect to home page
-      //   window.location.href = "/";
+      window.location.href = REDIRECT_PATH;
     }
   };
 
@@ -77,11 +107,18 @@ const Form = () => {
           handleGitHubSignup(e);
         }}
         disabled={isSubmitting}
-        className="hover:bg-text-primary flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-black p-3 font-medium text-black transition-colors hover:text-white"
+        className="hover:bg-text-primary flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-black bg-gray-100 p-3 font-medium text-black transition-colors hover:text-white"
       >
         <Github className="size-6" />
-        <span>Sign up with Githuh</span>
+        <span>Sign up with Github</span>
       </button>
+
+      <div className="mt-2 flex items-center justify-center text-sm">
+        <div className="flex-1 border-t border-gray-300"></div>
+        <span className="px-2 text-gray-500">Or continue with email</span>
+        <div className="flex-1 border-t border-gray-300"></div>
+      </div>
+
       <form
         onSubmit={handleSubmit(handleEmailSignup)}
         className="relative flex flex-col gap-y-2"
@@ -127,7 +164,7 @@ const Form = () => {
           type="submit"
           disabled={!isValid || isGitHubSignup || isSubmitting}
         >
-          {isSubmitting ? "Joining..." : "Join the Waitlist"}
+          {isSubmitting ? "Signing Up..." : "Signup"}
         </Button>
       </form>
     </div>

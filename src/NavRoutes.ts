@@ -1,3 +1,5 @@
+import { DOMAIN } from "./Name";
+
 // * App Routes
 export type Route = {
   name: string;
@@ -21,7 +23,7 @@ export const CTA_Link: Route = {
 
 //* Redirect Link
 export const REDIRECT_PATH: string = "/redirect";
-export const REDIRECT_LINK: string = "http://localhost:4321" + REDIRECT_PATH;
+export const REDIRECT_LINK: string = DOMAIN + REDIRECT_PATH;
 
 //* Payment Link
 export const PAYMENT_LINK: string = "http://localhost:4321/payment";

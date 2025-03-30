@@ -1,0 +1,13 @@
+---
+import FormContainer from "@components/FormComponents/FormContainer.astro";
+import FormHeader from "@components/FormComponents/FormHeader.astro";
+import Form from "./components/Form.tsx";
+---
+
+<FormContainer>
+  <FormHeader
+    title="Join the Waitlist"
+    description="Be the first to know when we launch. Enter your email below"
+  />
+  <Form client:load />
+</FormContainer>

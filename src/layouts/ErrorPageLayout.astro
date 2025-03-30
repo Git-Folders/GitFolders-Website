@@ -1,0 +1,38 @@
+---
+import "@styles/global.css";
+import ROUTES from "@/NavRoutes";
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+const { title = "GitFolders", description = "GitFolders" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div
+      class="from-primary flex h-screen items-center justify-center bg-gradient-to-b to-white"
+    >
+      <div
+        class="container mx-auto flex max-w-2xl flex-col items-center justify-center text-center"
+      >
+        <slot />
+        <a
+          href={ROUTES.home.path}
+          class="bg-accent hover:bg-accent-hover inline-block rounded-lg p-3 text-xl text-white transition-colors"
+        >
+          Go to Home
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

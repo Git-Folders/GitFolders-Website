@@ -6,7 +6,6 @@ export type Route = {
 
 const ROUTES: Record<string, Route> = {
   home: { name: "Home", path: "/" },
-  login: { name: "Login", path: "/login" },
   signup: { name: "Sign Up", path: "/signup" },
   waitlist: { name: "Join Waitlist", path: "/waitlist" },
 };

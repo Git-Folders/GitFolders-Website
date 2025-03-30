@@ -1,0 +1,17 @@
+---
+type FormContainerProps = {
+  topMargin?: string;
+};
+
+const { topMargin = "" } = Astro.props as FormContainerProps;
+---
+
+<div
+  class="from-primary flex h-screen items-center justify-center bg-gradient-to-b to-white px-4 py-6 md:px-16 md:py-20"
+>
+  <div
+    class={`container mx-auto w-full max-w-sm space-y-6 rounded-xl bg-gray-100 p-6 ${topMargin}`}
+  >
+    <slot />
+  </div>
+</div>

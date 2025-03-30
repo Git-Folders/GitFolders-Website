@@ -1,0 +1,13 @@
+---
+import FormContainer from "@components/FormComponents/FormContainer.astro";
+import FormHeader from "@components/FormComponents/FormHeader.astro";
+import Form from "./components/Form.tsx";
+---
+
+<FormContainer topMargin="mt-16">
+  <FormHeader
+    title="Create account"
+    description="Kickstart your effortless GitHub organization."
+  />
+  <Form client:load />
+</FormContainer>

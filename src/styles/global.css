@@ -5,7 +5,7 @@
   --accent: #0366d6;
   --accent-hover: #024e9d;
   --text-primary: #24292e;
-  --text-secondary: var(--color-gray-600);
+  --text-secondary: var(--color-gray-700);
   --text-placeholder: var(--color-gray-400);
 }
 
@@ -15,7 +15,7 @@
     --accent: #0366d6;
     --accent-hover: #024e9d;
     --text-primary: #24292e;
-    --text-secondary: var(--color-gray-600);
+    --text-secondary: var(--color-gray-700);
     --text-placeholder: var(--color-gray-400);
   }
 }

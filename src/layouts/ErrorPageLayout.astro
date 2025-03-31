@@ -1,6 +1,7 @@
 ---
 import "@styles/global.css";
 import ROUTES from "@/NavRoutes";
+import Footer from "@/components/Home/Footer.astro";
 
 type Props = {
   title?: string;
@@ -35,5 +36,6 @@ const { title = "GitFolders", description = "GitFolders" } = Astro.props;
         </a>
       </div>
     </div>
+    <Footer />
   </body>
 </html>

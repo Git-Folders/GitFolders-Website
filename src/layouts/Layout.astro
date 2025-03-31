@@ -2,6 +2,7 @@
 import "@styles/global.css";
 
 import Navbar from "@components/Navbar.astro";
+import Footer from "@/components/Home/Footer.astro";
 
 type Props = {
   title?: string;
@@ -23,5 +24,6 @@ const { title = "GitFolders", description = "GitFolders" } = Astro.props;
   <body>
     <Navbar />
     <slot />
+    <Footer />
   </body>
 </html>

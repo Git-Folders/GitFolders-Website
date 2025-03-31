@@ -1,12 +1,22 @@
-import { useCallback } from "react";
+import { useState, useEffect } from "react";
 
-const UserCount = useCallback(() => {
-  const getUserCount = () => {
-    const users = 20000;
-    return users.toLocaleString();
-  };
+const UserCount = () => {
+  const [userCount, setUserCount] = useState<string>("0");
 
-  const userCount = getUserCount();
+  useEffect(() => {
+    const getUserCount = async () => {
+      const users = 20000; //TODO: Fetch real number
+      return users.toLocaleString();
+    };
+
+    const fetchCount = async () => {
+      const userCount = await getUserCount();
+      setUserCount(userCount);
+    };
+
+    fetchCount();
+  }, []);
+
   return <span>{userCount}</span>;
-}, []);
+};
 export default UserCount;

@@ -62,18 +62,18 @@ const heroImage = {
         <Image
           src={heroImage.url}
           alt={heroImage.alt}
-          class="h-full w-full object-cover"
+          class="h-full w-full scale-125 object-cover"
           width={1000}
           height={1000}
           loading="eager"
         />
       </div>
       <div
-        class="absolute -bottom-6 -left-2 flex items-center gap-x-3 rounded-lg bg-white p-3 shadow-lg md:-left-6 md:p-4"
+        class="bg-primary shadow-secondary border-secondary absolute -bottom-6 -left-2 flex items-center gap-x-3 rounded-lg border-1 p-3 shadow-2xl md:-left-6 md:p-4"
       >
-        <Folder className="text-accent h-10 w-10 animate-pulse" />
+        <Folder className="text-accent h-10 w-10" />
         <div>
-          <p class="font-semibold">Smart Organization</p>
+          <p class="text-text-primary font-semibold">Smart Organization</p>
           <p class="text-text-secondary text-sm">Drag & Drop Repositories</p>
         </div>
       </div>

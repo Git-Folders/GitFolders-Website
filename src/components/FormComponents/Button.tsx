@@ -6,7 +6,7 @@ const Button = ({ children, ...buttonProps }: ButtonProps) => {
   return (
     <button
       {...buttonProps}
-      className="bg-accent hover:bg-accent-hover mt-5 flex w-full items-center justify-center rounded-lg p-3 font-medium text-white transition-colors disabled:bg-gray-400 hover:disabled:bg-gray-600"
+      className="bg-accent hover:bg-accent-hover disabled:bg-disabled-button hover:disabled:bg-disabled-button-hover mt-5 flex w-full items-center justify-center rounded-lg p-3 font-medium text-white transition-colors"
     >
       {children}
     </button>

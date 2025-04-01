@@ -13,15 +13,23 @@ const { data } = Astro.props as Props;
 const { type, title, features } = data;
 
 const isPositive = type === "positive";
-const bgColor = isPositive ? "bg-green-100" : "bg-red-100";
-const borderColor = isPositive ? "border-green-200" : "border-red-200";
-const titleColor = isPositive ? "text-green-700" : "text-red-700";
-const badgeColor = isPositive ? "bg-green-200" : "bg-red-200";
+const bgColor = isPositive
+  ? "dark:bg-green-800 bg-green-100"
+  : "dark:bg-red-800 bg-red-100";
+const borderColor = isPositive
+  ? "dark:border-green-500 border-green-200"
+  : "dark:border-red-500 border-red-200";
+const titleColor = isPositive
+  ? "dark:text-green-100 text-green-700"
+  : "dark:text-red-100 text-red-700";
+const badgeColor = isPositive
+  ? "dark:bg-green-700 bg-green-200"
+  : "dark:bg-red-700 bg-red-200";
 const icon = isPositive ? "✓" : "✕";
 const iconColor = isPositive ? "text-green-500" : "text-red-500";
 ---
 
-<div class={`${bgColor} rounded-2xl border p-4 md:p-8 ${borderColor}`}>
+<div class={`${bgColor}  rounded-2xl border p-4 md:p-8 ${borderColor}`}>
   <h3 class={`mb-4 text-2xl font-bold ${titleColor} flex items-center`}>
     <span class={`${badgeColor}  mr-3 rounded-lg p-2`}>{title}</span>
   </h3>

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Input from "@components/FormComponents/Input";
 import Button from "@components/FormComponents/Button";
+import ROUTES from "@/NavRoutes";
 
 const waitlistFormSchema = z.object({
   name: z.string().min(1, "Name Required"),
@@ -65,6 +66,7 @@ const Form = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       reset();
       setSubmitted(false);
+      window.location.href = ROUTES.home.path;
     }
   };
 

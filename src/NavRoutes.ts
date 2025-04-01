@@ -1,12 +1,13 @@
 import { DOMAIN } from "./Name";
 
 // * App Routes
-export type Route = {
+type Route = {
   name: string;
   path: string;
 };
+type Routes = "home" | "signup" | "resetPassword" | "welcome" | "waitlist";
 
-const ROUTES: Record<string, Route> = {
+const ROUTES: Record<Routes, Route> = {
   home: { name: "Home", path: "/" },
   signup: { name: "Sign Up", path: "/signup" },
   resetPassword: { name: "Password Reset", path: "/reset_password" },

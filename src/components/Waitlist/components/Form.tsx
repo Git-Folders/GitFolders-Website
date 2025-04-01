@@ -42,13 +42,21 @@ const Form = () => {
       console.log(data);
       const { name, email, receive_regular_updates } = data;
 
+      //* Format the name and email
+      const firstName = name.trim().split(" ")[0];
+      const formattedEmail = email.trim().toLowerCase();
+
+      //* Create the waitlist params
       const waitlistParams = new URLSearchParams({
-        name: name,
-        email: email,
+        name: firstName,
+        email: formattedEmail,
         receive_regular_updates: receive_regular_updates ? "true" : "false",
       });
+
+      //* Add the params to the waitlist URL
       waitlistURL.search = waitlistParams.toString();
 
+      //* Send the request to Make.com to add the user to the waitlist
       const response = await fetch(waitlistURL, {
         method: "GET",
       });
@@ -60,12 +68,15 @@ const Form = () => {
       //* Show success message
       setSubmitted(true);
     } catch (error) {
+      //* Show error message
       setSubmitted(false);
       setError("root", { message: "Something went wrong. Please try again." });
     } finally {
+      //* Reset the form
       await new Promise((resolve) => setTimeout(resolve, 2000));
       reset();
       setSubmitted(false);
+      //* Redirect to the home page
       window.location.href = ROUTES.home.path;
     }
   };

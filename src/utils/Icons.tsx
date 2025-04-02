@@ -1,5 +1,4 @@
 import {
-  FolderTree as Folder_Tree,
   ArrowRight as Arrow_Right,
   Folder as Folder_Icon,
   Star as Star_Icon,
@@ -9,10 +8,6 @@ import {
 type IconProps = {
   className?: string;
 };
-
-export function FolderTree({ className }: IconProps) {
-  return <Folder_Tree className={className} />;
-}
 
 export function ArrowRight({ className }: IconProps) {
   return <Arrow_Right className={className} />;

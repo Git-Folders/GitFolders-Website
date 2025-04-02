@@ -1,7 +1,7 @@
 ---
 import ROUTES from "@/NavRoutes";
 import NAME from "@/Name";
-import { FolderTree } from "@utils/Icons.tsx";
+import Logo from "@/assets/32.png";
 ---
 
 <nav
@@ -11,7 +11,13 @@ import { FolderTree } from "@utils/Icons.tsx";
   <a href={ROUTES.home.path}>
     <div class="flex cursor-pointer items-center gap-x-2">
       <!--   TODO: Logo Goes Here  -->
-      <FolderTree className="text-accent h-auto w-6" />
+      <img
+        src={Logo.src}
+        alt="Gitfolders Logo"
+        class="size-10"
+        loading="lazy"
+      />
+
       <span class="text-text-primary text-lg font-semibold">{NAME}</span>
     </div>
   </a>

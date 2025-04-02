@@ -120,7 +120,7 @@ const Form = () => {
         <Input
           control={control}
           name="receive_regular_updates"
-          label="Send regular updates"
+          label="Receive regular updates"
           type="checkbox"
           layout="flex-row-reverse"
         />

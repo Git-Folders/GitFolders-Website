@@ -9,7 +9,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  // ! TODO: Change Domain in Name.ts also
+  // ! Change Domain in Name.ts also
   site: "https://gitfolders.xyz",
   integrations: [react(), sitemap()],
 });

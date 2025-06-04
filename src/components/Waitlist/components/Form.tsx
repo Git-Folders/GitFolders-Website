@@ -39,7 +39,6 @@ const Form = () => {
 
   const onSubmit: SubmitHandler<waitlistFormFields> = async (data) => {
     try {
-      console.log(data);
       const { name, email, receive_regular_updates } = data;
 
       //* Format the name and email

@@ -31,8 +31,6 @@ const Form = () => {
 
   const handleEmailSignup: SubmitHandler<waitlistFormFields> = async (data) => {
     try {
-      console.log("Email Signup");
-      console.log(data);
       const { email } = data;
       const response = await supabase.auth.resetPasswordForEmail(email);
 

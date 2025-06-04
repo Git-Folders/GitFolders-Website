@@ -10,10 +10,9 @@ import Logo from "@/assets/logo.svg";
   <!-- Logo Container -->
   <a href={ROUTES.home.path}>
     <div class="flex cursor-pointer items-center gap-x-2">
-      <!--   TODO: Logo Goes Here  -->
       <img
         src={Logo.src}
-        alt="Gitfolders Logo"
+        alt="GitFolders Logo"
         class="size-10"
         loading="lazy"
       />
@@ -23,12 +22,11 @@ import Logo from "@/assets/logo.svg";
   </a>
   <!-- Nav options Container -->
   <div class="flex items-center gap-x-2">
-    <!-- ! Change waitlit to signup after Launch -->
     <a
-      href={ROUTES.waitlist.path}
+      href={ROUTES.signup.path}
       class="bg-accent hover:bg-accent-hover cursor-pointer rounded-lg px-3 py-2 font-medium text-white transition-all hover:rounded-md"
     >
-      {ROUTES.waitlist.name}
+      {ROUTES.signup.name}
     </a>
   </div>
 </nav>

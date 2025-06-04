@@ -8,7 +8,7 @@ import { Github } from "lucide-react";
 import { supabase } from "@lib/supabase";
 import { REDIRECT_PATH, REDIRECT_LINK } from "@/NavRoutes";
 
-const waitlistFormSchema = z.object({
+const signupFormSchema = z.object({
   name: z.string().min(1, "Name Required"),
   email: z.string().email("Invalid Email"),
   password: z
@@ -23,7 +23,7 @@ const waitlistFormSchema = z.object({
     ),
 });
 
-export type waitlistFormFields = z.infer<typeof waitlistFormSchema>;
+export type signupFormFields = z.infer<typeof signupFormSchema>;
 
 const Form = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -35,14 +35,14 @@ const Form = () => {
     setError,
     formState: { errors, isSubmitting, isValid },
     reset,
-  } = useForm<waitlistFormFields>({
+  } = useForm<signupFormFields>({
     mode: "onChange",
     defaultValues: {
       name: "",
       email: "",
       password: "",
     },
-    resolver: zodResolver(waitlistFormSchema),
+    resolver: zodResolver(signupFormSchema),
   });
 
   const handleGitHubSignup = async (
@@ -51,8 +51,6 @@ const Form = () => {
     e.preventDefault();
     try {
       setIsGitHubSignup(true);
-      console.log("GitHub Signup");
-      //TODO: Handle GitHub Signup
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "github",
         options: {
@@ -61,18 +59,15 @@ const Form = () => {
       });
       if (error) throw error;
     } catch (error) {
-      throw new Error("Something went wrong. Please try again.");
+      setError("root", { message: "Something went wrong. Please try again." });
     } finally {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setIsGitHubSignup(false);
     }
   };
 
-  const handleEmailSignup: SubmitHandler<waitlistFormFields> = async (data) => {
+  const handleEmailSignup: SubmitHandler<signupFormFields> = async (data) => {
     try {
-      console.log("Email Signup");
-      console.log(data);
-      //TODO: Handle Email Signup
       const { name, email, password } = data;
       const response = await supabase.auth.signUp({
         email: email,
@@ -81,11 +76,10 @@ const Form = () => {
           data: {
             display_name: name,
           },
+          emailRedirectTo: REDIRECT_LINK,
         },
       });
-
       if (response.error) throw response.error;
-
       //* Show success message
       setSubmitted(true);
     } catch (error) {
@@ -94,8 +88,7 @@ const Form = () => {
     } finally {
       reset();
       setSubmitted(false);
-      // TODO:Handle redirect to home page
-      window.location.href = REDIRECT_PATH;
+      window.location.href = `/${REDIRECT_PATH}`;
     }
   };
 

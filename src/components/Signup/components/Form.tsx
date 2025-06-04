@@ -90,7 +90,7 @@ const Form = () => {
     } finally {
       reset();
       setSubmitted(false);
-      window.location.href = `/${REDIRECT_PATH}`;
+      // window.location.href = `/${REDIRECT_PATH}`;
     }
   };
 

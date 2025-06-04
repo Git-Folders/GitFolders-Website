@@ -68,6 +68,7 @@ const Form = () => {
 
   const handleEmailSignup: SubmitHandler<signupFormFields> = async (data) => {
     try {
+      console.log("Form Data:", data);
       const { name, email, password } = data;
       const response = await supabase.auth.signUp({
         email: email,
@@ -79,6 +80,7 @@ const Form = () => {
           emailRedirectTo: REDIRECT_LINK,
         },
       });
+      console.log("Signup Response:", response);
       if (response.error) throw response.error;
       //* Show success message
       setSubmitted(true);

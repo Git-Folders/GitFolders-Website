@@ -7,7 +7,6 @@ import { Github } from "lucide-react";
 import { supabase } from "@lib/supabase";
 import ROUTES, { REDIRECT_PATH, REDIRECT_LINK } from "@/NavRoutes";
 import { LoginFormSchema, type LoginFormFields } from "@/utils/schema";
-import Cookies from "js-cookie";
 
 const Form = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);

@@ -54,7 +54,6 @@ const NewPasswordForm = () => {
       if (error) throw error;
       setSubmitted(true);
     } catch (error) {
-      console.log("error", error);
       setSubmitted(false);
       setError("root", { message: "Something went wrong. Please try again." });
     } finally {

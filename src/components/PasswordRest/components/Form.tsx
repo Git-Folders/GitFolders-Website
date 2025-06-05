@@ -32,12 +32,10 @@ const Form = () => {
   > = async (data) => {
     try {
       const { email } = data;
-      console.log("sending email to", email);
       const response = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: UPDATE_PASSWORD_LINK,
       });
       if (response.error) throw new Error(response.error.message);
-      console.log("response", response);
       //* Show success message
       setSubmitted(true);
     } catch (error) {

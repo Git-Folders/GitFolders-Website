@@ -1,25 +1,28 @@
 ---
 import Footer from "@/components/Footer.astro";
-
-import { supabase } from "@lib/supabase";
 import ROUTES from "@/NavRoutes";
-
-let targetUrl = "/welcome";
-
-/* // Check if user is authenticated
-const {
-  data: { session },
-} = await supabase.auth.getSession();
-// If no session, redirect to home page
-if (!session) {
-  targetUrl = ROUTES.home.path;
-}
- */
-const delay = 300; // in milliseconds
 ---
 
 <html lang="en">
   <head>
+    <script>
+      import { supabase } from "@lib/supabase";
+      import ROUTES from "@/NavRoutes";
+
+      const delay = 300; // in milliseconds
+      setTimeout(async () => {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        if (session) {
+          window.location.href = ROUTES.welcome.path;
+        } else {
+          window.location.href = ROUTES.login.path;
+        }
+      }, delay);
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
@@ -28,22 +31,9 @@ const delay = 300; // in milliseconds
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>Redirecting...</title>
-    <!-- Meta refresh for browsers that support it -->
-    <meta http-equiv="refresh" content={`${delay / 1000}; url=${targetUrl}`} />
   </head>
   <body>
-    <p>
-      You are being redirected to <a href={targetUrl}>this page. </a>
-      <script is:inline>
-        // Rename variables to avoid conflicts with front matter names.
-        const redirectTargetUrl = "{targetUrl}";
-        const redirectDelay = { delay };
-        // Redirect after the specified delay
-        setTimeout(() => {
-          window.location.href = redirectTargetUrl;
-        }, redirectDelay);
-      </script>
-    </p>
-    <Footer />
+    <p>You are being redirected...</p>
   </body>
+  <Footer />
 </html>

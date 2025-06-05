@@ -7,6 +7,7 @@ import { Github } from "lucide-react";
 import { supabase } from "@lib/supabase";
 import ROUTES, { REDIRECT_PATH, REDIRECT_LINK } from "@/NavRoutes";
 import { LoginFormSchema, type LoginFormFields } from "@/utils/schema";
+import Cookies from "js-cookie";
 
 const Form = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -56,11 +57,10 @@ const Form = () => {
         password: password,
       });
       if (response.error) throw response.error;
-      console.log("Login Response:", response.data);
+
       //* Show success message
       setSubmitted(true);
     } catch (error) {
-      console.log("Login Error:", error);
       setSubmitted(false);
       setError("root", { message: "Something went wrong. Please try again." });
     } finally {

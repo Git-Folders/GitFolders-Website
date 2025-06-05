@@ -1,70 +1,59 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import DashboardLayout from "@/layouts/DashboardLayout.astro";
 import { PAYMENT_LINK } from "@/NavRoutes";
-import { supabase } from "@lib/supabase";
-import ROUTES from "@/NavRoutes";
-
-console.log("Welcome page loaded");
-// Check if user is authenticated
-const {
-  data: { session },
-} = await supabase.auth.getSession();
-
-console.log("Session data:", session);
-/*
-// If no session, redirect to login
-if (!session) {
-  return Astro.redirect(ROUTES.login.path);
-} */
 ---
 
-<Layout title="Welcome" description="Git Folders Welcome Page">
+<DashboardLayout title="Welcome" description="Git Folders Welcome Page">
   <div
-    class="from-primary to-secondary flex min-h-screen items-center justify-center bg-gradient-to-b px-4 py-6 md:px-16 md:py-20"
+    class="from-primary to-secondary flex min-h-screen cursor-default items-center justify-center bg-gradient-to-b px-4 py-6 md:px-16 md:py-20"
   >
     <div
       class="border-form-border from-form-primary to-form-secondary shadow-form-shadow container mx-auto w-full max-w-3xl space-y-6 rounded-xl border bg-gradient-to-b p-6 shadow-lg"
     >
       <div class="flex flex-col gap-y-4">
         <h1
-          class="text-text-primary cursor-default text-center text-4xl font-bold md:text-6xl"
+          class="text-text-primary text-center text-4xl font-bold md:text-6xl"
         >
           Welcome to GitFolders!
         </h1>
-        <p
-          class="text-text-secondary cursor-default text-center text-lg font-medium"
-        >
+        <p class="text-text-secondary text-center text-lg font-medium">
           Your GitHub just got an upgrade. Organize your repositories
           effortlessly.
         </p>
       </div>
-
       <div
         class="border-form-border/60 bg-form-input container mx-auto max-w-md rounded-xl border px-6 py-4"
       >
-        <p class="text-text-primary mb-4 cursor-default font-medium">
+        <p class="text-text-primary mb-4 font-medium">
           Your account is set up! Here's what you can do next:
         </p>
-        <ul
-          class="text-text-secondary mb-6 cursor-default list-inside list-disc text-left"
-        >
+        <ul class="text-text-secondary mb-6 list-inside list-disc text-left">
           <li>Create and manage custom repository folders</li>
           <li>Sync seamlessly between local and cloud storage</li>
           <li>Access your organized GitHub from anywhere</li>
           <li>Enjoy a clean, distraction-free GitHub experience</li>
         </ul>
+        <!-- TODO: Delete this after beta programme -->
         <div class="flex flex-col items-center gap-1">
+          <a
+            href={"https://github.com/"}
+            class="bg-accent hover:bg-accent-hover inline-block rounded-lg px-6 py-3 font-medium text-white transition-colors"
+          >
+            Go to Github</a
+          >
+          <p class="text-text-placeholder text-sm">Say Hello to new Github.</p>
+        </div>
+        <!-- TODO: Uncomment this after beta programme -->
+        <!--  <div class="flex flex-col items-center gap-1">
           <a
             href={PAYMENT_LINK}
             class="bg-accent hover:bg-accent-hover inline-block rounded-lg px-6 py-3 font-medium text-white transition-colors"
           >
             Subscribe Now
           </a>
-          <p class="text-text-placeholder cursor-default text-sm">
-            Subscribe to continue.
-          </p>
-        </div>
+          <p class="text-text-placeholder text-sm">Subscribe to continue.</p>
+        </div> -->
       </div>
     </div>
   </div>
-</Layout>
+</DashboardLayout>

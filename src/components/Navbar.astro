@@ -2,6 +2,13 @@
 import ROUTES from "@/NavRoutes";
 import NAME from "@/Name";
 import Logo from "@/assets/logo.svg";
+import SignoutButton from "./SignoutButton";
+
+type Props = {
+  isDashboardPage?: boolean;
+};
+
+const isDashboardPage = Astro.props.isDashboardPage ?? false;
 ---
 
 <nav
@@ -22,7 +29,7 @@ import Logo from "@/assets/logo.svg";
   </a>
   <!-- Nav options Container -->
   <div class="flex items-center gap-x-2">
-    <a
+    {!isDashboardPage ?(<a
       href={ROUTES.login.path}
       class="border-accent hover:border-accent-hover cursor-pointer rounded-lg border-2 px-3 py-2 font-medium text-white transition-all"
     >
@@ -34,5 +41,8 @@ import Logo from "@/assets/logo.svg";
     >
       {ROUTES.signup.name}
     </a>
+    ):(
+    <SignoutButton client:visible/>
+    )}
   </div>
 </nav>

@@ -25,10 +25,10 @@ export const CTA_Link: Route = {
 
 //* Redirect Link
 export const REDIRECT_PATH: string = "redirect";
-// export const REDIRECT_LINK: string = `${DOMAIN}/${REDIRECT_PATH}`;
-// export const UPDATE_PASSWORD_LINK: string = `${DOMAIN}/update-password`;
-export const REDIRECT_LINK: string = `http://localhost:4321/${REDIRECT_PATH}`;
-export const UPDATE_PASSWORD_LINK: string = `http://localhost:4321/update-password`;
+export const REDIRECT_LINK: string = `${DOMAIN}/${REDIRECT_PATH}`;
+export const UPDATE_PASSWORD_LINK: string = `${DOMAIN}/update-password`;
+// export const REDIRECT_LINK: string = `http://localhost:4321/${REDIRECT_PATH}`;
+// export const UPDATE_PASSWORD_LINK: string = `http://localhost:4321/update-password`;
 
 //* Payment Link
 // TODO: Update this to the actual payment link when available

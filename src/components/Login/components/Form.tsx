@@ -5,12 +5,12 @@ import Input from "@components/FormComponents/Input";
 import Button from "@components/FormComponents/Button";
 import { Github } from "lucide-react";
 import { supabase } from "@lib/supabase";
-import { REDIRECT_PATH, REDIRECT_LINK } from "@/NavRoutes";
-import { SignupFormSchema, type SignupFormFields } from "@/utils/schema";
+import ROUTES, { REDIRECT_PATH, REDIRECT_LINK } from "@/NavRoutes";
+import { LoginFormSchema, type LoginFormFields } from "@/utils/schema";
 
 const Form = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [isGitHubSignup, setIsGitHubSignup] = useState<boolean>(false);
+  const [isGitHubLogin, setIsGitHubLogin] = useState<boolean>(false);
 
   const {
     control,
@@ -18,22 +18,21 @@ const Form = () => {
     setError,
     formState: { errors, isSubmitting, isValid },
     reset,
-  } = useForm<SignupFormFields>({
+  } = useForm<LoginFormFields>({
     mode: "onChange",
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
-    resolver: zodResolver(SignupFormSchema),
+    resolver: zodResolver(LoginFormSchema),
   });
 
-  const handleGitHubSignup = async (
+  const handleGitHubLogin = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
     try {
-      setIsGitHubSignup(true);
+      setIsGitHubLogin(true);
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "github",
         options: {
@@ -45,27 +44,23 @@ const Form = () => {
       setError("root", { message: "Something went wrong. Please try again." });
     } finally {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      setIsGitHubSignup(false);
+      setIsGitHubLogin(false);
     }
   };
 
-  const handleEmailSignup: SubmitHandler<SignupFormFields> = async (data) => {
+  const handleEmailLogin: SubmitHandler<LoginFormFields> = async (data) => {
     try {
-      const { name, email, password } = data;
-      const response = await supabase.auth.signUp({
+      const { email, password } = data;
+      const response = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
-        options: {
-          data: {
-            display_name: name,
-          },
-          emailRedirectTo: REDIRECT_LINK,
-        },
       });
       if (response.error) throw response.error;
+      console.log("Login Response:", response.data);
       //* Show success message
       setSubmitted(true);
     } catch (error) {
+      console.log("Login Error:", error);
       setSubmitted(false);
       setError("root", { message: "Something went wrong. Please try again." });
     } finally {
@@ -80,13 +75,13 @@ const Form = () => {
       <button
         type="button"
         onClick={(e) => {
-          handleGitHubSignup(e);
+          handleGitHubLogin(e);
         }}
         disabled={isSubmitting}
         className="hover:bg-text-primary flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-black bg-gray-100 p-3 font-medium text-black transition-colors hover:text-white dark:hover:bg-gray-300 dark:hover:text-gray-950"
       >
         <Github className="size-6" />
-        <span>Sign up with Github</span>
+        <span>Login with Github</span>
       </button>
 
       <div className="mt-2 flex items-center justify-center text-sm">
@@ -96,7 +91,7 @@ const Form = () => {
       </div>
 
       <form
-        onSubmit={handleSubmit(handleEmailSignup)}
+        onSubmit={handleSubmit(handleEmailLogin)}
         className="relative flex flex-col gap-y-2"
       >
         {errors.root && (
@@ -107,18 +102,9 @@ const Form = () => {
 
         {(isSubmitting || submitted) && (
           <span className="absolute -top-5 animate-bounce self-center rounded-xl border-2 border-green-200 bg-green-50 p-2 text-green-500 shadow-2xl dark:border dark:border-green-900 dark:bg-green-950 dark:text-green-100">
-            {submitted ? "Successfully Signed Up" : "Signing Up..."}
+            {submitted ? "Successfully Logged In" : "Logging In..."}
           </span>
         )}
-
-        <Input
-          control={control}
-          name="name"
-          label="Name"
-          placeholder="John Doe"
-          type="text"
-          autoComplete="on"
-        />
 
         <Input
           control={control}
@@ -138,11 +124,21 @@ const Form = () => {
           autoComplete="on"
         />
 
+        <p className="text-text-secondary text-xs">
+          {"Forgot password? "}
+          <a
+            href={ROUTES.resetPassword.path}
+            className="text-accent hover:underline"
+          >
+            Reset now
+          </a>
+        </p>
+
         <Button
           type="submit"
-          disabled={!isValid || isGitHubSignup || isSubmitting}
+          disabled={!isValid || isGitHubLogin || isSubmitting}
         >
-          {isSubmitting ? "Signing Up..." : "Signup"}
+          {isSubmitting ? "Logging In..." : "Login"}
         </Button>
       </form>
     </div>

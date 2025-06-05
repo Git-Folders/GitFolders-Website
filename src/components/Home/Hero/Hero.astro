@@ -11,9 +11,12 @@ import UserMetric from "./componentsUserMetric.astro"; */
 import StatBox, { type Stat } from "./Components/StatBox.astro";
 
 const stats: Stat[] = [
-  { value: "75.2%", label: "Time Saved" },
-  { value: "20k+", label: "Active Users" },
-  { value: "4.8/5", label: "User Rating" },
+  { value: "3x", label: "Fewer Clicks" },
+  { value: "50%", label: "Increased Productivity" },
+  { value: "2x", label: "Less Search Time" },
+  // { value: "75%", label: "Time Saved" },
+  // { value: "90%", label: "Faster Navigation" },
+  // { value: "1-Click", label: "Smart Folder Creation" },
 ];
 
 const heroImage = {
@@ -24,7 +27,7 @@ const heroImage = {
 ---
 
 <section
-  class="bg-primary flex min-h-screen items-center justify-center px-4 py-20 md:px-16"
+  class="bg-primary flex min-h-screen cursor-default items-center justify-center px-4 py-20 md:px-16"
 >
   <div class="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2">
     <div class="text-left text-balance">
@@ -36,8 +39,8 @@ const heroImage = {
         Before
       </h1>
       <p class="text-text-secondary mb-8 text-xl">
-        "Transform cluttered repositories into a streamlined, organized
-        workspace. The missing folder structure for your GitHub repositories."
+        Transform cluttered repositories into a streamlined, organized
+        workspace. The missing folder structure for your GitHub repositories.
       </p>
       <div class="flex items-center gap-x-4">
         <a
@@ -74,7 +77,7 @@ const heroImage = {
         <Folder className="text-accent h-10 w-10" />
         <div>
           <p class="text-text-primary font-semibold">Smart Organization</p>
-          <p class="text-text-secondary text-sm">Drag & Drop Repositories</p>
+          <p class="text-text-secondary text-sm">Like Never Before</p>
         </div>
       </div>
     </div>

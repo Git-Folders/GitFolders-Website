@@ -36,7 +36,7 @@
     /* Text Colors */
     --text-primary: var(--color-gray-300);
     --text-secondary: var(--color-gray-400);
-    --text-placeholder: var(--color-gray-400);
+    --text-placeholder: var(--color-gray-700);
     /* Form Colors */
     --form-background-primary: var(--color-gray-950);
     --form-background-secondary: var(--color-zinc-950);

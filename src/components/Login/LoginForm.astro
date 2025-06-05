@@ -7,14 +7,14 @@ import ROUTES from "@/NavRoutes";
 
 <FormContainer>
   <FormHeader
-    title="Create account"
-    description="Kickstart your effortless GitHub organization."
+    title="Login to GitFolders"
+    description="Access your repositories with ease."
   />
   <Form client:visible />
   <p class="text-text-secondary mt-4 text-sm">
-    {"Already have an account?"}
-    <a href={ROUTES.login.path} class="text-accent hover:underline"
-      >Login here</a
+    {"Don't have an account?"}
+    <a href={ROUTES.signup.path} class="text-accent hover:underline"
+      >Register here</a
     >
   </p>
 </FormContainer>

@@ -1,6 +1,21 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { PAYMENT_LINK } from "@/NavRoutes";
+import { supabase } from "@lib/supabase";
+import ROUTES from "@/NavRoutes";
+
+console.log("Welcome page loaded");
+// Check if user is authenticated
+const {
+  data: { session },
+} = await supabase.auth.getSession();
+
+console.log("Session data:", session);
+/*
+// If no session, redirect to login
+if (!session) {
+  return Astro.redirect(ROUTES.login.path);
+} */
 ---
 
 <Layout title="Welcome" description="Git Folders Welcome Page">

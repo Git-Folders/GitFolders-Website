@@ -70,6 +70,7 @@ const Form = () => {
       setError("root", { message: "Something went wrong. Please try again." });
     } finally {
       reset();
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       setSubmitted(false);
       window.location.href = `/${REDIRECT_PATH}`;
     }

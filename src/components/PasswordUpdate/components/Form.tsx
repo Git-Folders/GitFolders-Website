@@ -77,7 +77,7 @@ const NewPasswordForm = () => {
           </span>
         )}
         {(isSubmitting || submitted) && (
-          <span className="absolute -top-5 animate-bounce self-center rounded-xl border-2 border-green-200 bg-green-50 p-2 text-green-500 shadow-2xl dark:border dark:border-green-900 dark:bg-green-950 dark:text-green-100">
+          <span className="absolute -top-5 animate-bounce self-center rounded-xl border-2 border-green-200 bg-green-50 p-2 text-sm text-green-500 shadow-2xl dark:border dark:border-green-900 dark:bg-green-950 dark:text-green-100">
             {submitted ? "Password Updated" : "Updating Password..."}
           </span>
         )}

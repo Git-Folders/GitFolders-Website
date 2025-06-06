@@ -5,7 +5,13 @@ type Route = {
   name: string;
   path: string;
 };
-type Routes = "home" | "login" | "signup" | "resetPassword" | "welcome";
+type Routes =
+  | "home"
+  | "login"
+  | "signup"
+  | "resetPassword"
+  | "welcome"
+  | "waitlist";
 
 const ROUTES: Record<Routes, Route> = {
   home: { name: "Home", path: "/" },
@@ -13,6 +19,7 @@ const ROUTES: Record<Routes, Route> = {
   signup: { name: "Sign Up", path: "/signup" },
   resetPassword: { name: "Password Reset", path: "/reset-password" },
   welcome: { name: "Welcome", path: "/welcome" },
+  waitlist: { name: "Join Waitlist", path: "/waitlist" },
 };
 export default ROUTES;
 
@@ -20,7 +27,7 @@ export default ROUTES;
 export const CTA_Link: Route = {
   name: "Start Today",
   // TODO: url to download page
-  path: ROUTES.signup.path,
+  path: ROUTES.waitlist.path,
 };
 
 //* Redirect Link

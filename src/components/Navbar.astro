@@ -29,7 +29,14 @@ const isDashboardPage = Astro.props.isDashboardPage ?? false;
   </a>
   <!-- Nav options Container -->
   <div class="flex items-center gap-x-2">
-    {!isDashboardPage ?(<a
+    <!-- TODO: Add login and signup -->
+    <a
+      href={ROUTES.waitlist.path}
+      class="bg-accent hover:bg-accent-hover cursor-pointer rounded-lg px-3 py-2 font-medium text-white transition-all"
+    >
+      {ROUTES.waitlist.name}
+    </a>
+    <!-- {!isDashboardPage ?(<a
       href={ROUTES.login.path}
       class="border-accent hover:border-accent-hover cursor-pointer rounded-lg border-2 px-3 py-2 font-medium text-accent hover:text-accent-hover dark:text-text-primary hover:dark:text-text-secondary transition-all"
     >
@@ -43,6 +50,6 @@ const isDashboardPage = Astro.props.isDashboardPage ?? false;
     </a>
     ):(
     <SignoutButton client:visible/>
-    )}
+    )} -->
   </div>
 </nav>

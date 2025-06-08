@@ -13,30 +13,24 @@ const { data } = Astro.props as Props;
 const { type, title, features } = data;
 
 const isPositive = type === "positive";
-const bgColor = isPositive
-  ? "dark:bg-green-800 bg-green-100"
-  : "dark:bg-red-800 bg-red-100";
-const borderColor = isPositive
-  ? "dark:border-green-500 border-green-200"
-  : "dark:border-red-500 border-red-200";
-const titleColor = isPositive
-  ? "dark:text-green-100 text-green-700"
-  : "dark:text-red-100 text-red-700";
-const badgeColor = isPositive
-  ? "dark:bg-green-700 bg-green-200"
-  : "dark:bg-red-700 bg-red-200";
+const bgColor = isPositive ? " bg-green-800 " : " bg-red-800 ";
+const borderColor = isPositive ? " border-green-600 " : " border-red-600 ";
+const titleColor = isPositive ? " text-green-100 " : " text-red-100 ";
+const badgeColor = isPositive ? " bg-green-600 " : " bg-red-600 ";
 const icon = isPositive ? "✓" : "✕";
 const iconColor = isPositive ? "text-green-500" : "text-red-500";
 ---
 
 <div class={`${bgColor}  rounded-2xl border p-4 md:p-8 ${borderColor}`}>
   <h3 class={`mb-4 text-2xl font-bold ${titleColor} flex items-center`}>
-    <span class={`${badgeColor}  mr-3 rounded-lg p-2`}>{title}</span>
+    <span class={`${badgeColor} text-slate-100  mr-3 rounded-lg p-2`}
+      >{title}</span
+    >
   </h3>
   <ul class="space-y-4">
     {
       features.map((feature: string) => (
-        <li class="text-text-primary flex items-start space-x-3">
+        <li class="flex items-start space-x-3 text-slate-100">
           <span class={iconColor}>{icon}</span>
           <span>{feature}</span>
         </li>

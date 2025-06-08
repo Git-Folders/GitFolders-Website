@@ -84,16 +84,16 @@ const Form = () => {
           handleGitHubSignup(e);
         }}
         disabled={isSubmitting}
-        className="hover:bg-text-primary flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-black bg-gray-100 p-3 font-medium text-black transition-colors hover:text-white dark:hover:bg-gray-300 dark:hover:text-gray-950"
+        className="flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-slate-300 bg-slate-100 p-3 font-medium text-slate-900 transition-colors hover:bg-slate-300 hover:text-black"
       >
         <Github className="size-6" />
         <span>Sign up with Github</span>
       </button>
 
       <div className="mt-2 flex items-center justify-center text-sm">
-        <div className="border-form-border flex-1 border-t"></div>
-        <span className="px-2 text-gray-500">Or continue with email</span>
-        <div className="border-form-border flex-1 border-t"></div>
+        <div className="flex-1 border-t border-slate-700"></div>
+        <span className="px-2 text-slate-400">Or continue with email</span>
+        <div className="flex-1 border-t border-slate-700"></div>
       </div>
 
       <form

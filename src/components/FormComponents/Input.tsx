@@ -23,19 +23,19 @@ const Input = ({
       htmlFor={name}
       className={`relative flex gap-x-2 gap-y-1 ${layoutClass}`}
     >
-      <span className="text-text-primary text-sm font-medium">{label}</span>
+      <span className="text-sm font-medium text-slate-100">{label}</span>
       <input
         id={name}
         {...control.register(name)}
         {...inputProps}
-        className={`placeholder:text-text-placeholder text-text-primary transition-color border-form-border bg-form-input rounded-xl border p-3 text-sm duration-200 outline-none ${inputProps.type === "checkbox" ? "size-4" : "w-full focus:ring-1"} ${
+        className={`transition-color rounded-xl border border-slate-800 bg-slate-950 p-3 text-sm text-slate-100 duration-200 outline-none placeholder:text-slate-500 ${inputProps.type === "checkbox" ? "size-4" : "w-full focus:ring-1"} ${
           errors[name]
             ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-            : "focus:border-accent focus:ring-accent"
+            : "focus:border-blue-600 focus:ring-blue-600"
         }`}
       />
       {errors[name] && (
-        <span className="absolute -top-2.5 max-w-56 self-center rounded-xl border-2 border-red-200 bg-red-50 p-1.5 text-sm text-red-500 shadow-2xl dark:border dark:border-red-900 dark:bg-red-950 dark:text-red-100">
+        <span className="absolute -top-2.5 max-w-56 self-center rounded-xl border border-red-950 bg-red-800 p-1.5 text-sm text-red-200 shadow-2xl">
           {errors[name].message?.toString()}
         </span>
       )}

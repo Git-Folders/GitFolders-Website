@@ -1,0 +1,36 @@
+---
+import { CTA_Link } from "@/NavRoutes";
+import { ArrowRight } from "@/utils/Icons";
+
+const bgImage = "https://images.unsplash.com/photo-1522071820081-009f0129c71c";
+---
+
+<section
+  class="relative cursor-default overflow-hidden bg-blue-600 px-4 pt-6 pb-20 text-slate-100 md:px-16 md:pt-20"
+>
+  <div class="pointer-events-none absolute inset-0 opacity-10">
+    <div
+      style={{ backgroundImage: `url(${bgImage})` }}
+      class={`absolute inset-0 bg-cover bg-center`}
+    >
+    </div>
+  </div>
+  <div class="relative z-10 mx-auto flex max-w-4xl flex-col px-4 text-center">
+    <h2 class="mb-6 text-4xl font-bold">
+      Stop the chaos. Start organizing today.
+    </h2>
+    <p class="mb-10 text-xl text-balance opacity-90">
+      Whether you have 5 or 500 repos, GitFolders gives you the control you need
+      to stay focused and efficient.
+    </p>
+    <a
+      href={CTA_Link.path}
+      class="group text-accent z-50 flex cursor-pointer items-center gap-x-2 self-center rounded-lg bg-slate-100 px-5 py-4 text-lg font-semibold text-blue-600 transition-colors hover:text-blue-800 md:px-8"
+    >
+      {CTA_Link.name}
+      <ArrowRight
+        className="h-5 w-5 transition-transform group-hover:translate-x-2"
+      />
+    </a>
+  </div>
+</section>

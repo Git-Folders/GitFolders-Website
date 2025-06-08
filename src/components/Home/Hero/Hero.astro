@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+import HeroImage from "@/assets/Hero/Cover.png";
+
 import { CTA_Link } from "@/NavRoutes.ts";
 
 import { ArrowRight, Folder } from "@utils/Icons.tsx";
@@ -20,32 +22,33 @@ const stats: Stat[] = [
 ];
 
 const heroImage = {
-  url: "https://images.unsplash.com/photo-1630514969818-94aefc42ec47?auto=format&fit=crop&w=800&q=80",
+  url: HeroImage,
+  // "https://images.unsplash.com/photo-1630514969818-94aefc42ec47?auto=format&fit=crop&w=800&q=80",
   //  "https://images.unsplash.com/photo-1618477388954-7852f32655ec"
   alt: "Dashboard preview",
 } as const;
 ---
 
 <section
-  class="bg-primary flex min-h-screen cursor-default items-center justify-center px-4 py-20 md:px-16"
+  class="flex min-h-screen cursor-default items-center justify-center bg-slate-950 px-4 py-20 md:px-16"
 >
   <div class="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2">
     <div class="text-left text-balance">
       {/* <TrustMetric /> */}
       <h1
-        class="text-text-primary mb-6 text-5xl leading-tight font-bold md:text-6xl"
+        class="mb-6 text-5xl leading-tight font-bold text-slate-100 md:text-6xl"
       >
-        Organize GitHub <span class="text-accent">Repositories</span> Like Never
+        Organize GitHub <span class="text-blue-600">Repositories</span> Like Never
         Before
       </h1>
-      <p class="text-text-secondary mb-8 text-xl">
+      <p class="mb-8 text-xl text-slate-300">
         Transform cluttered repositories into a streamlined, organized
         workspace. The missing folder structure for your GitHub repositories.
       </p>
       <div class="flex items-center gap-x-4">
         <a
           href={CTA_Link.path}
-          class="group bg-accent hover:bg-accent-hover flex cursor-pointer items-center gap-x-2 rounded-lg px-5 py-4 text-lg font-semibold text-white transition-colors md:px-8 md:py-4"
+          class="group flex cursor-pointer items-center gap-x-2 rounded-lg bg-blue-600 px-5 py-4 text-lg font-semibold text-slate-100 transition-colors hover:bg-blue-800 md:px-8 md:py-4"
         >
           <span>{CTA_Link.name}</span>
           <ArrowRight
@@ -60,24 +63,25 @@ const heroImage = {
     </div>
     <div class="relative h-full">
       <div
-        class="relative h-[50vh] w-full overflow-hidden rounded-lg shadow-2xl md:h-[100vh]"
+        class="relative aspect-square w-full overflow-hidden rounded-lg md:aspect-[6/5]"
       >
         <Image
           src={heroImage.url}
           alt={heroImage.alt}
-          class="h-full w-full scale-125 object-cover"
+          class="h-full w-full object-contain"
           width={1000}
           height={1000}
           loading="eager"
         />
       </div>
+
       <div
-        class="bg-primary shadow-secondary border-secondary absolute -bottom-6 -left-2 flex items-center gap-x-3 rounded-lg border-1 p-3 shadow-2xl md:-left-6 md:p-4"
+        class="absolute -bottom-6 -left-2 flex items-center gap-x-3 rounded-lg border-1 border-black bg-slate-950 p-3 shadow-2xl shadow-black md:-left-6 md:p-4"
       >
-        <Folder className="text-accent h-10 w-10" />
+        <Folder className="h-10 w-10 text-blue-600" />
         <div>
-          <p class="text-text-primary font-semibold">Smart Organization</p>
-          <p class="text-text-secondary text-sm">Like Never Before</p>
+          <p class="font-semibold text-slate-100">Smart Organization</p>
+          <p class="text-sm text-slate-300">Like Never Before</p>
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ const SignoutButton = () => {
     <>
       {signoutError && (
         <div className="absolute inset-x-0 top-5">
-          <p className="text-md bgb animate-pulse text-center font-semibold text-red-500">
+          <p className="text-md animate-pulse text-center font-semibold text-red-500">
             Failed to sign out.
             <br /> Please try again.
           </p>
@@ -29,9 +29,9 @@ const SignoutButton = () => {
       )}
       <button
         onClick={handleSignout}
-        className="bg-accent hover:bg-accent-hover cursor-pointer rounded-lg px-3 py-2 font-medium text-white transition-all"
+        className="cursor-pointer rounded-lg bg-blue-600 px-3 py-2 font-medium text-slate-100 transition-all hover:bg-blue-800"
       >
-        signout
+        Sign Out
       </button>
     </>
   );

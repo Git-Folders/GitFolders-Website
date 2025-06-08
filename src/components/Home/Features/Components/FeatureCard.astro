@@ -11,9 +11,9 @@ const { icon, title, description, image } = feature;
 ---
 
 <div
-  class="group shadow-secondary border-primary bg-secondary overflow-hidden rounded-xl border shadow-md transition-all hover:shadow-lg"
+  class="group overflow-hidden rounded-xl border border-slate-950 bg-black shadow-md shadow-black transition-all hover:shadow-lg"
 >
-  <div class="h-48 overflow-hidden">
+  <div class="relative h-48 overflow-hidden">
     <Image
       src={image}
       alt={title}
@@ -21,12 +21,16 @@ const { icon, title, description, image } = feature;
       height={1000}
       width={1000}
     />
+    <div
+      class="absolute inset-0 bg-slate-950/10 transition-all group-hover:opacity-0"
+    >
+    </div>
   </div>
   <div class="p-6">
     <div class="mb-4"><FeatureIcon icon={icon} /></div>
-    <h3 class="text-text-primary mb-3 text-xl font-semibold">
+    <h3 class="mb-3 text-xl font-semibold text-slate-100">
       {title}
     </h3>
-    <p class="text-text-secondary">{description}</p>
+    <p class="text-slate-300">{description}</p>
   </div>
 </div>

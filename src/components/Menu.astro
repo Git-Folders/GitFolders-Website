@@ -1,0 +1,61 @@
+---
+import { HOME_PAGE_NAV_SECTIONS } from "@/NavRoutes";
+import { Menu as Menu_Icon, X as Close_Icon } from "@/utils/Icons";
+---
+
+<!-- Menu Button -->
+<div class="fixed top-[50%] right-10 z-50">
+  <button
+    id="menu-button"
+    onclick="toggleMenu()"
+    class="cursor-pointer rounded-full bg-slate-800 p-2 text-slate-300 transition-all hover:scale-110 hover:bg-slate-700 hover:text-slate-100"
+  >
+    <Menu_Icon className={"size-5"} />
+  </button>
+</div>
+
+<!-- Menu Panel -->
+<nav class="fixed top-0 right-0 z-50">
+  <div
+    id="menu-panel"
+    class="hidden h-screen w-screen justify-end bg-slate-950/90"
+  >
+    <div
+      class="flex h-full w-1/3 items-center justify-end rounded-l-full bg-slate-300"
+    >
+      <div class="f relative h-full">
+        <div
+          onclick="toggleMenu()"
+          class="absolute top-5 right-5 cursor-pointer rounded-full bg-slate-950 p-2 text-slate-100 transition-all hover:scale-110"
+        >
+          <Close_Icon className="size-5" />
+        </div>
+        <ul
+          class="mr-10 flex h-full flex-col items-end justify-center gap-3 text-left text-4xl font-bold text-blue-800"
+        >
+          {
+            HOME_PAGE_NAV_SECTIONS.map((section) => (
+              <li onclick="toggleMenu()">
+                <a
+                  class="transition-all hover:tracking-widest"
+                  href={section.path}
+                >
+                  {section.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script is:inline>
+  function toggleMenu() {
+    document.getElementById("menu-button")?.classList.toggle("hidden");
+    document.getElementById("menu-panel")?.classList.toggle("hidden");
+    document.getElementById("menu-panel")?.classList.toggle("flex");
+    document.body.classList.toggle("overflow-y-hidden");
+  }
+</script>

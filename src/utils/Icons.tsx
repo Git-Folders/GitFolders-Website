@@ -4,6 +4,8 @@ import {
   Star as Star_Icon,
   Users as Users_Icon,
   Quote as Quote_Icon,
+  Menu as Menu_Icon,
+  X as X_Icon,
 } from "lucide-react";
 
 type IconProps = {
@@ -27,4 +29,10 @@ export function Users({ className }: IconProps) {
 }
 export function Quote({ className }: IconProps) {
   return <Quote_Icon className={className} />;
+}
+export function Menu({ className }: IconProps) {
+  return <Menu_Icon className={className} />;
+}
+export function X({ className }: IconProps) {
+  return <X_Icon className={className} />;
 }

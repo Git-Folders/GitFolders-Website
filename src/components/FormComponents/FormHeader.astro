@@ -6,9 +6,9 @@ export type FormHeaderProps = {
 const { title, description } = Astro.props as FormHeaderProps;
 ---
 
-<div class="space-y-4 text-center">
-  <h1 class="text-4xl font-bold text-slate-100">{title}</h1>
-  <p class="text-lg text-pretty text-slate-300">
+<div class="space-y-2 text-center md:space-y-4">
+  <h1 class="text-3xl font-bold text-slate-100 md:text-4xl">{title}</h1>
+  <p class="text-base text-pretty text-slate-300 md:text-lg">
     {description}
   </p>
 </div>

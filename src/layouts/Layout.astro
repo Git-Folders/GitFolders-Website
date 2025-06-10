@@ -2,6 +2,7 @@
 import "@styles/global.css";
 
 import Navbar from "@components/Navbar.astro";
+import Menu from "@components/Menu.astro";
 import Footer from "@/components/Footer.astro";
 
 type Props = {
@@ -56,6 +57,9 @@ const socialMediaTitle = "GitFolders - Organize Your GitHub Repositories";
   </head>
   <body class="w-full max-w-screen overflow-x-hidden">
     <Navbar />
+    <aside class="max-md:hidden">
+      <Menu />
+    </aside>
     <slot />
     <Footer />
   </body>

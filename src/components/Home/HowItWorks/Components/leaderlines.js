@@ -1,5 +1,5 @@
-// wait for both the LeaderLine lib and your images to be parsed
-window.addEventListener("DOMContentLoaded", () => {
+// Define the function to set up LeaderLines
+function setupLeaderLines() {
   const isMobile = window.innerWidth < 768;
 
   const image1 = document.getElementById("howToImage-0");
@@ -9,6 +9,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const image5 = document.getElementById("howToImage-4");
   const image6 = document.getElementById("howToImage-5");
   const image7 = document.getElementById("howToImage-6");
+
+  // Remove existing LeaderLines if they exist to avoid duplicates
+  if (window.leaderLines) {
+    window.leaderLines.forEach((line) => line.remove());
+  }
+  window.leaderLines = [];
 
   const baseOptions = {
     size: isMobile ? 2 : 3,
@@ -83,4 +89,17 @@ window.addEventListener("DOMContentLoaded", () => {
       endSocketGravity: isMobile ? [] : [150, -150],
     },
   );
+
+  // Store the lines in an array for later removal
+  window.leaderLines = [line1, line2, line3, line4, line5, line6];
+}
+
+// Run on initial load
+window.addEventListener("DOMContentLoaded", () => {
+  setupLeaderLines();
+});
+
+// Run on window resize
+window.addEventListener("resize", () => {
+  setupLeaderLines();
 });

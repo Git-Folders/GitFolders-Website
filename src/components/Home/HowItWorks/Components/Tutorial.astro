@@ -1,56 +1,57 @@
 ---
 import { Image } from "astro:assets";
 
-import Image1 from "@/assets/HowItWorks/1.png";
-import Image2 from "@/assets/HowItWorks/2.png";
-import Image3 from "@/assets/HowItWorks/3.png";
-import Image4 from "@/assets/HowItWorks/4.png";
-import Image5 from "@/assets/HowItWorks/5.png";
-import Image6 from "@/assets/HowItWorks/6.png";
-import Image7 from "@/assets/HowItWorks/7.png";
+import Image1 from "@/assets/HowItWorks/1.jpg";
+import Image2 from "@/assets/HowItWorks/2.jpg";
+import Image3 from "@/assets/HowItWorks/3.jpg";
+import Image4 from "@/assets/HowItWorks/4.jpg";
+import Image5 from "@/assets/HowItWorks/5.jpg";
+import Image6 from "@/assets/HowItWorks/6.jpg";
+import Image7 from "@/assets/HowItWorks/7.jpg";
 
 type HowToImage = {
   url: ImageMetadata;
-  alt: string;
   hoverTitle: string;
 };
 
 const howToImages: HowToImage[] = [
-  { url: Image1, alt: "Image 1", hoverTitle: "Add Folder" },
-  { url: Image2, alt: "Image 2", hoverTitle: "Enter Folder Name" },
-  { url: Image3, alt: "Image 3", hoverTitle: "Create Folder" },
-  { url: Image4, alt: "Image 4", hoverTitle: "Add Repo to Folder" },
-  { url: Image5, alt: "Image 5", hoverTitle: "Select Folder" },
-  { url: Image6, alt: "Image 6", hoverTitle: "Add Repo" },
-  { url: Image7, alt: "Image 7", hoverTitle: "Open Repo" },
+  { url: Image1, hoverTitle: "Add Folder" },
+  { url: Image2, hoverTitle: "Enter Folder Name" },
+  { url: Image3, hoverTitle: "Create Folder" },
+  { url: Image4, hoverTitle: "Add Repo to Folder" },
+  { url: Image5, hoverTitle: "Select Folder" },
+  { url: Image6, hoverTitle: "Add Repo" },
+  { url: Image7, hoverTitle: "Open Repo" },
 ];
 
 const columnPosition = [
-  "col-start-1",
-  "col-start-2",
-  "col-start-3",
-  "col-start-4",
-  "col-start-5",
-  "col-start-6",
-  "col-start-7",
+  "md:col-start-1 max-md:row-start-1",
+  "md:col-start-2 max-md:row-start-2",
+  "md:col-start-3 max-md:row-start-3",
+  "md:col-start-4 max-md:row-start-4",
+  "md:col-start-5 max-md:row-start-5",
+  "md:col-start-6 max-md:row-start-6",
+  "md:col-start-7 max-md:row-start-7",
 ];
 ---
 
-<div class="grid grid-rows-2">
+<div class="grid grid-rows-2 justify-center gap-x-3 gap-y-16 px-5 md:gap-y-4">
   {
     howToImages.map((image, index) => (
       <div
-        id={`image-${index}`}
-        class={`group ${columnPosition[index]} inline-block ${index % 2 === 0 ? "row-start-1" : "row-start-2"}`}
+        class={`group ${columnPosition[index]} inline-block max-md:w-52 ${index % 2 === 0 ? "md:row-start-1" : "md:row-start-2"}`}
       >
-        <div class="relative rounded-md border-2 group-hover:border-blue-700">
+        <div
+          id={`howToImage-${index}`}
+          class="relative rounded-md border-2 shadow-md group-hover:border-blue-700 group-hover:shadow-blue-800"
+        >
           <Image
             src={image.url}
-            alt={image.alt}
+            alt={image.hoverTitle}
             class="rounded-md object-contain"
           />
-          <div class="absolute inset-0 flex items-center justify-center group-hover:bg-slate-950/50">
-            <p class="hidden rounded-xl bg-black/50 px-2 py-1 text-center font-medium text-slate-100 group-hover:block">
+          <div class="absolute inset-0 flex items-center justify-center px-2 group-hover:bg-slate-950/50">
+            <p class="hidden rounded-xl border border-slate-700 bg-black/70 px-2 py-1 text-center font-medium text-slate-100 group-hover:block">
               {image.hoverTitle}
             </p>
           </div>
@@ -59,3 +60,9 @@ const columnPosition = [
     ))
   }
 </div>
+
+<!-- at the very bottom of the component: -->
+<script
+  is:inline
+  src="/src/components/Home/HowItWorks/Components/leaderlines.js  "
+  defer></script>

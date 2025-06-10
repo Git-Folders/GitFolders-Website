@@ -1,0 +1,77 @@
+---
+import PricingCard, {
+  type PricingCardProps,
+} from "./Component/PricingCard.astro";
+import Feature from "./Component/Feature.astro";
+
+const PricingOptions: PricingCardProps[] = [
+  {
+    subscriptionType: "monthly",
+    pricePerMonth: 10,
+    totalPrice: 10,
+    popularityBadge: false,
+    rotation: "left",
+  },
+  {
+    subscriptionType: "quarterly",
+    pricePerMonth: 8,
+    totalPrice: 24,
+    popularityBadge: true,
+  },
+  {
+    subscriptionType: "annually",
+    pricePerMonth: 7,
+    totalPrice: 84,
+    popularityBadge: false,
+    rotation: "right",
+  },
+];
+const Features: string[] = [
+  "Organize Repositories into Custom Folders",
+  "Sync Folders Across Devices",
+  "Works with Private Repositories",
+  "Quick Search for Instant Access",
+  "Simple, Focused UI for Productivity",
+  "Instant Access Inside GitHub",
+];
+---
+
+<section
+  id="pricing"
+  class="cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
+>
+  <div class="mx-auto max-w-7xl space-y-10">
+    <!-- Heading Section -->
+    <div class="space-y-4 text-center">
+      <h2 class="text-4xl font-bold text-slate-100">Choose your best</h2>
+      <p class="mx-auto max-w-2xl text-xl text-slate-300 italic">
+        pricing plan
+      </p>
+      <p class="text-xs text-blue-300 italic">
+        No extra charges. No hidden fees
+      </p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="flex flex-col items-center justify-center gap-6 md:flex-row">
+      {
+        PricingOptions.map((pricingOption) => (
+          <PricingCard
+            subscriptionType={pricingOption.subscriptionType}
+            pricePerMonth={pricingOption.pricePerMonth}
+            totalPrice={pricingOption.totalPrice}
+            popularityBadge={pricingOption.popularityBadge}
+            rotation={pricingOption?.rotation}
+          />
+        ))
+      }
+    </div>
+
+    <!-- Feature List -->
+    <div
+      class="mx-auto grid max-w-4xl grid-cols-1 items-center justify-between gap-6 pt-4 text-sm md:grid-cols-3"
+    >
+      {Features.map((feature) => <Feature feature={feature} />)}
+    </div>
+  </div>
+</section>

@@ -25,7 +25,7 @@ const {
   </head>
   <body>
     <div
-      class="from-primary to-secondary flex h-screen items-center justify-center bg-gradient-to-b"
+      class="flex h-screen items-center justify-center bg-gradient-to-t from-slate-950 to-black"
     >
       <div
         class="container mx-auto flex max-w-2xl flex-col items-center justify-center text-center"
@@ -33,7 +33,7 @@ const {
         <slot />
         <a
           href={ROUTES.home.path}
-          class="bg-accent hover:bg-accent-hover inline-block rounded-lg p-3 text-xl text-white transition-colors"
+          class="inline-block rounded-lg bg-blue-600 p-3 text-xl text-slate-100 transition-colors hover:bg-blue-800"
         >
           Go to Home
         </a>

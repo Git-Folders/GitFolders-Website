@@ -1,0 +1,29 @@
+---
+import TestimonialCard from "./Components/TestimonialCard.astro";
+import {
+  Testimonials as testimonials,
+  type Testimonial,
+} from "./Components/Testimonials.ts";
+---
+
+<section
+  id="testimonials"
+  class="cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
+>
+  <div class="mx-auto max-w-7xl space-y-10">
+    <h2 class="text-center text-4xl font-bold text-slate-100">
+      What Developers Are Saying
+    </h2>
+    <div class="relative h-full overflow-x-hidden py-5">
+      <div
+        class="animate-infinite-scroll flex min-w-max gap-6 will-change-transform hover:[animation-play-state:paused]"
+      >
+        {
+          [...testimonials, ...testimonials].map((testimonial: Testimonial) => (
+            <TestimonialCard testimonial={testimonial} />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

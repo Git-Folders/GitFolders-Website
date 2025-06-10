@@ -3,6 +3,7 @@ import {
   Folder as Folder_Icon,
   Star as Star_Icon,
   Users as Users_Icon,
+  Quote as Quote_Icon,
 } from "lucide-react";
 
 type IconProps = {
@@ -23,4 +24,7 @@ export function Star({ className }: IconProps) {
 
 export function Users({ className }: IconProps) {
   return <Users_Icon className={className} />;
+}
+export function Quote({ className }: IconProps) {
+  return <Quote_Icon className={className} />;
 }

@@ -1,0 +1,38 @@
+---
+const { priceId } = Astro.props as { priceId: string };
+---
+
+<div
+  class="cursor-pointer"
+  onclick={`window.handlePricingCardClick('${priceId}')`}
+>
+  <slot />
+</div>
+
+<script type="text/javascript">
+  function handlePricingCardClick(priceId) {
+    console.log(`Pricing card clicked. Price ID: ${priceId}`);
+    // Open Paddle checkout for the selected subscription
+    if (typeof Paddle !== "undefined") {
+      console.log(Paddle);
+      Paddle.Checkout.open({
+        items: [
+          {
+            priceId: priceId,
+            quantity: 1,
+          },
+        ],
+        settings: {
+          displayMode: "overlay",
+          theme: "dark",
+          successUrl: "http://localhost:5173/success",
+        },
+      });
+    } else {
+      console.error("Paddle.js not loaded");
+    }
+  }
+
+  // Expose the function to the global scope
+  window.handlePricingCardClick = handlePricingCardClick;
+</script>

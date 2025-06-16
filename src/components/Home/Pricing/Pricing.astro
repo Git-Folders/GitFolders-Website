@@ -3,20 +3,26 @@ import PricingCard, {
   type PricingCardProps,
 } from "./Component/PricingCard.astro";
 import Feature from "./Component/Feature.astro";
+import PricingCardWrapper from "./Component/PricingCardWrapper.astro";
 
-const PricingOptions: PricingCardProps[] = [
+import { PUBLIC_PADDLE_TOKEN } from "astro:env/client";
+type PricingOption = PricingCardProps & { priceId: string };
+
+const PricingOptions: PricingOption[] = [
   {
     subscriptionType: "monthly",
     pricePerMonth: 10,
     totalPrice: 10,
     popularityBadge: false,
     rotation: "left",
+    priceId: "pri_01jxsskav1rw0tz50xa44yzs5k",
   },
   {
     subscriptionType: "quarterly",
     pricePerMonth: 8,
     totalPrice: 24,
     popularityBadge: true,
+    priceId: "pri_01jxvrtawjwjwe5hz8zb328rhk",
   },
   {
     subscriptionType: "annually",
@@ -24,6 +30,7 @@ const PricingOptions: PricingCardProps[] = [
     totalPrice: 84,
     popularityBadge: false,
     rotation: "right",
+    priceId: "pri_01jxvrvk7045391jqvqec86vnq",
   },
 ];
 const Features: string[] = [
@@ -38,7 +45,7 @@ const Features: string[] = [
 
 <section
   id="pricing"
-  class="cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
+  class="relative cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
 >
   <div class="mx-auto max-w-7xl space-y-10">
     <!-- Heading Section -->
@@ -48,7 +55,8 @@ const Features: string[] = [
         pricing plan
       </p>
       <p class="text-xs text-blue-300 italic">
-        No extra charges. No hidden fees
+        No extra charges. No hidden fees.
+        <span class="block text-xs opacity-50">Tax charged separately.</span>
       </p>
     </div>
 
@@ -56,17 +64,19 @@ const Features: string[] = [
     <div class="flex flex-col items-center justify-center gap-6 md:flex-row">
       {
         PricingOptions.map((pricingOption) => (
-          <PricingCard
-            subscriptionType={pricingOption.subscriptionType}
-            pricePerMonth={pricingOption.pricePerMonth}
-            totalPrice={pricingOption.totalPrice}
-            popularityBadge={pricingOption.popularityBadge}
-            rotation={pricingOption?.rotation}
-          />
+          <PricingCardWrapper priceId={pricingOption.priceId}>
+            <PricingCard
+              subscriptionType={pricingOption.subscriptionType}
+              pricePerMonth={pricingOption.pricePerMonth}
+              totalPrice={pricingOption.totalPrice}
+              popularityBadge={pricingOption.popularityBadge}
+              rotation={pricingOption?.rotation}
+            />
+          </PricingCardWrapper>
         ))
       }
     </div>
-
+    <h1 class="bg-white text-red-500">{PUBLIC_PADDLE_TOKEN}</h1>
     <!-- Feature List -->
     <div
       class="mx-auto grid max-w-4xl grid-cols-1 items-center justify-between gap-6 pt-4 text-sm md:grid-cols-3"
@@ -75,3 +85,28 @@ const Features: string[] = [
     </div>
   </div>
 </section>
+
+<!-- Initialize Paddle -->
+<script type="text/javascript">
+  // Wait for Paddle.js to load
+  function initializePaddle() {
+    if (typeof Paddle !== "undefined") {
+      Paddle.Environment.set("sandbox");
+      Paddle.Initialize({
+        token: "test_71801681946eefa77bd768dd14d",
+        checkout: {
+          settings: {
+            displayMode: "overlay",
+          },
+        },
+      });
+      console.log("Paddle initialized successfully");
+    } else {
+      console.error("Paddle.js not loaded, retrying...");
+      setTimeout(initializePaddle, 100); // Retry after 100ms
+    }
+  }
+
+  // Start initialization when DOM is ready
+  document.addEventListener("DOMContentLoaded", initializePaddle);
+</script>

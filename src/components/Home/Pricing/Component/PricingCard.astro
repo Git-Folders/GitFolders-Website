@@ -5,6 +5,7 @@ export type PricingCardProps = {
   totalPrice: number;
   popularityBadge: boolean;
   rotation?: "left" | "right";
+  priceId: string;
 };
 const {
   subscriptionType,
@@ -55,7 +56,9 @@ const visualClasses: string = rotation
   <h3 class="mb-2 text-xl font-medium capitalize">
     {subscriptionType}
   </h3>
-  <p class="text-4xl font-bold">${pricePerMonth}</p>
+  <p class="text-4xl font-bold">
+    ${pricePerMonth}
+  </p>
   <p class="mt-2 text-sm">Per month</p>
   <p class={`mt-1 text-xs opacity-60 `}>
     ${totalPrice}{" "}{frequencyOfPayment}

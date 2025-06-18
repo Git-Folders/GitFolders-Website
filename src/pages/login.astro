@@ -4,5 +4,20 @@ import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Login to GitFolders" description="Git Folders Login Page">
+  <script>
+    import { supabase } from "@lib/supabase";
+    import ROUTES from "@/NavRoutes";
+    const checkSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session) {
+        window.location.href = ROUTES.welcome.path;
+      }
+    };
+
+    // Run check when page loads
+    checkSession();
+  </script>
   <LoginForm />
 </Layout>

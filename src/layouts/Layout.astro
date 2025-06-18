@@ -8,11 +8,13 @@ import Footer from "@/components/Footer.astro";
 type Props = {
   title?: string;
   description?: string;
+  showMenu?: boolean;
 };
 const {
   title = "GitFolders",
   description = "GitFolders is a Chrome extension that helps you organize GitHub repositories into custom folders, making it easier to manage your projects. GitFolders also supports cloud syncing.",
-} = Astro.props;
+  showMenu = true,
+} = Astro.props as Props;
 
 const url = Astro.url.origin;
 const socialMediaTitle = "GitFolders - Organize Your GitHub Repositories";
@@ -60,9 +62,13 @@ const socialMediaTitle = "GitFolders - Organize Your GitHub Repositories";
   </head>
   <body class="w-full max-w-screen overflow-x-hidden">
     <Navbar />
-    <aside class="max-md:hidden">
-      <Menu />
-    </aside>
+    {
+      showMenu && (
+        <aside class="max-md:hidden">
+          <Menu />
+        </aside>
+      )
+    }
     <slot />
     <Footer />
   </body>

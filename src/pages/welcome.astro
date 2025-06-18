@@ -1,6 +1,5 @@
 ---
 import DashboardLayout from "@/layouts/DashboardLayout.astro";
-import { PAYMENT_LINK } from "@/NavRoutes";
 ---
 
 <DashboardLayout title="Welcome" description="Git Folders Welcome Page">
@@ -44,11 +43,34 @@ import { PAYMENT_LINK } from "@/NavRoutes";
         <!-- TODO: Uncomment this after beta programme -->
         <!-- <div class="flex flex-col items-center gap-1">
           <a
-            href={PAYMENT_LINK}
+            href="#"
+            id="subscribe-button"
             class="inline-block rounded-lg bg-blue-600 px-6 py-3 font-medium text-slate-100 transition-colors hover:bg-blue-800"
           >
             Subscribe Now
           </a>
+
+          <script>
+            import { supabase } from "@lib/supabase";
+            import { PAYMENT_LINK } from "@/NavRoutes";
+
+            const getUserID = async () => {
+              const {
+                data: { user },
+              } = await supabase.auth.getUser();
+              if (!user) return;
+              const paymentLink = new URL(PAYMENT_LINK);
+              paymentLink.searchParams.set("userId", user.id ?? "");
+              const subscribeBtn = document.getElementById("subscribe-button");
+              if (subscribeBtn) {
+                (subscribeBtn as HTMLAnchorElement).href =
+                  paymentLink.toString();
+              }
+            };
+
+            // Run check when page loads
+            getUserID();
+          </script>
           <p class="text-sm text-slate-400">Subscribe to continue.</p>
         </div> -->
       </div>

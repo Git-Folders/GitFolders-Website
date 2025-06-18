@@ -1,4 +1,7 @@
 ---
+import ROUTES from "@/NavRoutes";
+
+const successUrl = ROUTES.welcome.path;
 const { priceId } = Astro.props as { priceId: string };
 ---
 
@@ -9,12 +12,15 @@ const { priceId } = Astro.props as { priceId: string };
   <slot />
 </div>
 
-<script type="text/javascript">
+<script is:inline define:vars={{ successUrl }} type="text/javascript">
   function handlePricingCardClick(priceId) {
-    console.log(`Pricing card clicked. Price ID: ${priceId}`);
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get("userId");
     // Open Paddle checkout for the selected subscription
-    if (typeof Paddle !== "undefined") {
-      console.log(Paddle);
+    if (!userId || userId === "undefined") {
+      alert("Unauthorized Action. No user record found");
+    }
+    if (typeof Paddle !== "undefined" && userId) {
       Paddle.Checkout.open({
         items: [
           {
@@ -22,14 +28,15 @@ const { priceId } = Astro.props as { priceId: string };
             quantity: 1,
           },
         ],
+        customData: {
+          userId: "id_1234",
+        },
         settings: {
           displayMode: "overlay",
           theme: "dark",
-          successUrl: "http://localhost:5173/success",
+          successUrl: `${window.location.origin}${successUrl}`,
         },
       });
-    } else {
-      console.error("Paddle.js not loaded");
     }
   }
 

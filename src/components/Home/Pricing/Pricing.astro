@@ -3,9 +3,16 @@ import PricingCard, {
   type PricingCardProps,
 } from "./Component/PricingCard.astro";
 import Feature from "./Component/Feature.astro";
-import PricingCardWrapper from "./Component/PricingCardWrapper.astro";
+import SubscriptionHandler from "./Component/SubscriptionHandler.astro";
+import ROUTES from "@/NavRoutes";
 
-import { PUBLIC_PADDLE_TOKEN } from "astro:env/client";
+const paddleToken = import.meta.env.PUBLIC_PADDLE_TOKEN;
+
+type PricingProps = {
+  isPricingPage?: boolean;
+};
+const { isPricingPage = false } = Astro.props as PricingProps;
+
 type PricingOption = PricingCardProps & { priceId: string };
 
 const PricingOptions: PricingOption[] = [
@@ -15,14 +22,14 @@ const PricingOptions: PricingOption[] = [
     totalPrice: 10,
     popularityBadge: false,
     rotation: "left",
-    priceId: "pri_01jxsskav1rw0tz50xa44yzs5k",
+    priceId: "pri_01jxsp4fg0ytqzqbyk7gqsc6vq",
   },
   {
     subscriptionType: "quarterly",
     pricePerMonth: 8,
     totalPrice: 24,
     popularityBadge: true,
-    priceId: "pri_01jxvrtawjwjwe5hz8zb328rhk",
+    priceId: "pri_01jy1zymzpw5s8drm2hkrenrry",
   },
   {
     subscriptionType: "annually",
@@ -30,7 +37,7 @@ const PricingOptions: PricingOption[] = [
     totalPrice: 84,
     popularityBadge: false,
     rotation: "right",
-    priceId: "pri_01jxvrvk7045391jqvqec86vnq",
+    priceId: "pri_01jy2078csy8s5hgz63sn8g5ba",
   },
 ];
 const Features: string[] = [
@@ -43,6 +50,15 @@ const Features: string[] = [
 ];
 ---
 
+<script>
+  import ROUTES from "@/NavRoutes";
+
+  const params = new URLSearchParams(window.location.search);
+  const userId = params.get("userId");
+  if (!userId) {
+    window.location.href = ROUTES.home.path;
+  }
+</script>
 <section
   id="pricing"
   class="relative cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
@@ -63,20 +79,31 @@ const Features: string[] = [
     <!-- Pricing Cards -->
     <div class="flex flex-col items-center justify-center gap-6 md:flex-row">
       {
-        PricingOptions.map((pricingOption) => (
-          <PricingCardWrapper priceId={pricingOption.priceId}>
-            <PricingCard
-              subscriptionType={pricingOption.subscriptionType}
-              pricePerMonth={pricingOption.pricePerMonth}
-              totalPrice={pricingOption.totalPrice}
-              popularityBadge={pricingOption.popularityBadge}
-              rotation={pricingOption?.rotation}
-            />
-          </PricingCardWrapper>
-        ))
+        PricingOptions.map((pricingOption) =>
+          isPricingPage ? (
+            <SubscriptionHandler priceId={pricingOption.priceId}>
+              <PricingCard
+                subscriptionType={pricingOption.subscriptionType}
+                pricePerMonth={pricingOption.pricePerMonth}
+                totalPrice={pricingOption.totalPrice}
+                popularityBadge={pricingOption.popularityBadge}
+                rotation={pricingOption?.rotation}
+              />
+            </SubscriptionHandler>
+          ) : (
+            <a href={ROUTES.login.path}>
+              <PricingCard
+                subscriptionType={pricingOption.subscriptionType}
+                pricePerMonth={pricingOption.pricePerMonth}
+                totalPrice={pricingOption.totalPrice}
+                popularityBadge={pricingOption.popularityBadge}
+                rotation={pricingOption?.rotation}
+              />
+            </a>
+          ),
+        )
       }
     </div>
-    <h1 class="bg-white text-red-500">{PUBLIC_PADDLE_TOKEN}</h1>
     <!-- Feature List -->
     <div
       class="mx-auto grid max-w-4xl grid-cols-1 items-center justify-between gap-6 pt-4 text-sm md:grid-cols-3"
@@ -87,22 +114,20 @@ const Features: string[] = [
 </section>
 
 <!-- Initialize Paddle -->
-<script type="text/javascript">
+<script is:inline define:vars={{ paddleToken, isPricingPage }} type="module">
   // Wait for Paddle.js to load
   function initializePaddle() {
-    if (typeof Paddle !== "undefined") {
+    if (typeof Paddle !== "undefined" && isPricingPage) {
       Paddle.Environment.set("sandbox");
       Paddle.Initialize({
-        token: "test_71801681946eefa77bd768dd14d",
+        token: paddleToken,
         checkout: {
           settings: {
             displayMode: "overlay",
           },
         },
       });
-      console.log("Paddle initialized successfully");
     } else {
-      console.error("Paddle.js not loaded, retrying...");
       setTimeout(initializePaddle, 100); // Retry after 100ms
     }
   }

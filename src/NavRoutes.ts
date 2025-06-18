@@ -5,13 +5,8 @@ type Route = {
   name: string;
   path: string;
 };
-type Routes =
-  | "home"
-  | "login"
-  | "signup"
-  | "resetPassword"
-  | "welcome"
-  | "waitlist";
+type Routes = "home" | "login" | "signup" | "resetPassword" | "welcome";
+// | "waitlist";
 
 const ROUTES: Record<Routes, Route> = {
   home: { name: "Home", path: "/" },
@@ -19,7 +14,7 @@ const ROUTES: Record<Routes, Route> = {
   signup: { name: "Sign Up", path: "/signup" },
   resetPassword: { name: "Password Reset", path: "/reset-password" },
   welcome: { name: "Welcome", path: "/welcome" },
-  waitlist: { name: "Join Waitlist", path: "/waitlist" },
+  // waitlist: { name: "Join Waitlist", path: "/waitlist" },
 };
 export default ROUTES;
 
@@ -44,16 +39,13 @@ export const HOME_PAGE_NAV_SECTIONS: HOME_PAGE_NAV_SECTION[] = [
 export const CTA_Link: Route = {
   name: "Start Today",
   // TODO: url to download page
-  path: ROUTES.waitlist.path,
+  path: ROUTES.signup.path,
 };
 
 //* Redirect Link
 export const REDIRECT_PATH: string = "redirect";
 export const REDIRECT_LINK: string = `${DOMAIN}/${REDIRECT_PATH}`;
 export const UPDATE_PASSWORD_LINK: string = `${DOMAIN}/update-password`;
+export const PAYMENT_LINK: string = `${DOMAIN}/payments`;
 // export const REDIRECT_LINK: string = `http://localhost:4321/${REDIRECT_PATH}`;
 // export const UPDATE_PASSWORD_LINK: string = `http://localhost:4321/update-password`;
-
-//* Payment Link
-// TODO: Update this to the actual payment link when available
-export const PAYMENT_LINK: string = "http://localhost:4321/payment";

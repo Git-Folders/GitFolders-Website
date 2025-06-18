@@ -118,7 +118,7 @@ const Features: string[] = [
   // Wait for Paddle.js to load
   function initializePaddle() {
     if (typeof Paddle !== "undefined" && isPricingPage) {
-      Paddle.Environment.set("sandbox");
+      // Paddle.Environment.set("sandbox");
       Paddle.Initialize({
         token: paddleToken,
         checkout: {

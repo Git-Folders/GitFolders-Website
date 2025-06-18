@@ -28,7 +28,8 @@ export const HOME_PAGE_NAV_SECTIONS: HOME_PAGE_NAV_SECTION[] = [
   // { name: "cta-1", path: "#cta-1" },
   { name: "Features", path: "#features" },
   { name: "How It Works", path: "#how-it-works" },
-  { name: "Pricing", path: "#pricing" },
+  // TODO: Uncomment next line
+  // { name: "Pricing", path: "#pricing" },
   // { name: "Testimonials", path: "#testimonials" },
   // { name: "cta-2", path: "#cta-2" },
   { name: "FAQs", path: "#faqs" },

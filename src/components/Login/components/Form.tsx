@@ -112,7 +112,7 @@ const Form = () => {
           label="Email address"
           placeholder="you@example.com"
           type="email"
-          autoComplete="on"
+          autoComplete="email"
         />
 
         <Input

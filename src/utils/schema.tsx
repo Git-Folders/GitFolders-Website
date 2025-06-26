@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const name = z.string().min(1, "Name Required");
 const emailSchema = z.string().email("Invalid Email");
-const passwordSchema = z
+export const passwordSchema = z
   .string()
   .min(8, "Password must be at least 8 characters long")
   .regex(/[a-z]/, "Password must contain at least one lowercase letter")

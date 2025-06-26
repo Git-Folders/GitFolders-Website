@@ -1,6 +1,9 @@
 ---
-import { HOME_PAGE_NAV_SECTIONS } from "@/NavRoutes";
+import { MAIN_NAV_SECTIONS, type NAV_SECTION } from "@/NavRoutes";
 import { Menu as Menu_Icon, X as Close_Icon } from "@/utils/Icons";
+
+const NAV_SECTIONS = (Astro.props.NAV_SECTIONS ??
+  MAIN_NAV_SECTIONS) as NAV_SECTION[];
 ---
 
 <!-- Menu Button -->
@@ -34,7 +37,7 @@ import { Menu as Menu_Icon, X as Close_Icon } from "@/utils/Icons";
           class="mr-10 flex h-full flex-col items-end justify-center gap-3 text-left text-4xl font-bold text-blue-800"
         >
           {
-            HOME_PAGE_NAV_SECTIONS.map((section) => (
+            NAV_SECTIONS.map((section) => (
               <li onclick="toggleMenu()">
                 <a
                   class="transition-all hover:tracking-widest"

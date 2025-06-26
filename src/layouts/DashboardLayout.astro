@@ -2,7 +2,10 @@
 import "@styles/global.css";
 
 import Navbar from "@components/Navbar.astro";
+import Menu from "@components/Menu.astro";
 import Footer from "@/components/Footer.astro";
+
+import { DASHBOARD_NAV_SECTIONS } from "@/NavRoutes";
 
 type Props = {
   title?: string;
@@ -69,6 +72,9 @@ const socialMediaTitle = "GitFolders - Organize Your GitHub Repositories";
   </head>
   <body>
     <Navbar isDashboardPage={true} />
+    <aside class="max-md:hidden">
+      <Menu NAV_SECTIONS={DASHBOARD_NAV_SECTIONS} />
+    </aside>
     <slot />
     <Footer />
   </body>

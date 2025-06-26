@@ -31,7 +31,7 @@ const NewPasswordForm = () => {
   });
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange(async (event, session) => {
+    supabase.auth.onAuthStateChange(async (event, _) => {
       if (event == "PASSWORD_RECOVERY") {
         setIsPasswordUpdateInProgress(true);
       }

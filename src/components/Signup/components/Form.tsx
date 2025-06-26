@@ -124,7 +124,7 @@ const Form = () => {
           label="Name"
           placeholder="John Doe"
           type="text"
-          autoComplete="on"
+          autoComplete="name"
         />
 
         <Input
@@ -133,7 +133,7 @@ const Form = () => {
           label="Email address"
           placeholder="you@example.com"
           type="email"
-          autoComplete="on"
+          autoComplete="email"
         />
 
         <Input

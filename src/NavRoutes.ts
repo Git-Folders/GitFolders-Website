@@ -5,7 +5,13 @@ type Route = {
   name: string;
   path: string;
 };
-type Routes = "home" | "login" | "signup" | "resetPassword" | "welcome";
+type Routes =
+  | "home"
+  | "login"
+  | "signup"
+  | "resetPassword"
+  | "welcome"
+  | "settings";
 // | "waitlist";
 
 const ROUTES: Record<Routes, Route> = {
@@ -14,16 +20,18 @@ const ROUTES: Record<Routes, Route> = {
   signup: { name: "Sign Up", path: "/signup" },
   resetPassword: { name: "Password Reset", path: "/reset-password" },
   welcome: { name: "Welcome", path: "/welcome" },
+  settings: { name: "Settings", path: "/settings" },
   // waitlist: { name: "Join Waitlist", path: "/waitlist" },
 };
 export default ROUTES;
 
-type HOME_PAGE_NAV_SECTION = {
+export type NAV_SECTION = {
   name: string;
   path: string;
 };
-export const HOME_PAGE_NAV_SECTIONS: HOME_PAGE_NAV_SECTION[] = [
-  { name: "Home", path: "/" },
+
+export const MAIN_NAV_SECTIONS: NAV_SECTION[] = [
+  ROUTES.home,
   { name: "Benefits", path: "#benefits" },
   // { name: "cta-1", path: "#cta-1" },
   { name: "Features", path: "#features" },
@@ -35,12 +43,16 @@ export const HOME_PAGE_NAV_SECTIONS: HOME_PAGE_NAV_SECTION[] = [
   { name: "FAQs", path: "#faqs" },
   { name: "Contact Us", path: "#contact" },
 ];
+export const DASHBOARD_NAV_SECTIONS: NAV_SECTION[] = [
+  ROUTES.home,
+  ROUTES.welcome,
+  ROUTES.settings,
+];
 
 //* CTA Link
 export const CTA_Link: Route = {
   name: "Start Today",
-  // TODO: url to download page
-  path: ROUTES.signup.path,
+  path: 'https://chromewebstore.google.com/detail/jomibicoiciembfmjadghcnoomoefjpi',
 };
 
 //* Redirect Link

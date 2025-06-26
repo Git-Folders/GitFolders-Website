@@ -21,7 +21,7 @@ const Input = ({
   return (
     <label
       htmlFor={name}
-      className={`relative flex gap-x-2 gap-y-1 ${layoutClass}`}
+      className={`relative flex flex-1 gap-x-2 gap-y-1 ${layoutClass} `}
     >
       <span className="text-xs font-medium text-slate-100 md:text-sm">
         {label}

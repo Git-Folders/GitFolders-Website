@@ -1,4 +1,4 @@
-import { DOMAIN } from "./Name";
+import { DOMAIN } from "./Constants";
 
 // * App Routes
 type Route = {
@@ -52,7 +52,7 @@ export const DASHBOARD_NAV_SECTIONS: NAV_SECTION[] = [
 //* CTA Link
 export const CTA_Link: Route = {
   name: "Start Today",
-  path: 'https://chromewebstore.google.com/detail/jomibicoiciembfmjadghcnoomoefjpi',
+  path: "https://chromewebstore.google.com/detail/jomibicoiciembfmjadghcnoomoefjpi",
 };
 
 //* Redirect Link

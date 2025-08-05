@@ -1,16 +1,10 @@
 ---
 import { Image } from "astro:assets";
 
-const CTA_Link = {
-  name: "Start Today",
-  path: "https://chromewebstore.google.com/detail/jomibicoiciembfmjadghcnoomoefjpi",
-};
-
-import { ArrowRight, Folder } from "@utils/Icons.tsx";
-
-// TODO: Enable when required
-/* import TrustMetric from "./componentsTrustMetric.astro";
-import UserMetric from "./componentsUserMetric.astro"; */
+import DashboardPreview from "@assets/Hero/DashboardPreview.png";
+import ArrowRight from "@assets/Icons/ArrowRight.svg";
+import Folder from "@assets/Icons/Folder.svg";
+import { CHROME_STORE_URL } from "@Constants";
 
 import StatBox, { type Stat } from "./Components/StatBox.astro";
 
@@ -22,71 +16,55 @@ const stats: Stat[] = [
   // { value: "90%", label: "Faster Navigation" },
   // { value: "1-Click", label: "Smart Folder Creation" },
 ];
-
-const heroImage = {
-  // url: HeroImage,
-  url: "https://images.unsplash.com/photo-1630514969818-94aefc42ec47?auto=format&fit=crop&w=800&q=80",
-  //  "https://images.unsplash.com/photo-1618477388954-7852f32655ec"
-  alt: "Dashboard preview",
-} as const;
 ---
 
 <section
   id="home"
-  class="flex min-h-screen cursor-default items-center justify-center bg-slate-950 px-4 py-20 md:px-16"
+  class="relative grid grid-cols-1 place-content-center place-items-stretch gap-x-8 gap-y-10 bg-neutral-950 px-4 pt-20 pb-20 md:px-16 md:pt-8 portrait:sm:px-16 portrait:sm:pt-20 landscape:grid-cols-2"
 >
-  <div class="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2">
-    <div class="text-left text-balance">
-      {/* <TrustMetric /> */}
-      <h1
-        class="mb-6 text-5xl leading-tight font-bold text-slate-50 md:text-6xl"
-      >
-        Organize GitHub <span class="text-blue-600">Repositories</span> Like Never
-        Before
-      </h1>
-      <p class="mb-8 text-xl text-slate-300">
-        Transform cluttered repositories into a streamlined, organized
-        workspace. The missing folder structure for your GitHub repositories.
-      </p>
-      <div class="flex items-center gap-x-4">
-        <a
-          href={CTA_Link.path}
-          class="group flex cursor-pointer items-center gap-x-2 rounded-lg bg-blue-600 px-5 py-4 text-lg font-semibold text-slate-50 transition-colors hover:bg-blue-800 md:px-8 md:py-4"
-        >
-          <span>{CTA_Link.name}</span>
-          <ArrowRight
-            className="h-5 w-5 transition-transform group-hover:translate-x-2"
-          />
-        </a>
-        {/* <UserMetric /> */}
-      </div>
-      <div class="mt-8 grid w-fit grid-cols-3 gap-8">
-        {stats.map((stat) => <StatBox value={stat.value} label={stat.label} />)}
-      </div>
+  <!-- Column 1 -->
+  <div class="space-y-6">
+    <h1
+      class="text-left text-5xl leading-tight font-bold tracking-wide text-balance text-slate-50 md:text-6xl"
+    >
+      Organize GitHub <span class="text-blue-500">Repositories</span> Like Never
+      Before
+    </h1>
+    <h2 class="max-w-[65ch] text-xl text-pretty text-slate-300 italic">
+      Transform cluttered repositories into a streamlined, organized workspace.
+      The missing folder structure for your GitHub repositories.
+    </h2>
+    <a
+      href={CHROME_STORE_URL}
+      class="group flex w-fit items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 px-6 py-4 text-lg font-semibold text-slate-50 transition ease-linear hover:brightness-90"
+    >
+      {"Start Today"}
+      <ArrowRight
+        class="size-6 transition-transform ease-linear group-hover:translate-x-2"
+      />
+    </a>
+    <div class="flex items-center justify-start gap-8">
+      {stats.map((stat) => <StatBox {...stat} />)}
     </div>
-    <div class="relative h-full">
-      <div
-        class="relative aspect-square w-full overflow-hidden rounded-lg md:aspect-[6/5]"
-      >
-        <Image
-          src={heroImage.url}
-          alt={heroImage.alt}
-          class="h-full w-full object-contain"
-          width={1000}
-          height={1000}
-          loading="eager"
-        />
-      </div>
+  </div>
 
-      <div
-        class="absolute -bottom-6 -left-2 flex items-center gap-x-3 rounded-lg border-1 border-black bg-slate-950 p-3 shadow-2xl shadow-black md:-left-6 md:p-4"
-      >
-        <Folder className="h-10 w-10 text-blue-600" />
-        <div>
-          <p class="font-semibold text-slate-50">Smart Organization</p>
-          <p class="text-sm text-slate-300">Like Never Before</p>
-        </div>
-      </div>
+  <!-- Column 2 -->
+  <div class="relative">
+    <Image
+      src={DashboardPreview}
+      alt="GitFolders Dashboard preview"
+      class="aspect-square w-full object-contain md:aspect-[6/5]"
+      loading="eager"
+    />
+    <div
+      class="absolute -bottom-6 -left-2 flex items-center justify-center gap-2 rounded-2xl border-1 border-black bg-slate-950 p-3 md:-left-6 md:p-4"
+    >
+      <Folder class="size-12 text-blue-600" />
+      <h3 class="font-semibold text-slate-50">
+        Smart Organization
+        <br />
+        <span class="text-sm text-slate-400 italic">Like Never Before</span>
+      </h3>
     </div>
   </div>
 </section>

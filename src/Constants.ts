@@ -7,3 +7,6 @@ export default NAME;
 export const DOMAIN: string = "https://gitfolders.xyz";
 
 export const EMAIL: string = "support@gitfolders.xyz";
+
+export const CHROME_STORE_URL: string =
+  "https://chromewebstore.google.com/detail/jomibicoiciembfmjadghcnoomoefjpi";

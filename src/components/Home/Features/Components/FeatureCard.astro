@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+
 import { FeatureIcon, type Feature } from "./Features.tsx";
 
 type FeatureCardProps = {
@@ -11,15 +12,13 @@ const { icon, title, description, image } = feature;
 ---
 
 <div
-  class="group overflow-hidden rounded-xl border border-slate-950 bg-black shadow-md shadow-black transition-all hover:shadow-lg"
+  class="group flex-1 overflow-hidden rounded-xl border border-slate-950 bg-black shadow-md shadow-black transition-all hover:shadow-lg"
 >
   <div class="relative h-48 overflow-hidden">
     <Image
       src={image}
       alt={title}
       class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-      height={1000}
-      width={1000}
     />
     <div
       class="absolute inset-0 bg-slate-950/10 transition-all group-hover:opacity-0"

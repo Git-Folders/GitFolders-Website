@@ -1,38 +1,45 @@
 ---
-export type Card = {
+import { twMerge } from "tailwind-merge";
+
+export type CardData = {
   type: "positive" | "negative";
   title: string;
   features: string[];
 };
 
-type Props = {
-  data: Card;
-};
-
-const { data } = Astro.props as Props;
-const { type, title, features } = data;
+const { type, title, features } = Astro.props as CardData;
 
 const isPositive = type === "positive";
-const bgColor = isPositive ? " bg-green-800 " : " bg-red-800 ";
-const borderColor = isPositive ? " border-green-600 " : " border-red-600 ";
-const titleColor = isPositive ? " text-green-100 " : " text-red-100 ";
-const badgeColor = isPositive ? " bg-green-700 " : " bg-red-700 ";
-const icon = isPositive ? "✓" : "✕";
-const iconColor = isPositive ? "text-green-500" : "text-red-500";
 ---
 
-<div class={`${bgColor}  rounded-2xl border p-4 md:p-8 ${borderColor}`}>
-  <h3 class={`mb-4 text-2xl font-bold ${titleColor} flex items-center`}>
-    <span class={`${badgeColor} text-slate-50  mr-3 rounded-lg p-2`}
-      >{title}</span
-    >
+<div
+  class={twMerge(
+    "space-y-4 rounded-2xl  grow  shrink border p-4 md:p-8",
+    isPositive
+      ? "border-green-600 bg-gradient-to-tl from-green-700 to-green-800"
+      : "border-red-600 bg-gradient-to-tl from-red-700 to-red-800",
+  )}
+>
+  <h3
+    class={twMerge(
+      "text-slate-50 w-fit rounded-2xl px-4 shadow py-2 text-2xl font-bold",
+      isPositive ? "bg-green-700" : "bg-red-700",
+    )}
+  >
+    {title}
   </h3>
-  <ul class="space-y-4">
+  <ul class="ml-4 space-y-4">
     {
       features.map((feature: string) => (
-        <li class="flex items-start space-x-3 text-slate-50">
-          <span class={iconColor}>{icon}</span>
-          <span>{feature}</span>
+        <li
+          class={twMerge(
+            "list-outside pl-2 text-slate-50 marker:text-sm",
+            isPositive
+              ? "marker:text-green-300 [&::marker]:content-['✓']"
+              : "marker:text-red-300 [&::marker]:content-['✕']",
+          )}
+        >
+          {feature}
         </li>
       ))
     }

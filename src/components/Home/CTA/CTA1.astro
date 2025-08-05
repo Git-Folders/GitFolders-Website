@@ -1,40 +1,32 @@
 ---
 import CTA_BG1 from "@assets/CTA/CTA_BG1.jpg";
-
-import { CTA_Link } from "@/NavRoutes";
-
-import { ArrowRight } from "@utils/Icons";
+import ArrowRight from "@assets/Icons/ArrowRight.svg";
+import { CHROME_STORE_URL } from "@Constants";
 
 const bgImage = CTA_BG1.src;
 ---
 
 <section
   id="cta-1"
-  class="relative cursor-default overflow-hidden bg-blue-600 px-4 pt-6 pb-20 text-slate-50 md:px-16 md:pt-20"
+  class="relative isolate z-0 flex cursor-default flex-col items-center justify-center space-y-8 overflow-hidden bg-cover bg-center px-8 py-10 text-slate-50 before:absolute before:inset-0 before:-z-10 before:bg-blue-600/80 md:px-16 md:py-20"
+  style={{ backgroundImage: `url(${bgImage})` }}
 >
-  <div class="pointer-events-none absolute inset-0 opacity-10">
-    <div
-      style={{ backgroundImage: `url(${bgImage})` }}
-      class={`absolute inset-0 bg-cover bg-center`}
-    >
-    </div>
-  </div>
-  <div class="relative z-10 mx-auto flex max-w-4xl flex-col px-4 text-center">
-    <h2 class="mb-6 text-4xl font-bold">
-      Ready to organize your GitHub repositories?
-    </h2>
-    <p class="mb-10 text-xl text-balance opacity-90">
-      Join like minded community of developers who are already enjoying a
-      cleaner, more organized GitHub experience.
-    </p>
-    <a
-      href={CTA_Link.path}
-      class="group text-accent z-50 flex cursor-pointer items-center gap-x-2 self-center rounded-lg bg-slate-50 px-5 py-4 text-lg font-semibold text-blue-600 transition-colors hover:text-blue-800 md:px-8"
-    >
-      {CTA_Link.name}
-      <ArrowRight
-        className="h-5 w-5 transition-transform group-hover:translate-x-2"
-      />
-    </a>
-  </div>
+  <h2 class="text-center text-5xl font-bold text-balance text-slate-50">
+    Ready to organize your GitHub repositories?
+  </h2>
+  <p
+    class="w-readable mx-auto text-center text-xl text-pretty text-slate-200 italic"
+  >
+    Join like minded community of developers who are already enjoying a cleaner,
+    more organized GitHub experience.
+  </p>
+  <a
+    href={CHROME_STORE_URL}
+    class="group flex w-fit items-center justify-center gap-2 self-center rounded-2xl bg-slate-100 px-6 py-4 text-lg font-semibold text-blue-600 transition ease-linear hover:brightness-90"
+  >
+    {"Start Today"}
+    <ArrowRight
+      class="size-6 transition-transform ease-linear group-hover:translate-x-2"
+    />
+  </a>
 </section>

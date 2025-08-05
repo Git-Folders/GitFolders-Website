@@ -1,14 +1,11 @@
 ---
-import { Image } from "astro:assets";
-
-const NAME = "GitFolders";
 import ComparisonCard, {
-  type Card as CardData,
+  type CardData,
 } from "./Components/ComparisonCard.astro";
 
 const withoutUs: CardData = {
   type: "negative",
-  title: `Without ${NAME}`,
+  title: "Without GitFolders",
   features: [
     "Endless scrolling through unorganized repositories",
     "No way to group related projects together",
@@ -21,7 +18,7 @@ const withoutUs: CardData = {
 
 const withUs: CardData = {
   type: "positive",
-  title: `With ${NAME}`,
+  title: "With GitFolders",
   features: [
     "Intuitive folder organization for all your repositories",
     "Quick access to grouped projects and repositories",
@@ -31,47 +28,24 @@ const withUs: CardData = {
     "Streamlined experience for both solo devs and teams",
   ],
 };
-
-const image = {
-  url: "https://images.unsplash.com/photo-1607799632518-da91dd151b38?auto=format&fit=crop&w=800&q=80",
-  alt: "Organization preview",
-};
 ---
 
 <section
   id="benefits"
-  class="cursor-default bg-gradient-to-b from-slate-950 via-black to-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
+  class="space-y-16 bg-neutral-950 px-8 py-10 md:px-16 md:py-20"
 >
-  <div class="mx-auto max-w-7xl space-y-10">
-    <div class="space-y-4 text-center">
-      <h2 class="text-4xl font-bold text-slate-50">Why Choose GitFolders?</h2>
-      <p class="mx-auto max-w-2xl text-xl text-slate-300">
-        Experience the difference between chaos and organization
-      </p>
-    </div>
-    <div class="grid items-center gap-16 md:grid-cols-2">
-      <ComparisonCard data={withoutUs} />
-      <ComparisonCard data={withUs} />
-      <!-- <div class="order-1 space-y-8 md:order-2"></div> -->
-      <!-- <div class="relative order-2 h-full md:order-1">
-        <div
-          class="h-[50vh] w-full overflow-hidden rounded-lg shadow-2xl md:h-[100vh]"
-        >
-          <Image
-            src={image.url}
-            alt={image.alt}
-            class="h-full w-full scale-110 object-cover"
-            height={1000}
-            width={1000}
-          />
-        </div>
-        <div
-          class="absolute -right-2 -bottom-8 rounded-lg border-2 border-slate-950 bg-black p-3 shadow-2xl shadow-slate-950 md:-right-8 md:p-4"
-        >
-          <h3 class="text-3xl font-bold text-blue-600">75%</h3>
-          <p class="text-sm text-slate-300">Faster Repository Access</p>
-        </div>
-      </div> -->
-    </div>
+  <div class="mx-auto max-w-7xl space-y-2 text-center">
+    <h2
+      class="text-center text-5xl font-bold tracking-wider text-balance text-slate-50 capitalize"
+    >
+      Why Choose GitFolders?
+    </h2>
+    <p class="text-center text-xl text-pretty text-slate-300 italic">
+      Experience the difference between chaos and organization
+    </p>
+  </div>
+  <div class="flex flex-wrap items-center justify-center gap-10">
+    <ComparisonCard {...withoutUs} />
+    <ComparisonCard {...withUs} />
   </div>
 </section>

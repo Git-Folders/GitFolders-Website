@@ -12,6 +12,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@Constants": ["src/Constants.ts"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],

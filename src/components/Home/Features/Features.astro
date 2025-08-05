@@ -8,23 +8,21 @@ import {
 
 <section
   id="features"
-  class="cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
+  class="space-y-10 bg-neutral-950 px-8 py-10 md:px-16 md:py-20"
 >
-  <div class="mx-auto max-w-7xl space-y-10">
-    <div class="space-y-4 text-center">
-      <h2 class="text-4xl font-bold text-slate-50">
-        Everything you need to organize your GitHub workflow
-      </h2>
-      <p class="mx-auto max-w-2xl text-xl text-balance text-slate-300">
-        Powerful features designed for developers
-      </p>
-    </div>
-    <div class="grid gap-6 md:grid-cols-3">
-      {
-        featuresList.map((feature: Feature) => (
-          <FeatureCard feature={feature} />
-        ))
-      }
-    </div>
+  <div class="space-y-4">
+    <h2
+      class="text-center text-5xl font-bold tracking-wider text-balance text-slate-50 capitalize"
+    >
+      Powerful features designed for developers
+    </h2>
+    <p
+      class="w-readable mx-auto text-center text-xl text-pretty text-slate-300"
+    >
+      Everything you need to organize your GitHub workflow
+    </p>
+  </div>
+  <div class="flex flex-row gap-6">
+    {featuresList.map((feature: Feature) => <FeatureCard feature={feature} />)}
   </div>
 </section>

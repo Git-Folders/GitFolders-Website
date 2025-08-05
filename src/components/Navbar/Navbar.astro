@@ -10,30 +10,44 @@ import { NAV_ROUTES } from "./NavRoutes.ts";
 const Url = "https://app.gitfolders.com";
 ---
 
-<div
+<!-- Mobile Navbar (Hamburger Bar) -->
+<header
   class="fixed inset-x-0 top-0 flex items-center justify-between bg-neutral-950/70 px-8 py-4 text-white backdrop-blur-sm md:hidden"
 >
-  <a href="/" class="flex cursor-pointer items-center gap-1">
+  <a
+    href="/"
+    class="flex cursor-pointer items-center gap-1"
+    aria-label="Go to GitFolders homepage"
+  >
     <Image src={Logo} alt="GitFolders Logo" class="size-10" loading="eager" />
     <span class="mt-1 text-base text-slate-50">GitFolders</span>
   </a>
-  <button onclick="toggleNavbar()" class="">
+  <button
+    onclick="toggleNavbar()"
+    aria-label="Open navigation menu"
+    aria-controls="navbar"
+    aria-expanded="false"
+  >
     <HamburgerIcon class="size-8" />
   </button>
-</div>
+</header>
 
 <header
   id="navbar-container"
-  class="pointer-events-none fixed top-0 z-999 w-full md:static"
+  class="pointer-events-none fixed top-0 z-999 w-full md:static md:bg-neutral-950 md:p-4"
 >
   <div
     id="navbar"
     data-is-open="false"
-    class="pointer-events-auto ml-auto flex h-svh w-full origin-right flex-col items-center justify-between gap-8 bg-neutral-950 px-8 py-8 backdrop-blur-sm transition-colors duration-200 md:mx-auto md:h-fit md:flex-row md:py-2"
+    class="pointer-events-auto ml-auto flex h-svh w-full origin-right flex-col items-center justify-between gap-8 bg-neutral-950 px-8 py-8 md:mx-auto md:h-fit md:flex-row md:py-2 landscape:min-sm:max-md:overflow-y-scroll"
   >
     <div class="flex w-full items-center justify-between gap-4 md:w-auto">
       <!-- Logo Container -->
-      <a href="/" class="flex cursor-pointer items-center gap-2">
+      <a
+        href="/"
+        class="flex cursor-pointer items-center gap-2"
+        aria-label="Go to GitFolders homepage"
+      >
         <Image
           src={Logo}
           alt="GitFolders Logo"
@@ -47,6 +61,9 @@ const Url = "https://app.gitfolders.com";
       <button
         onclick="toggleNavbar()"
         class="text-slate-50 hover:bg-neutral-900 md:hidden"
+        aria-label="Close navigation menu"
+        aria-controls="navbar"
+        aria-expanded="true"
       >
         <CloseIcon class="size-8" /></button
       >
@@ -55,12 +72,14 @@ const Url = "https://app.gitfolders.com";
     <!-- Nav Links -->
     <nav
       class="flex flex-col items-start justify-center gap-2 md:invisible md:hidden"
+      aria-label="Main navigation"
     >
       {
         NAV_ROUTES.map((section) => (
           <a
             href={section.path}
             class="text-left text-2xl tracking-wide text-slate-50"
+            aria-label={`Navigate to ${section.name}`}
           >
             {section.name}
           </a>
@@ -69,22 +88,25 @@ const Url = "https://app.gitfolders.com";
     </nav>
 
     <!-- Auth Button Container -->
-    <div
+    <section
       class="flex w-full flex-col items-center justify-center gap-2 md:w-fit md:flex-row"
+      aria-label="Authentication options"
     >
-      <button
-        onclick={`window.location.href = '${Url}/login'`}
-        class="transition-color w-full rounded-full border border-blue-600 px-4 py-2 text-lg font-medium text-slate-50 hover:border-blue-800 md:w-fit md:text-base"
+      <a
+        href={`${Url}/login`}
+        class="w-full rounded-full border border-blue-600 px-4 py-2 text-center text-lg font-medium text-slate-50 transition hover:brightness-90 md:w-fit md:text-base"
+        aria-label="Log in to your account"
       >
         Login
-      </button>
-      <button
-        onclick={`window.location.href = '${Url}/signup'`}
-        class="transition-color w-full rounded-full bg-blue-600 px-4 py-2 text-lg font-medium text-slate-50 hover:bg-blue-800 md:w-fit md:text-base"
+      </a>
+      <a
+        href={`${Url}/signup`}
+        class="w-full rounded-full bg-gradient-to-br from-blue-500 to-blue-600 px-4 py-2 text-center text-lg font-medium text-slate-50 transition hover:brightness-90 md:w-fit md:text-base"
+        aria-label="Sign up for GitFolders"
       >
         Sign Up
-      </button>
-    </div>
+      </a>
+    </section>
   </div>
 </header>
 
@@ -131,5 +153,11 @@ const Url = "https://app.gitfolders.com";
   function toggleNavbar() {
     const isOpen = navbar.getAttribute("data-is-open") === "true";
     navbar.setAttribute("data-is-open", !isOpen);
+    document.body.classList.toggle("overflow-hidden");
+
+    const toggleButtons = document.querySelectorAll('[aria-controls="navbar"]');
+    toggleButtons.forEach((btn) =>
+      btn.setAttribute("aria-expanded", String(!isOpen)),
+    );
   }
 </script>

@@ -1,8 +1,8 @@
 ---
-import { NAV_ROUTES } from "./NavRoutes";
-
 import CloseIcon from "@assets/icons/Close.svg";
 import HamburgerIcon from "@assets/icons/Hamburger.svg";
+
+import { NAV_ROUTES } from "./NavRoutes";
 ---
 
 <!-- Menu Button -->
@@ -10,12 +10,22 @@ import HamburgerIcon from "@assets/icons/Hamburger.svg";
   id="menu-open-button"
   onclick="toggleMenu()"
   class="fixed top-[50%] right-10 z-999 hidden rounded-full bg-neutral-800 p-2 text-white transition-all hover:scale-110 hover:brightness-125 md:block"
+  aria-label="Open navigation menu"
+  aria-controls="menu"
+  aria-expanded="false"
 >
   <HamburgerIcon class="size-5" />
 </button>
 
 <!-- Menu Panel -->
-<div id="menu" data-is-open="false" class="fixed inset-0 z-999 hidden md:block">
+<div
+  id="menu"
+  data-is-open="false"
+  class="fixed inset-0 z-999 hidden md:block"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation Menu"
+>
   <div
     class="ml-auto h-full w-fit max-w-1/2 min-w-1/3 rounded-l-full bg-slate-900 px-16"
     style="--transition-delay: 100ms;"
@@ -23,18 +33,23 @@ import HamburgerIcon from "@assets/icons/Hamburger.svg";
     <button
       class="absolute top-4 right-4 rounded-full bg-slate-950 p-2 transition duration-300 hover:brightness-150"
       onclick="toggleMenu()"
+      aria-label="Close navigation menu"
+      aria-controls="menu"
+      aria-expanded="true"
     >
       <CloseIcon class="size-6 text-white" />
     </button>
     <nav
       class="ml-auto flex h-full w-max flex-col items-start justify-center gap-4 py-16"
+      aria-label="Main navigation"
     >
       {
         NAV_ROUTES.map((section, index) => (
           <a
             href={section.path}
-            class="text-left text-3xl tracking-wide text-slate-50"
-            style={`--index: ${index};, --stagger-duration: 80ms;`}
+            class="relative text-left text-2xl tracking-wide text-slate-50 before:absolute before:bottom-0 before:h-px before:w-full before:origin-left before:scale-x-0 before:bg-slate-50 before:transition-transform before:duration-300 hover:before:scale-x-100 focus:outline-none focus:before:scale-x-100 lg:text-3xl"
+            style={`--index: ${index}; --stagger-duration: 80ms;`}
+            aria-label={`Navigate to ${section.name}`}
           >
             {section.name}
           </a>
@@ -118,8 +133,18 @@ import HamburgerIcon from "@assets/icons/Hamburger.svg";
   function toggleMenu() {
     const isOpen = menu.getAttribute("data-is-open") === "true";
     menu.setAttribute("data-is-open", !isOpen);
-    document.body.style.overflow = isOpen ? "auto" : "hidden";
-    if (isOpen) menuOpenButton.classList.remove("invisible");
-    else menuOpenButton.classList.add("invisible");
+    document.body.classList.toggle("overflow-hidden");
+    menuOpenButton.classList.toggle("invisible");
+
+    const toggleButtons = document.querySelectorAll('[aria-controls="menu"]');
+    toggleButtons.forEach((btn) =>
+      btn.setAttribute("aria-expanded", String(!isOpen)),
+    );
   }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu.getAttribute("data-is-open") === "true") {
+      toggleMenu();
+    }
+  });
 </script>

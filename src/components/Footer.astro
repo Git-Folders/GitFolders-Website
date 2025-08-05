@@ -9,11 +9,16 @@ const footerLinks: FooterLink[] = [
 
 <footer
   class="flex w-full flex-col-reverse items-center gap-8 border-t border-blue-600 bg-neutral-950 px-4 py-8 text-slate-50 md:flex-row md:justify-between md:px-8 md:py-10"
+  aria-label="Site footer"
 >
-  <span class="text-[10px] select-none md:text-xs">
-    Copyright © 2025 Git Folders - All Rights Reserved.
-  </span>
-  <div class="flex w-full items-center justify-between gap-4 px-2 md:w-auto">
+  <p class="text-[10px] select-none md:text-xs">
+    © 2025 GitFolders. All rights reserved.
+  </p>
+
+  <nav
+    aria-label="Footer navigation"
+    class="flex w-full items-center justify-between gap-4 px-2 md:w-auto"
+  >
     {
       footerLinks.map((link) => (
         <a
@@ -24,5 +29,5 @@ const footerLinks: FooterLink[] = [
         </a>
       ))
     }
-  </div>
+  </nav>
 </footer>

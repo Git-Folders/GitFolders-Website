@@ -5,6 +5,7 @@
 
 @theme {
   --font-inter: "Inter", sans-serif;
+
   --animate-infinite-scroll: infinite-scroll 30s linear infinite;
   @keyframes infinite-scroll {
     0% {
@@ -22,13 +23,19 @@
   }
   html,
   body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    @apply font-inter;
+    @apply font-inter m-0 box-border p-0;
+  }
+  section {
+    @apply cursor-default;
   }
   button {
-    cursor: pointer;
+    @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .w-readable {
+    max-width: 65ch;
   }
 }
 

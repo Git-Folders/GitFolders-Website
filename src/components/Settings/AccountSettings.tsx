@@ -1,11 +1,11 @@
 import Input from "../FormComponents/Input";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { passwordSchema } from "@/utils/schema";
+import { passwordSchema } from "@utils/schema";
 import { z } from "zod";
 import Button from "../FormComponents/Button";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@lib/supabase";
 
 const AccountSettingsFormSchema = z.object({
   firstName: z.string().optional(),
@@ -140,8 +140,8 @@ const AccountSettings = () => {
   };
 
   return (
-    <div className="space-y-6 text-slate-100">
-      <h2 className="text-2xl font-bold text-slate-100 md:text-4xl">
+    <div className="space-y-6 text-slate-50">
+      <h2 className="text-2xl font-bold text-slate-50 md:text-4xl">
         Account Settings
       </h2>
       <form

@@ -39,8 +39,8 @@ switch (rotation) {
 }
 
 const visualClasses: string = rotation
-  ? "bg-slate-100 shadow-md text-slate-950"
-  : "shadow-xl text-slate-100 bg-blue-600 text-slate-100";
+  ? "bg-slate-50 shadow-md text-slate-950"
+  : "shadow-xl text-slate-50 bg-blue-600 text-slate-50";
 ---
 
 <div
@@ -48,7 +48,7 @@ const visualClasses: string = rotation
 >
   {
     popularityBadge && (
-      <div class="absolute top-2 right-2 rounded-full bg-blue-800 px-2 py-1 text-xs text-slate-100">
+      <div class="absolute top-2 right-2 rounded-full bg-blue-800 px-2 py-1 text-xs text-slate-50">
         Most popular
       </div>
     )

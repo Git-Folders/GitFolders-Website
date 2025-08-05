@@ -23,14 +23,14 @@ const Input = ({
       htmlFor={name}
       className={`relative flex flex-1 gap-x-2 gap-y-1 ${layoutClass} `}
     >
-      <span className="text-xs font-medium text-slate-100 md:text-sm">
+      <span className="text-xs font-medium text-slate-50 md:text-sm">
         {label}
       </span>
       <input
         id={name}
         {...control.register(name)}
         {...inputProps}
-        className={`transition-color rounded-xl border border-slate-800 bg-slate-950 p-3 text-xs text-slate-100 duration-200 outline-none placeholder:text-slate-500 md:text-sm ${inputProps.type === "checkbox" ? "size-4" : "w-full focus:ring-1"} ${
+        className={`transition-color rounded-xl border border-slate-800 bg-slate-950 p-3 text-xs text-slate-50 duration-200 outline-none placeholder:text-slate-500 md:text-sm ${inputProps.type === "checkbox" ? "size-4" : "w-full focus:ring-1"} ${
           errors[name]
             ? "border-red-500 focus:border-red-500 focus:ring-red-500"
             : "focus:border-blue-600 focus:ring-blue-600"

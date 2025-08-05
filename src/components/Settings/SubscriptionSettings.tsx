@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "../FormComponents/Button";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@lib/supabase";
 
 const SubscriptionSettings = () => {
   const [updateSubscription, setUpdateSubscription] = useState<string>("");
@@ -37,8 +37,8 @@ const SubscriptionSettings = () => {
   }, []);
 
   return (
-    <div className="space-y-6 text-slate-100">
-      <h2 className="text-2xl font-bold text-slate-100 md:text-4xl">
+    <div className="space-y-6 text-slate-50">
+      <h2 className="text-2xl font-bold text-slate-50 md:text-4xl">
         Subscription Settings
       </h2>
       <div className="relative flex w-full flex-col gap-4 md:flex-row">

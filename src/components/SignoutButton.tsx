@@ -1,6 +1,7 @@
-import { supabase } from "@/lib/supabase";
-import ROUTES from "@/NavRoutes";
 import { useState } from "react";
+
+import { supabase } from "@lib/supabase";
+import ROUTES from "@/NavRoutes";
 
 const SignoutButton = () => {
   const [signoutError, setSignoutError] = useState<boolean>(false);
@@ -29,7 +30,7 @@ const SignoutButton = () => {
       )}
       <button
         onClick={handleSignout}
-        className="cursor-pointer rounded-lg bg-blue-600 px-3 py-2 font-medium text-slate-100 transition-all hover:bg-blue-800"
+        className="cursor-pointer rounded-lg bg-blue-600 px-3 py-2 font-medium text-slate-50 transition-all hover:bg-blue-800"
       >
         Sign Out
       </button>

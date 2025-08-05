@@ -8,7 +8,7 @@ import ROUTES from "@/NavRoutes";
 import {
   PasswordUpdateFormSchema,
   type PasswordUpdateFormFields,
-} from "@/utils/schema";
+} from "@utils/schema";
 
 const NewPasswordForm = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);

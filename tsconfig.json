@@ -1,9 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    "verbatimModuleSyntax": true,
+    "lib": ["dom", "esnext"],
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"
@@ -12,6 +12,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],
@@ -20,6 +21,20 @@
       "@lib/*": ["src/lib/*"]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+
+    // Enhanced type checking (building on astro/tsconfigs/strict)
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitAny": true,
+
+    // Import/export settings
+    "verbatimModuleSyntax": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    // Better developer experience
+    "incremental": true,
+    "skipLibCheck": true
   }
 }

@@ -1,0 +1,135 @@
+---
+import { Image } from "astro:assets";
+
+import CloseIcon from "@assets/icons/Close.svg";
+import HamburgerIcon from "@assets/icons/Hamburger.svg";
+import Logo from "@assets/logo.svg";
+
+import { NAV_ROUTES } from "./NavRoutes.ts";
+
+const Url = "https://app.gitfolders.com";
+---
+
+<div
+  class="fixed inset-x-0 top-0 flex items-center justify-between bg-neutral-950/70 px-8 py-4 text-white backdrop-blur-sm md:hidden"
+>
+  <a href="/" class="flex cursor-pointer items-center gap-1">
+    <Image src={Logo} alt="GitFolders Logo" class="size-10" loading="eager" />
+    <span class="mt-1 text-base text-slate-50">GitFolders</span>
+  </a>
+  <button onclick="toggleNavbar()" class="">
+    <HamburgerIcon class="size-8" />
+  </button>
+</div>
+
+<header
+  id="navbar-container"
+  class="pointer-events-none fixed top-0 z-999 w-full md:static"
+>
+  <div
+    id="navbar"
+    data-is-open="false"
+    class="pointer-events-auto ml-auto flex h-svh w-full origin-right flex-col items-center justify-between gap-8 bg-neutral-950 px-8 py-8 backdrop-blur-sm transition-colors duration-200 md:mx-auto md:h-fit md:flex-row md:py-2"
+  >
+    <div class="flex w-full items-center justify-between gap-4 md:w-auto">
+      <!-- Logo Container -->
+      <a href="/" class="flex cursor-pointer items-center gap-2">
+        <Image
+          src={Logo}
+          alt="GitFolders Logo"
+          class="size-14 md:size-10"
+          loading="eager"
+        />
+        <span class="hidden text-lg font-medium text-slate-50 md:block"
+          >GitFolders</span
+        >
+      </a>
+      <button
+        onclick="toggleNavbar()"
+        class="text-slate-50 hover:bg-neutral-900 md:hidden"
+      >
+        <CloseIcon class="size-8" /></button
+      >
+    </div>
+
+    <!-- Nav Links -->
+    <nav
+      class="flex flex-col items-start justify-center gap-2 md:invisible md:hidden"
+    >
+      {
+        NAV_ROUTES.map((section) => (
+          <a
+            href={section.path}
+            class="text-left text-2xl tracking-wide text-slate-50"
+          >
+            {section.name}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Auth Button Container -->
+    <div
+      class="flex w-full flex-col items-center justify-center gap-2 md:w-fit md:flex-row"
+    >
+      <button
+        onclick={`window.location.href = '${Url}/login'`}
+        class="transition-color w-full rounded-full border border-blue-600 px-4 py-2 text-lg font-medium text-slate-50 hover:border-blue-800 md:w-fit md:text-base"
+      >
+        Login
+      </button>
+      <button
+        onclick={`window.location.href = '${Url}/signup'`}
+        class="transition-color w-full rounded-full bg-blue-600 px-4 py-2 text-lg font-medium text-slate-50 hover:bg-blue-800 md:w-fit md:text-base"
+      >
+        Sign Up
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  @media (max-width: 768px) {
+    #navbar-container {
+      --transition-duration: 300ms;
+      --transition-delay: 400ms;
+      interpolate-size: allow-keywords;
+    }
+
+    #navbar {
+      transition:
+        visibility var(--transition-duration) ease-in-out,
+        scale var(--transition-duration) ease-out;
+    }
+    #navbar[data-is-open="true"] {
+      visibility: visible;
+      scale: 1 1;
+    }
+    #navbar[data-is-open="false"] {
+      visibility: hidden;
+      scale: 0 1;
+      transition-delay: var(--transition-delay);
+    }
+
+    #navbar > * {
+      opacity: 0;
+      transition: opacity var(--transition-duration) ease-in-out;
+    }
+    #navbar[data-is-open="true"] > * {
+      opacity: 1;
+      transition-delay: var(--transition-delay);
+    }
+    #navbar[data-is-open="false"] > * {
+      opacity: 0;
+      transition-delay: 0ms;
+    }
+  }
+</style>
+
+<script is:inline>
+  const navbar = document.getElementById("navbar");
+  function toggleNavbar() {
+    const isOpen = navbar.getAttribute("data-is-open") === "true";
+    navbar.setAttribute("data-is-open", !isOpen);
+  }
+</script>

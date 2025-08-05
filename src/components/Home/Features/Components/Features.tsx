@@ -1,8 +1,8 @@
 import { FolderTree, Github, Search } from "lucide-react";
 
-import Image1 from "@/assets/Features/Image1.jpg";
-import Image2 from "@/assets/Features/Image2.jpg";
-import Image3 from "@/assets/Features/Image3.jpg";
+import Image1 from "@assets/Features/Image1.jpg";
+import Image2 from "@assets/Features/Image2.jpg";
+import Image3 from "@assets/Features/Image3.jpg";
 
 export type Feature = {
   icon: React.ReactNode;

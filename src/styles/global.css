@@ -1,23 +1,10 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    @apply font-sans;
-  }
-}
-
 @theme {
+  --font-inter: "Inter", sans-serif;
   --animate-infinite-scroll: infinite-scroll 30s linear infinite;
   @keyframes infinite-scroll {
     0% {
@@ -29,13 +16,32 @@
   }
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    @apply font-inter;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+/* * {
+  outline: red 1px solid;
+} */
 /* 
 Backgrounds:
 slate-950
 black
 
 text:
-slate-100
+slate-50
 slate-300
 slate-500
 

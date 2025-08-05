@@ -8,7 +8,7 @@ import ROUTES, { UPDATE_PASSWORD_LINK } from "@/NavRoutes";
 import {
   PasswordResetFormSchema,
   type PasswordResetFormFields,
-} from "@/utils/schema";
+} from "@utils/schema";
 
 const Form = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);

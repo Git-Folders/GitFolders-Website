@@ -6,7 +6,7 @@ import Button from "@components/FormComponents/Button";
 import { Github } from "lucide-react";
 import { supabase } from "@lib/supabase";
 import { REDIRECT_PATH, REDIRECT_LINK } from "@/NavRoutes";
-import { SignupFormSchema, type SignupFormFields } from "@/utils/schema";
+import { SignupFormSchema, type SignupFormFields } from "@utils/schema";
 
 const Form = () => {
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -84,7 +84,7 @@ const Form = () => {
           handleGitHubSignup(e);
         }}
         disabled={isSubmitting}
-        className="flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-slate-300 bg-slate-100 p-3 text-sm font-medium text-slate-900 transition-colors hover:bg-slate-300 hover:text-black md:text-base"
+        className="flex w-full items-center justify-center space-x-2 rounded-lg border-2 border-slate-300 bg-slate-50 p-3 text-sm font-medium text-slate-900 transition-colors hover:bg-slate-300 hover:text-black md:text-base"
       >
         <Github className="size-6" />
         <span>Sign up with Github</span>

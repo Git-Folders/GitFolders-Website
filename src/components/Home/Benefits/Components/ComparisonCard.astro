@@ -23,14 +23,14 @@ const iconColor = isPositive ? "text-green-500" : "text-red-500";
 
 <div class={`${bgColor}  rounded-2xl border p-4 md:p-8 ${borderColor}`}>
   <h3 class={`mb-4 text-2xl font-bold ${titleColor} flex items-center`}>
-    <span class={`${badgeColor} text-slate-100  mr-3 rounded-lg p-2`}
+    <span class={`${badgeColor} text-slate-50  mr-3 rounded-lg p-2`}
       >{title}</span
     >
   </h3>
   <ul class="space-y-4">
     {
       features.map((feature: string) => (
-        <li class="flex items-start space-x-3 text-slate-100">
+        <li class="flex items-start space-x-3 text-slate-50">
           <span class={iconColor}>{icon}</span>
           <span>{feature}</span>
         </li>

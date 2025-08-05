@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
 
-import Image1 from "@/assets/HowItWorks/1.jpg";
-import Image2 from "@/assets/HowItWorks/2.jpg";
-import Image3 from "@/assets/HowItWorks/3.jpg";
-import Image4 from "@/assets/HowItWorks/4.jpg";
-import Image5 from "@/assets/HowItWorks/5.jpg";
-import Image6 from "@/assets/HowItWorks/6.jpg";
-import Image7 from "@/assets/HowItWorks/7.jpg";
+import Image1 from "@assets/HowItWorks/1.jpg";
+import Image2 from "@assets/HowItWorks/2.jpg";
+import Image3 from "@assets/HowItWorks/3.jpg";
+import Image4 from "@assets/HowItWorks/4.jpg";
+import Image5 from "@assets/HowItWorks/5.jpg";
+import Image6 from "@assets/HowItWorks/6.jpg";
+import Image7 from "@assets/HowItWorks/7.jpg";
 
 type HowToImage = {
   url: ImageMetadata;
@@ -51,7 +51,7 @@ const columnPosition = [
             class="rounded-md object-contain"
           />
           <div class="absolute inset-0 flex items-center justify-center px-2 group-hover:bg-slate-950/50">
-            <p class="hidden rounded-xl border border-slate-700 bg-black/70 px-2 py-1 text-center font-medium text-slate-100 group-hover:block">
+            <p class="hidden rounded-xl border border-slate-700 bg-black/70 px-2 py-1 text-center font-medium text-slate-50 group-hover:block">
               {image.hoverTitle}
             </p>
           </div>

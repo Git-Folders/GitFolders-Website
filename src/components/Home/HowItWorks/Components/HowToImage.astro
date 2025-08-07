@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import { twMerge } from "tailwind-merge";
+
+const { id, image, title, position } = Astro.props;
+console.log(id, image);
+---
+
+<div
+  data-aos="fade"
+  data-aos-duration="1500"
+  data-aos-offset="-10"
+  data-aos-anchor-placement="top-bottom"
+  class={twMerge(
+    "relative rounded-lg overflow-hidden group size-full",
+    position,
+  )}
+>
+  <Image
+    id={id}
+    src={image}
+    alt={title}
+    class="size-full rounded-[inherit] object-fill transition-[filter] duration-300 ease-in-out group-hover:blur-[2px] group-hover:brightness-75"
+    loading="lazy"
+  />
+  <div
+    class="@container absolute inset-0 grid place-content-center rounded-[inherit] px-2"
+  >
+    <h3
+      class="w-fit translate-y-30 rounded-[inherit] border border-blue-500 bg-neutral-900 px-4 py-2 text-[10cqw] text-white opacity-0 transition-all duration-400 ease-in-out group-hover:translate-y-0 group-hover:opacity-100"
+    >
+      {title}
+    </h3>
+  </div>
+</div>

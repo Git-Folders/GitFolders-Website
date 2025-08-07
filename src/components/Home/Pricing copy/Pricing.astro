@@ -1,0 +1,137 @@
+---
+import PricingCard, {
+  type PricingCardProps,
+} from "./Component/PricingCard.astro";
+import Feature from "./Component/Feature.astro";
+import SubscriptionHandler from "./Component/SubscriptionHandler.astro";
+import ROUTES from "@/NavRoutes";
+
+const paddleToken = import.meta.env.PUBLIC_PADDLE_TOKEN;
+
+type PricingProps = {
+  isPricingPage?: boolean;
+};
+const { isPricingPage = false } = Astro.props as PricingProps;
+
+type PricingOption = PricingCardProps & { priceId: string };
+
+const PricingOptions: PricingOption[] = [
+  {
+    subscriptionType: "monthly",
+    pricePerMonth: 10,
+    totalPrice: 10,
+    popularityBadge: false,
+    rotation: "left",
+    priceId: "pri_01jxsp4fg0ytqzqbyk7gqsc6vq",
+  },
+  {
+    subscriptionType: "quarterly",
+    pricePerMonth: 8,
+    totalPrice: 24,
+    popularityBadge: true,
+    priceId: "pri_01jy1zymzpw5s8drm2hkrenrry",
+  },
+  {
+    subscriptionType: "annually",
+    pricePerMonth: 7,
+    totalPrice: 84,
+    popularityBadge: false,
+    rotation: "right",
+    priceId: "pri_01jy2078csy8s5hgz63sn8g5ba",
+  },
+];
+const Features: string[] = [
+  "Organize Repositories into Custom Folders",
+  "Sync Folders Across Devices",
+  "Works with Private Repositories",
+  "Quick Search for Instant Access",
+  "Simple, Focused UI for Productivity",
+  "Instant Access Inside GitHub",
+];
+---
+
+<script>
+  import ROUTES from "@/NavRoutes";
+
+  const params = new URLSearchParams(window.location.search);
+  const userId = params.get("userId");
+  if (!userId) {
+    window.location.href = ROUTES.home.path;
+  }
+</script>
+<section
+  id="pricing"
+  class="relative cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
+>
+  <div class="mx-auto max-w-7xl space-y-10">
+    <!-- Heading Section -->
+    <div class="space-y-4 text-center">
+      <h2 class="text-4xl font-bold text-slate-50">Choose the best</h2>
+      <p class="mx-auto max-w-2xl text-xl text-slate-300 italic">
+        pricing plan
+      </p>
+      <p class="text-xs text-blue-300 italic">
+        No extra charges. No hidden fees.
+        <span class="block text-xs opacity-50">Tax charged separately.</span>
+      </p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="flex flex-col items-center justify-center gap-6 md:flex-row">
+      {
+        PricingOptions.map((pricingOption) =>
+          isPricingPage ? (
+            <SubscriptionHandler priceId={pricingOption.priceId}>
+              <PricingCard
+                subscriptionType={pricingOption.subscriptionType}
+                pricePerMonth={pricingOption.pricePerMonth}
+                totalPrice={pricingOption.totalPrice}
+                popularityBadge={pricingOption.popularityBadge}
+                rotation={pricingOption?.rotation}
+              />
+            </SubscriptionHandler>
+          ) : (
+            <a href={ROUTES.login.path}>
+              <PricingCard
+                subscriptionType={pricingOption.subscriptionType}
+                pricePerMonth={pricingOption.pricePerMonth}
+                totalPrice={pricingOption.totalPrice}
+                popularityBadge={pricingOption.popularityBadge}
+                rotation={pricingOption?.rotation}
+              />
+            </a>
+          ),
+        )
+      }
+    </div>
+    <!-- Feature List -->
+    <div
+      class="mx-auto grid max-w-4xl grid-cols-1 items-center justify-between gap-6 pt-4 text-sm md:grid-cols-3"
+    >
+      {Features.map((feature) => <Feature feature={feature} />)}
+    </div>
+  </div>
+</section>
+
+<!-- Initialize Paddle -->
+<script is:inline define:vars={{ paddleToken, isPricingPage }} type="module">
+  // Wait for Paddle.js to load
+  function initializePaddle() {
+    if (typeof Paddle !== "undefined" && isPricingPage) {
+      // Paddle.Environment.set("sandbox");
+      Paddle.Initialize({
+        token: paddleToken,
+        checkout: {
+          settings: {
+            displayMode: "overlay",
+          },
+        },
+      });
+    } else {
+      setTimeout(initializePaddle, 100); // Retry after 100ms
+    }
+  }
+
+  // Start initialization when DOM is ready
+  document.addEventListener("DOMContentLoaded", initializePaddle);
+</script>

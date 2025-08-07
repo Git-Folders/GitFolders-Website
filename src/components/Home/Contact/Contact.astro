@@ -1,52 +1,17 @@
 ---
-import { ArrowRight } from "@utils/Icons";
+import ContactForm from "./Components/ContactForm.astro";
 ---
 
-<section
-  id="contact"
-  class="cursor-default bg-gradient-to-b from-slate-950 to-blue-600 px-4 pt-6 pb-20 text-slate-50 md:px-16 md:pt-20"
->
-  <div class="mx-auto max-w-4xl space-y-8">
-    <div class="text-center">
-      <h2 class="text-3xl font-bold sm:text-4xl">Have questions?</h2>
-      <p class="mt-2 text-lg opacity-90">
-        We're here to help — drop us a message.
-      </p>
-    </div>
-
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      action="/"
-      class="rounded-2xl border border-slate-800 bg-slate-950 p-6 shadow-lg shadow-blue-800/10"
+<section id="contact" class="space-y-8 bg-black px-8 py-10 md:px-16 md:py-20">
+  <div data-aos="slide-right" class="space-y-2">
+    <h2
+      class="text-center text-4xl font-bold text-balance text-slate-50 md:text-5xl"
     >
-      <!-- Hidden inputs required by Netlify -->
-      <input type="hidden" name="form-name" value="contact" />
-      <input type="hidden" name="bot-field" />
-
-      <label for="message" class="sr-only">Your message</label>
-      <textarea
-        id="message"
-        name="message"
-        rows="5"
-        required
-        placeholder="Type your message here..."
-        class="w-full resize-none rounded-xl border border-slate-800 bg-slate-950 p-4 text-base text-slate-50 transition duration-200 outline-none placeholder:text-slate-500 focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
-      ></textarea>
-
-      <div class="mt-4 flex justify-end">
-        <button
-          type="submit"
-          class="group inline-flex items-center gap-x-2 rounded-lg bg-slate-50 px-4 py-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
-        >
-          Send Message
-          <ArrowRight
-            className="h-5 w-5 transition-transform group-hover:translate-x-1.5"
-          />
-        </button>
-      </div>
-    </form>
+      Have questions?
+    </h2>
+    <p class="text-center text-lg text-pretty text-slate-300 md:text-xl">
+      We're here to help — drop us a message.
+    </p>
   </div>
+  <ContactForm />
 </section>

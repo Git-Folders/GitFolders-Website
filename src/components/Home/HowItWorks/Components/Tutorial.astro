@@ -1,67 +1,74 @@
 ---
-import { Image } from "astro:assets";
+import { type ImageMetadata } from "astro";
 
-import Image1 from "@assets/HowItWorks/1.jpg";
-import Image2 from "@assets/HowItWorks/2.jpg";
-import Image3 from "@assets/HowItWorks/3.jpg";
-import Image4 from "@assets/HowItWorks/4.jpg";
-import Image5 from "@assets/HowItWorks/5.jpg";
-import Image6 from "@assets/HowItWorks/6.jpg";
-import Image7 from "@assets/HowItWorks/7.jpg";
+import Image1 from "@assets/HowItWorks/1.webp";
+import Image2 from "@assets/HowItWorks/2.webp";
+import Image3 from "@assets/HowItWorks/3.webp";
+import Image4 from "@assets/HowItWorks/4.webp";
+import Image5 from "@assets/HowItWorks/5.webp";
+import Image6 from "@assets/HowItWorks/6.webp";
+import Image7 from "@assets/HowItWorks/7.webp";
 
-type HowToImage = {
-  url: ImageMetadata;
-  hoverTitle: string;
+import HowToImage from "./HowToImage.astro";
+
+type THowToImage = {
+  image: ImageMetadata;
+  title: string;
 };
 
-const howToImages: HowToImage[] = [
-  { url: Image1, hoverTitle: "Add Folder" },
-  { url: Image2, hoverTitle: "Enter Folder Name" },
-  { url: Image3, hoverTitle: "Create Folder" },
-  { url: Image4, hoverTitle: "Add Repo to Folder" },
-  { url: Image5, hoverTitle: "Select Folder" },
-  { url: Image6, hoverTitle: "Add Repo" },
-  { url: Image7, hoverTitle: "Open Repo" },
-];
-
-const columnPosition = [
-  "md:col-start-1 max-md:row-start-1",
-  "md:col-start-2 max-md:row-start-2",
-  "md:col-start-3 max-md:row-start-3",
-  "md:col-start-4 max-md:row-start-4",
-  "md:col-start-5 max-md:row-start-5",
-  "md:col-start-6 max-md:row-start-6",
-  "md:col-start-7 max-md:row-start-7",
+const howToImages: THowToImage[] = [
+  { image: Image1, title: "Add Folder" },
+  { image: Image2, title: "Enter Folder Name" },
+  { image: Image3, title: "Create Folder" },
+  { image: Image4, title: "Add Repo to Folder" },
+  { image: Image5, title: "Select Folder" },
+  { image: Image6, title: "Add Repo" },
+  { image: Image7, title: "Open Repo" },
 ];
 ---
 
-<div class="grid grid-rows-2 justify-center gap-x-3 gap-y-16 px-5 md:gap-y-4">
-  {
-    howToImages.map((image, index) => (
-      <div
-        class={`group ${columnPosition[index]} inline-block max-md:w-52 ${index % 2 === 0 ? "md:row-start-1" : "md:row-start-2"}`}
-      >
-        <div
-          id={`howToImage-${index}`}
-          class="relative rounded-md border-2 shadow-md group-hover:border-blue-700 group-hover:shadow-blue-800"
-        >
-          <Image
-            src={image.url}
-            alt={image.hoverTitle}
-            class="rounded-md object-contain"
-          />
-          <div class="absolute inset-0 flex items-center justify-center px-2 group-hover:bg-slate-950/50">
-            <p class="hidden rounded-xl border border-slate-700 bg-black/70 px-2 py-1 text-center font-medium text-slate-50 group-hover:block">
-              {image.hoverTitle}
-            </p>
-          </div>
-        </div>
-      </div>
-    ))
-  }
-</div>
+<div id="tutorial">
+  <div
+    class="grid place-content-center place-items-stretch gap-8 overflow-x-hidden p-4"
+  >
+    <HowToImage
+      id="howToImage-1"
+      {...howToImages[0]}
+      position={"col-start-1 portrait:sm:col-start-1 portrait:sm:row-start-1 md:row-start-1 md:col-start-1"}
+    />
+    <HowToImage
+      id="howToImage-2"
+      {...howToImages[1]}
+      position={"col-start-1 portrait:sm:col-start-2 portrait:sm:row-start-2 md:row-start-2 md:col-start-2"}
+    />
+    <HowToImage
+      id="howToImage-3"
+      {...howToImages[2]}
+      position={"col-start-1 portrait:sm:col-start-1 portrait:sm:row-start-3 md:row-start-1 md:col-start-3"}
+    />
+    <HowToImage
+      id="howToImage-4"
+      {...howToImages[3]}
+      position={"col-start-1 portrait:sm:col-start-2 portrait:sm:row-start-4 md:row-start-2 md:col-start-4"}
+    />
+    <HowToImage
+      id="howToImage-5"
+      {...howToImages[4]}
+      position={"col-start-1 portrait:sm:col-start-1 portrait:sm:row-start-5 md:row-start-1 md:col-start-5"}
+    />
+    <HowToImage
+      id="howToImage-6"
+      {...howToImages[5]}
+      position={"col-start-1 portrait:sm:col-start-2 portrait:sm:row-start-6 md:row-start-2 md:col-start-6"}
+    />
+    <HowToImage
+      id="howToImage-7"
+      {...howToImages[6]}
+      position={"col-start-1 portrait:sm:col-start-1 portrait:sm:row-start-7 md:row-start-1 md:col-start-7"}
+    />
 
-<!-- at the very bottom of the component: -->
-<script>
-  import "./leaderlines.js";
-</script>
+    <script>
+      import "./leaderlines.js";
+    </script>
+  </div>
+</div>

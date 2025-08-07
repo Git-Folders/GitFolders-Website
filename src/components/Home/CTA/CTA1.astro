@@ -1,5 +1,5 @@
 ---
-import CTA_BG1 from "@assets/CTA/CTA_BG1.jpg";
+import CTA_BG1 from "@assets/CTA/CTA_BG1.webp";
 import ArrowRight from "@assets/Icons/ArrowRight.svg";
 import { CHROME_STORE_URL } from "@Constants";
 
@@ -11,22 +11,27 @@ const bgImage = CTA_BG1.src;
   class="relative isolate z-0 flex cursor-default flex-col items-center justify-center space-y-8 overflow-hidden bg-cover bg-center px-8 py-10 text-slate-50 before:absolute before:inset-0 before:-z-10 before:bg-blue-600/80 md:px-16 md:py-20"
   style={{ backgroundImage: `url(${bgImage})` }}
 >
-  <h2 class="text-center text-5xl font-bold text-balance text-slate-50">
+  <h2
+    data-aos="zoom-in-up"
+    class="text-center text-4xl font-bold text-balance text-slate-50 md:text-5xl"
+  >
     Ready to organize your GitHub repositories?
   </h2>
   <p
-    class="w-readable mx-auto text-center text-xl text-pretty text-slate-200 italic"
+    data-aos="zoom-in-up"
+    class="w-readable mx-auto text-center text-lg text-pretty text-slate-200 italic md:text-xl"
   >
     Join like minded community of developers who are already enjoying a cleaner,
     more organized GitHub experience.
   </p>
   <a
+    data-aos="zoom-in-up"
     href={CHROME_STORE_URL}
-    class="group flex w-fit items-center justify-center gap-2 self-center rounded-2xl bg-slate-100 px-6 py-4 text-lg font-semibold text-blue-600 transition ease-linear hover:brightness-90"
+    class="group flex w-fit items-center justify-center gap-2 self-center rounded-2xl bg-slate-100 px-6 py-4 text-base font-semibold text-blue-600 transition ease-linear hover:brightness-90 md:text-lg"
   >
     {"Start Today"}
     <ArrowRight
-      class="size-6 transition-transform ease-linear group-hover:translate-x-2"
+      class="size-4 transition-transform ease-linear group-hover:translate-x-2 md:size-6"
     />
   </a>
 </section>

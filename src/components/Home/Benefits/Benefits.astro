@@ -1,33 +1,9 @@
 ---
-import ComparisonCard, {
-  type CardData,
-} from "./Components/ComparisonCard.astro";
-
-const withoutUs: CardData = {
-  type: "negative",
-  title: "Without GitFolders",
-  features: [
-    "Endless scrolling through unorganized repositories",
-    "No way to group related projects together",
-    "Time wasted searching for specific repositories",
-    "Increased cognitive load managing multiple repos",
-    "Hard to distinguish between personal and work projects",
-    "No visual structure or categorization for easier navigation",
-  ],
-};
-
-const withUs: CardData = {
-  type: "positive",
-  title: "With GitFolders",
-  features: [
-    "Intuitive folder organization for all your repositories",
-    "Quick access to grouped projects and repositories",
-    "Efficient workflow with a smart search for quick access",
-    "Clear separation between personal, work, and archived repos",
-    "Minimal effort to maintain organization as projects grow",
-    "Streamlined experience for both solo devs and teams",
-  ],
-};
+import BenefitComparisonCard from "./Components/BenefitComparisonCard.astro";
+import {
+  WithoutUsCard,
+  WithUsCard,
+} from "./Components/BenefitComparisonCardData.ts";
 ---
 
 <section
@@ -36,16 +12,21 @@ const withUs: CardData = {
 >
   <div class="mx-auto max-w-7xl space-y-2 text-center">
     <h2
-      class="text-center text-5xl font-bold tracking-wider text-balance text-slate-50 capitalize"
+      data-aos="fade-up"
+      class="text-center text-4xl font-bold tracking-wider text-balance text-slate-50 capitalize md:text-5xl"
     >
       Why Choose GitFolders?
     </h2>
-    <p class="text-center text-xl text-pretty text-slate-300 italic">
+    <p
+      data-aos="fade-up"
+      data-aos-delay="250"
+      class="text-center text-lg text-pretty text-slate-300 italic md:text-xl"
+    >
       Experience the difference between chaos and organization
     </p>
   </div>
-  <div class="flex flex-wrap items-center justify-center gap-10">
-    <ComparisonCard {...withoutUs} />
-    <ComparisonCard {...withUs} />
+  <div class="grid grid-cols-1 place-content-center gap-8 md:grid-cols-2">
+    <BenefitComparisonCard {...WithoutUsCard} />
+    <BenefitComparisonCard {...WithUsCard} animationDelay="250" />
   </div>
 </section>

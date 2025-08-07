@@ -1,0 +1,66 @@
+---
+export type PricingCardProps = {
+  subscriptionType: "monthly" | "quarterly" | "annually";
+  pricePerMonth: number;
+  totalPrice: number;
+  popularityBadge: boolean;
+  rotation?: "left" | "right";
+  priceId: string;
+};
+const {
+  subscriptionType,
+  pricePerMonth,
+  totalPrice,
+  popularityBadge,
+  rotation,
+} = Astro.props as PricingCardProps;
+
+let frequencyOfPayment = "paid every month";
+switch (subscriptionType) {
+  case "monthly":
+    frequencyOfPayment = "paid every month";
+    break;
+  case "quarterly":
+    frequencyOfPayment = "paid every 3 months";
+    break;
+  case "annually":
+    frequencyOfPayment = "paid every year";
+    break;
+}
+
+let rotateAngle = "rotate-[0]";
+switch (rotation) {
+  case "left":
+    rotateAngle = "md:rotate-[-6deg]";
+    break;
+  case "right":
+    rotateAngle = "md:rotate-[6deg]";
+    break;
+}
+
+const visualClasses: string = rotation
+  ? "bg-slate-50 shadow-md text-slate-950"
+  : "shadow-xl text-slate-50 bg-blue-600 text-slate-50";
+---
+
+<div
+  class={`w-64 hover:scale-110 transition-all relative transform rounded-2xl px-6 py-8 text-center  ${rotateAngle} ${visualClasses}`}
+>
+  {
+    popularityBadge && (
+      <div class="absolute top-2 right-2 rounded-full bg-blue-800 px-2 py-1 text-xs text-slate-50">
+        Most popular
+      </div>
+    )
+  }
+  <h3 class="mb-2 text-xl font-medium capitalize">
+    {subscriptionType}
+  </h3>
+  <p class="text-4xl font-bold">
+    ${pricePerMonth}
+  </p>
+  <p class="mt-2 text-sm">Per month</p>
+  <p class={`mt-1 text-xs opacity-60 `}>
+    ${totalPrice}{" "}{frequencyOfPayment}
+  </p>
+</div>

@@ -1,0 +1,53 @@
+---
+import { twMerge } from "tailwind-merge";
+
+import type { CardData } from "./BenefitComparisonCardData.ts";
+
+const {
+  type,
+  title,
+  features,
+  animationDelay = "0",
+} = Astro.props as CardData & {
+  animationDelay?: string;
+};
+
+const isPositive = type === "positive";
+---
+
+<div
+  data-aos="fade-right"
+  data-aos-delay={animationDelay}
+  data-aos-anchor-placement="center-bottom"
+  class={twMerge(
+    "group min-w-fit  space-y-4 rounded-2xl border p-4 md:p-8",
+    isPositive
+      ? "border-green-600 bg-gradient-to-tl from-green-700 to-green-800"
+      : "border-red-600 bg-gradient-to-tl from-red-700 to-red-800",
+  )}
+>
+  <h3
+    class={twMerge(
+      "w-fit rounded-2xl px-4 py-2 text-xl md:text-2xl font-bold text-slate-50 shadow transition-transform duration-300 ease-in-out group-hover:-translate-y-2",
+      isPositive ? "bg-green-700" : "bg-red-700",
+    )}
+  >
+    {title}
+  </h3>
+  <ul class="ml-4 space-y-4">
+    {
+      features.map((feature: string) => (
+        <li
+          class={twMerge(
+            "list-outside pl-2 text-sm text-slate-50 marker:text-xs md:text-base md:marker:text-sm",
+            isPositive
+              ? "marker:text-green-300 group-hover:marker:text-green-200 [&::marker]:content-['✓']"
+              : "marker:text-red-300 group-hover:marker:text-red-200 [&::marker]:content-['✕']",
+          )}
+        >
+          {feature}
+        </li>
+      ))
+    }
+  </ul>
+</div>

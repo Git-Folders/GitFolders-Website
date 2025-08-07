@@ -1,40 +1,37 @@
 ---
-import CTA_BG2 from "@assets/CTA/CTA_BG2.jpg";
-
-import { CTA_Link } from "@/NavRoutes";
-
-import { ArrowRight } from "@utils/Icons";
+import CTA_BG2 from "@assets/CTA/CTA_BG2.webp";
+import ArrowRight from "@assets/Icons/ArrowRight.svg";
+import { CHROME_STORE_URL } from "@Constants";
 
 const bgImage = CTA_BG2.src;
 ---
 
 <section
-  id="cta-2"
-  class="relative cursor-default overflow-hidden bg-blue-600 px-4 pt-6 pb-20 text-slate-50 md:px-16 md:pt-20"
+  id="cta-1"
+  class="relative isolate z-0 flex cursor-default flex-col items-center justify-center space-y-8 overflow-hidden bg-cover bg-center px-8 py-10 text-slate-50 before:absolute before:inset-0 before:-z-10 before:bg-blue-600/80 md:px-16 md:py-20"
+  style={{ backgroundImage: `url(${bgImage})` }}
 >
-  <div class="pointer-events-none absolute inset-0 opacity-10">
-    <div
-      style={{ backgroundImage: `url(${bgImage})` }}
-      class={`absolute inset-0 bg-cover bg-center`}
-    >
-    </div>
-  </div>
-  <div class="relative z-10 mx-auto flex max-w-4xl flex-col px-4 text-center">
-    <h2 class="mb-6 text-4xl font-bold">
-      Stop the chaos. Start organizing today.
-    </h2>
-    <p class="mb-10 text-xl text-balance opacity-90">
-      Whether you have 5 or 500 repos, GitFolders gives you the control you need
-      to stay focused and efficient.
-    </p>
-    <a
-      href={CTA_Link.path}
-      class="group text-accent z-50 flex cursor-pointer items-center gap-x-2 self-center rounded-lg bg-slate-50 px-5 py-4 text-lg font-semibold text-blue-600 transition-colors hover:text-blue-800 md:px-8"
-    >
-      {CTA_Link.name}
-      <ArrowRight
-        className="h-5 w-5 transition-transform group-hover:translate-x-2"
-      />
-    </a>
-  </div>
+  <h2
+    data-aos="zoom-in-up"
+    class="text-center text-4xl font-bold text-balance text-slate-50 md:text-5xl"
+  >
+    Stop the chaos! Start organizing today!
+  </h2>
+  <p
+    data-aos="zoom-in-up"
+    class="w-readable mx-auto text-center text-lg text-pretty text-slate-200 italic md:text-xl"
+  >
+    Whether you have 5 or 500 repos, GitFolders gives you the control you need
+    to stay focused and efficient.
+  </p>
+  <a
+    data-aos="zoom-in-up"
+    href={CHROME_STORE_URL}
+    class="group flex w-fit items-center justify-center gap-2 self-center rounded-2xl bg-slate-100 px-6 py-4 text-base font-semibold text-blue-600 transition ease-linear hover:brightness-90 md:text-lg"
+  >
+    {"Start Today"}
+    <ArrowRight
+      class="size-4 transition-transform ease-linear group-hover:translate-x-2 md:size-6"
+    />
+  </a>
 </section>

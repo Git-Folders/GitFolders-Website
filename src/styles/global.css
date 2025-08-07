@@ -5,31 +5,24 @@
 
 @theme {
   --font-inter: "Inter", sans-serif;
-
-  --animate-infinite-scroll: infinite-scroll 30s linear infinite;
-  @keyframes infinite-scroll {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(calc(-50% - 24px));
-    }
-  }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
-  html,
   body {
-    @apply font-inter m-0 box-border p-0;
+    @apply font-inter m-0 box-border overflow-x-hidden bg-black p-0;
   }
-  section {
-    @apply cursor-default;
-  }
+
   button {
     @apply cursor-pointer;
+  }
+
+  body > header,
+  body > main > section,
+  body > footer {
+    @apply mx-auto max-w-[100rem] cursor-default 2xl:border-x 2xl:border-slate-950;
   }
 }
 
@@ -37,22 +30,8 @@
   .w-readable {
     max-width: 65ch;
   }
+
+  /* svg[class*="leader-line"] {
+    opacity: 0;
+  } */
 }
-
-/* * {
-  outline: red 1px solid;
-} */
-/* 
-Backgrounds:
-slate-950
-black
-
-text:
-slate-50
-slate-300
-slate-500
-
-accent:
-blue-600
-blue-800
-*/

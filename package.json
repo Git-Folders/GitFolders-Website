@@ -1,7 +1,7 @@
 {
-  "name": "website",
+  "name": "landing-page-gitfolders",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -24,6 +24,7 @@
     "@supabase/supabase-js": "^2.53.0",
     "@tailwindcss/vite": "^4.1.11",
     "@types/react-dom": "^19.1.7",
+    "aos": "^2.3.4",
     "astro": "^5.12.8",
     "astro-eslint-parser": "^1.2.2",
     "lucide-react": "^0.536.0",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/aos": "^3.0.7",
     "@types/react": "^19.1.9",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",

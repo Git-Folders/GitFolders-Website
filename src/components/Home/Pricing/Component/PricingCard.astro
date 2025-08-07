@@ -1,12 +1,10 @@
 ---
-export type PricingCardProps = {
-  subscriptionType: "monthly" | "quarterly" | "annually";
-  pricePerMonth: number;
-  totalPrice: number;
-  popularityBadge: boolean;
-  rotation?: "left" | "right";
-  priceId: string;
-};
+import { twMerge } from "tailwind-merge";
+
+import { AppUrl } from "@/Constants";
+
+import { type PricingCardProps } from "./PricingCardData.ts";
+
 const {
   subscriptionType,
   pricePerMonth,
@@ -27,40 +25,81 @@ switch (subscriptionType) {
     frequencyOfPayment = "paid every year";
     break;
 }
-
-let rotateAngle = "rotate-[0]";
-switch (rotation) {
-  case "left":
-    rotateAngle = "md:rotate-[-6deg]";
-    break;
-  case "right":
-    rotateAngle = "md:rotate-[6deg]";
-    break;
-}
-
-const visualClasses: string = rotation
-  ? "bg-slate-50 shadow-md text-slate-950"
-  : "shadow-xl text-slate-50 bg-blue-600 text-slate-50";
 ---
 
-<div
-  class={`w-64 hover:scale-110 transition-all relative transform rounded-2xl px-6 py-8 text-center  ${rotateAngle} ${visualClasses}`}
+<div class=""></div>
+<a
+  href={`${AppUrl}/login`}
+  data-rotation-direction={rotation}
+  class={twMerge(
+    "pricing-card relative block w-64 transform space-y-2 rounded-2xl px-6 py-10 text-center",
+    popularityBadge
+      ? "bg-blue-600 text-slate-50"
+      : "bg-slate-100 text-blue-950",
+  )}
 >
   {
     popularityBadge && (
-      <div class="absolute top-2 right-2 rounded-full bg-blue-800 px-2 py-1 text-xs text-slate-50">
+      <div class="absolute top-2 right-2 rounded-full bg-blue-800 px-4 py-2 text-xs font-semibold text-slate-50">
         Most popular
       </div>
     )
   }
-  <h3 class="mb-2 text-xl font-medium capitalize">
+  <h4 class="text-xl font-medium capitalize">
     {subscriptionType}
-  </h3>
-  <p class="text-4xl font-bold">
+  </h4>
+  <h3 class="text-4xl font-bold">
     ${pricePerMonth}
-  </p>
-  <p class="mt-2 text-sm">Per month</p>
-  <p class={`mt-1 text-xs opacity-60 `}>
+  </h3>
+  <h4 class="text-sm">Per month</h4>
+  <p class="text-xs opacity-80">
     ${totalPrice}{" "}{frequencyOfPayment}
   </p>
-</div>
+</a>
+
+<style>
+  @media (min-width: 768px) {
+    [data-rotation-direction="left"] {
+      --rotation-angle: 6deg;
+      --move-x: 0px;
+      rotate: calc(var(--rotation-angle) * -1);
+      translate: calc(var(--move-x) * -1);
+    }
+    [data-rotation-direction="right"] {
+      --rotation-angle: 6deg;
+      --move-x: 0px;
+      rotate: calc(var(--rotation-angle) * 1);
+      translate: calc(var(--move-x) * 1) var(--move-y, 0px);
+    }
+
+    .pricing-card {
+      transition:
+        opacity 0.2s ease-in-out,
+        scale 0.2s ease-in-out,
+        translate 0.2s ease-in-out,
+        rotate 0.2s ease-in-out;
+    }
+
+    .pricing-card:hover {
+      scale: 1.1;
+    }
+    @supports (selector(:has(h1))) {
+      .pricing-card:has(+ .pricing-card:hover),
+      .pricing-card:hover + .pricing-card {
+        --rotation-angle: 9deg;
+        --move-x: 24px;
+        --move-y: 12px;
+        opacity: 0.8;
+        scale: 0.95;
+      }
+      .pricing-card:has(+ .pricing-card + .pricing-card:hover),
+      .pricing-card:hover + .pricing-card + .pricing-card {
+        --rotation-angle: 12deg;
+        --move-x: 48px;
+        --move-y: 24px;
+        opacity: 0.7;
+        scale: 0.9;
+      }
+    }
+  }
+</style>

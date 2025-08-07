@@ -1,18 +1,18 @@
 ---
 import { Image } from "astro:assets";
 
+import { AppUrl } from "@/Constants";
+
 import CloseIcon from "@assets/icons/Close.svg";
 import HamburgerIcon from "@assets/icons/Hamburger.svg";
 import Logo from "@assets/logo.svg";
 
 import { NAV_ROUTES } from "./NavRoutes.ts";
-
-const Url = "https://app.gitfolders.com";
 ---
 
 <!-- Mobile Navbar (Hamburger Bar) -->
 <header
-  class="fixed inset-x-0 top-0 flex items-center justify-between bg-neutral-950/70 px-8 py-4 text-white backdrop-blur-sm md:hidden"
+  class="fixed inset-x-0 top-0 z-999 flex items-center justify-between bg-neutral-950/70 px-8 py-4 text-white backdrop-blur-sm md:hidden"
 >
   <a
     href="/"
@@ -34,14 +34,15 @@ const Url = "https://app.gitfolders.com";
 
 <header
   id="navbar-container"
-  class="pointer-events-none fixed top-0 z-999 w-full md:static md:bg-neutral-950 md:p-4"
+  class="!pointer-events-none fixed top-0 z-999 w-full md:static md:bg-neutral-950 md:p-4"
 >
   <div
     id="navbar"
+    data-aos="fade-down"
     data-is-open="false"
-    class="pointer-events-auto ml-auto flex h-svh w-full origin-right flex-col items-center justify-between gap-8 bg-neutral-950 px-8 py-8 md:mx-auto md:h-fit md:flex-row md:py-2 landscape:min-sm:max-md:overflow-y-scroll"
+    class="!pointer-events-auto mx-auto flex h-svh w-full origin-right flex-col items-center justify-between gap-8 bg-neutral-950 px-8 py-8 md:h-fit md:flex-row md:py-2 landscape:min-sm:max-md:overflow-y-scroll"
   >
-    <div class="flex w-full items-center justify-between gap-4 md:w-auto">
+    <div class="flex w-full items-center justify-between gap-4 md:w-fit">
       <!-- Logo Container -->
       <a
         href="/"
@@ -78,6 +79,7 @@ const Url = "https://app.gitfolders.com";
         NAV_ROUTES.map((section) => (
           <a
             href={section.path}
+            onclick="toggleNavbar()"
             class="text-left text-2xl tracking-wide text-slate-50"
             aria-label={`Navigate to ${section.name}`}
           >
@@ -89,18 +91,18 @@ const Url = "https://app.gitfolders.com";
 
     <!-- Auth Button Container -->
     <section
-      class="flex w-full flex-col items-center justify-center gap-2 md:w-fit md:flex-row"
+      class="invisible flex w-full flex-col items-center justify-center gap-2 md:w-fit md:flex-row"
       aria-label="Authentication options"
     >
       <a
-        href={`${Url}/login`}
+        href={`${AppUrl}/login`}
         class="w-full rounded-full border border-blue-600 px-4 py-2 text-center text-lg font-medium text-slate-50 transition hover:brightness-90 md:w-fit md:text-base"
         aria-label="Log in to your account"
       >
         Login
       </a>
       <a
-        href={`${Url}/signup`}
+        href={`${AppUrl}/signup`}
         class="w-full rounded-full bg-gradient-to-br from-blue-500 to-blue-600 px-4 py-2 text-center text-lg font-medium text-slate-50 transition hover:brightness-90 md:w-fit md:text-base"
         aria-label="Sign up for GitFolders"
       >
@@ -153,7 +155,7 @@ const Url = "https://app.gitfolders.com";
   function toggleNavbar() {
     const isOpen = navbar.getAttribute("data-is-open") === "true";
     navbar.setAttribute("data-is-open", !isOpen);
-    document.body.classList.toggle("overflow-hidden");
+    document.body.style.overflowY = !isOpen ? "hidden" : "auto";
 
     const toggleButtons = document.querySelectorAll('[aria-controls="navbar"]');
     toggleButtons.forEach((btn) =>

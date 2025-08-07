@@ -1,26 +1,77 @@
 ---
-import { FAQs as faqs, type FAQ } from "./Components/FAQs.tsx";
+import { FAQs as FAQsList } from "./Components/FAQs.ts";
 ---
 
 <section
   id="faqs"
-  class="cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
+  class="space-y-10 bg-neutral-950 px-8 py-10 md:px-16 md:py-20"
 >
-  <div class="mx-auto max-w-7xl space-y-10">
-    <h2 class="text-center text-4xl font-bold text-slate-50">
-      Frequently Asked Questions
-    </h2>
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-      {
-        faqs.map((faq: FAQ) => (
-          <div class="group rounded-xl border border-gray-700 p-6 text-slate-50 hover:border-blue-600">
-            <h3 class="text-xl font-semibold group-hover:text-blue-400">
-              {faq.question}
-            </h3>
-            <p class="mt-2 text-base text-gray-300">{faq.answer}</p>
-          </div>
-        ))
-      }
-    </div>
+  <h2
+    data-aos="slide-right"
+    class="text-center text-4xl font-bold text-slate-50 md:text-5xl"
+  >
+    Frequently Asked Questions
+  </h2>
+  <div
+    id="faqs-list"
+    class="grid grid-cols-1 place-content-center gap-4 rounded-2xl bg-black p-4 sm:grid-cols-2 md:grid-cols-3"
+  >
+    {
+      FAQsList.map((faq) => (
+        <div
+          data-aos="zoom-in"
+          class="group space-y-2 rounded-2xl border border-neutral-700 bg-neutral-900 p-4 transition-colors duration-500 ease-out hover:border-blue-600"
+        >
+          <h3 class="text-lg font-semibold text-slate-50 md:text-xl">
+            {faq.question}
+          </h3>
+          <p class="w-readable text-base text-gray-300">{faq.answer}</p>
+        </div>
+      ))
+    }
   </div>
 </section>
+
+<style>
+  #faqs-list {
+    position: relative;
+    overflow: hidden;
+  }
+
+  #faqs-list::before,
+  #faqs-list::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 100px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--color-blue-600),
+      transparent
+    );
+    opacity: 0;
+    filter: blur(2px);
+    transition:
+      transform 0.4s ease-out,
+      opacity 0.2s ease-in-out;
+  }
+
+  #faqs-list::before {
+    bottom: 20px;
+    left: 0;
+  }
+  #faqs-list::after {
+    top: 20px;
+    right: 0;
+  }
+
+  #faqs-list:hover::before {
+    transform: translateY(-150%);
+    opacity: 1;
+  }
+  #faqs-list:hover::after {
+    transform: translateY(150%);
+    opacity: 1;
+  }
+</style>

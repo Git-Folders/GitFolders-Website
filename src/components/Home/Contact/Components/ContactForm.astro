@@ -1,0 +1,38 @@
+---
+import ArrowRight from "@assets/Icons/ArrowRight.svg";
+---
+
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action="/"
+  class="space-y-2 rounded-2xl border border-blue-800 bg-neutral-900 p-8"
+  data-aos="fade"
+  data-aos-duration="2000"
+>
+  <!-- Hidden inputs required by Netlify -->
+  <input type="hidden" name="form-name" value="contact" />
+  <input type="hidden" name="bot-field" />
+
+  <label for="message" class="sr-only">Type your message below</label>
+  <textarea
+    id="message"
+    name="message"
+    rows="5"
+    required
+    placeholder="Type your message here..."
+    class="w-full resize-none rounded-2xl border-none bg-neutral-800 p-4 text-sm text-slate-50 transition duration-200 outline-none placeholder:text-neutral-500 focus:ring-1 focus:ring-blue-500 md:text-base"
+  ></textarea>
+
+  <button
+    type="submit"
+    class="group ml-auto flex w-fit items-center justify-center gap-2 rounded-2xl bg-slate-100 px-4 py-2 text-base font-semibold text-blue-600 transition ease-linear hover:brightness-90 md:text-lg"
+  >
+    {"Send Message"}
+    <ArrowRight
+      class="size-4 transition-transform ease-linear group-hover:translate-x-2 md:size-6"
+    />
+  </button>
+</form>

@@ -1,29 +1,51 @@
 ---
 import TestimonialCard from "./Components/TestimonialCard.astro";
-import {
-  Testimonials as testimonials,
-  type Testimonial,
-} from "./Components/Testimonials.ts";
+import { Testimonials } from "./Components/Testimonials.ts";
 ---
 
 <section
   id="testimonials"
-  class="cursor-default bg-slate-950 px-4 pt-6 pb-20 md:px-16 md:pt-20"
+  class="space-y-10 bg-neutral-950 px-8 py-10 md:px-16 md:py-20"
 >
-  <div class="mx-auto max-w-7xl space-y-10">
-    <h2 class="text-center text-4xl font-bold text-slate-50">
-      What Developers Are Saying
-    </h2>
-    <div class="relative h-full overflow-x-hidden py-5">
-      <div
-        class="animate-infinite-scroll flex min-w-max gap-6 will-change-transform hover:[animation-play-state:paused]"
-      >
-        {
-          [...testimonials, ...testimonials].map((testimonial: Testimonial) => (
-            <TestimonialCard testimonial={testimonial} />
-          ))
-        }
-      </div>
+  <h2
+    data-aos="slide-right"
+    class="text-center text-4xl font-bold text-slate-50 md:text-5xl"
+  >
+    What Developers Are Saying
+  </h2>
+
+  <div
+    data-aos="fade"
+    data-aos-duration="2000"
+    class="relative h-full overflow-x-hidden py-5"
+  >
+    <div
+      class="animate-infinite-scroll flex min-w-max gap-(--gap) will-change-transform"
+      style="--gap: calc(var(--spacing) * 8); "
+    >
+      {
+        [...Testimonials, ...Testimonials].map((testimonial) => (
+          <TestimonialCard {...testimonial} />
+        ))
+      }
     </div>
   </div>
 </section>
+
+<style>
+  .animate-infinite-scroll {
+    animation: infinite-scroll 15s linear infinite;
+  }
+  .animate-infinite-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes infinite-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(calc(-50% - var(--gap)));
+    }
+  }
+</style>

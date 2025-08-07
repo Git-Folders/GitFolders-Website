@@ -1,28 +1,31 @@
 ---
 import FeatureCard from "./Components/FeatureCard.astro";
-import {
-  Features as featuresList,
-  type Feature,
-} from "./Components/Features.tsx";
+import { FeaturesData } from "./Components/FeatureCardData.ts";
 ---
 
 <section
   id="features"
   class="space-y-10 bg-neutral-950 px-8 py-10 md:px-16 md:py-20"
 >
-  <div class="space-y-4">
+  <div data-aos="slide-right" class="space-y-2">
     <h2
-      class="text-center text-5xl font-bold tracking-wider text-balance text-slate-50 capitalize"
+      class="text-center text-4xl font-bold tracking-wider text-balance text-slate-50 capitalize md:text-5xl"
     >
       Powerful features designed for developers
     </h2>
     <p
-      class="w-readable mx-auto text-center text-xl text-pretty text-slate-300"
+      class="w-readable mx-auto text-center text-lg text-pretty text-slate-300 md:text-xl"
     >
       Everything you need to organize your GitHub workflow
     </p>
   </div>
-  <div class="flex flex-row gap-6">
-    {featuresList.map((feature: Feature) => <FeatureCard feature={feature} />)}
+  <div
+    class="grid grid-cols-1 place-content-center gap-8 rounded-2xl bg-black p-8 md:grid-cols-3"
+  >
+    {
+      FeaturesData.map((feature, index) => (
+        <FeatureCard {...feature} index={index} />
+      ))
+    }
   </div>
 </section>

@@ -1,0 +1,43 @@
+<div
+  id="custom-cursor"
+  class="pointer-events-none fixed top-0 left-0 z-9999 size-4 rounded-full bg-blue-600 pointer-coarse:hidden"
+>
+  <style>
+    #custom-cursor {
+      opacity: 0;
+      transition: opacity 500ms ease;
+    }
+
+    body:hover #custom-cursor {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    const cursor = document.getElementById("custom-cursor")!;
+
+    function moveCursor(e: MouseEvent, onButton: boolean | null) {
+      const x = e.clientX - cursor.offsetHeight / 2,
+        y = e.clientY - cursor.offsetWidth / 2;
+
+      // Animation to move cursor
+      cursor.animate(
+        { translate: `${x}px ${y}px` },
+        { duration: 300, fill: "forwards", easing: "linear" },
+      );
+
+      // Animation to hide and un-hide cursor when hovering a menu button
+      cursor.animate(
+        { scale: `${onButton ? 0 : 1}` },
+        { duration: 300, fill: "forwards", easing: "ease-in-out" },
+      );
+    }
+    window.onmousemove = (e) => {
+      const target = (e?.target as HTMLElement)?.closest(
+          "a,button",
+        ) as HTMLElement | null,
+        onButton = target !== null;
+
+      moveCursor(e, onButton);
+    };
+  </script>
+</div>

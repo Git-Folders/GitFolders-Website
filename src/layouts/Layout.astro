@@ -1,7 +1,9 @@
 ---
 import "@styles/global.css";
+import "@styles/aos.css";
 
-import Footer from "@components/Footer.astro";
+import CustomCursor from "@components/CustomCursor/CustomCursor.astro";
+import Footer from "@components/Footer/Footer.astro";
 import Menu from "@components/Navbar/Menu.astro";
 import Navbar from "@components/Navbar/Navbar.astro";
 
@@ -24,14 +26,28 @@ const url = Astro.url.origin;
   <head>
     <SharedHead title={title} description={description} url={url} />
   </head>
-  <body class="w-full max-w-screen overflow-x-hidden">
+  <body>
+    <CustomCursor />
     <Navbar />
-    <aside class="hidden md:block">
+    <aside
+      class="pointer-events-none fixed inset-0 isolate z-999 mx-auto hidden max-w-[100rem] md:block"
+    >
       <Menu />
     </aside>
     <main>
       <slot />
     </main>
     <Footer />
+    <script>
+      import AOS from "aos";
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        AOS.init({
+          disable: "mobile",
+          duration: 500,
+          easing: "ease",
+          once: true,
+        });
+      }
+    </script>
   </body>
 </html>

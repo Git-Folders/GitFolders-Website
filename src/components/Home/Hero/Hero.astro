@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
-import DashboardPreview from "@assets/Hero/DashboardPreview.png";
+import DashboardPreview from "@assets/Hero/DashboardPreview.webp";
 import ArrowRight from "@assets/Icons/ArrowRight.svg";
 import Folder from "@assets/Icons/Folder.svg";
 import { CHROME_STORE_URL } from "@Constants";
@@ -20,50 +20,72 @@ const stats: Stat[] = [
 
 <section
   id="home"
-  class="relative grid grid-cols-1 place-content-center place-items-stretch gap-x-8 gap-y-10 bg-neutral-950 px-4 pt-20 pb-20 md:px-16 md:pt-8 portrait:sm:px-16 portrait:sm:pt-20 landscape:grid-cols-2"
+  class="relative flex flex-col items-center justify-center gap-x-8 gap-y-10 bg-neutral-950 px-4 pt-20 pb-20 md:flex-row md:px-16 md:pt-8 md:max-lg:flex-wrap portrait:sm:px-16 portrait:sm:pt-20"
 >
   <!-- Column 1 -->
-  <div class="space-y-6">
+  <div class="grow space-y-6 lg:max-w-1/2">
     <h1
-      class="text-left text-5xl leading-tight font-bold tracking-wide text-balance text-slate-50 md:text-6xl"
+      data-aos="slide-right"
+      class="text-left text-5xl leading-tight font-bold tracking-wide text-balance text-slate-50 md:text-6xl portrait:sm:text-6xl"
     >
       Organize GitHub <span class="text-blue-500">Repositories</span> Like Never
       Before
     </h1>
-    <h2 class="max-w-[65ch] text-xl text-pretty text-slate-300 italic">
+    <h2
+      data-aos="slide-right"
+      data-aos-delay="250"
+      class="max-w-[65ch] text-lg text-pretty text-slate-300 italic md:text-xl portrait:sm:text-xl"
+    >
       Transform cluttered repositories into a streamlined, organized workspace.
       The missing folder structure for your GitHub repositories.
     </h2>
     <a
+      data-aos="zoom-in-right"
+      data-aos-delay="250"
       href={CHROME_STORE_URL}
-      class="group flex w-fit items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 px-6 py-4 text-lg font-semibold text-slate-50 transition ease-linear hover:brightness-90"
+      class="group flex w-fit items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 px-6 py-4 text-base font-semibold text-slate-50 transition ease-linear hover:brightness-90 md:text-lg portrait:sm:text-lg"
     >
       {"Start Today"}
       <ArrowRight
-        class="size-6 transition-transform ease-linear group-hover:translate-x-2"
+        class="size-4 transition-transform ease-linear group-hover:translate-x-2 md:size-6 portrait:sm:size-6"
       />
     </a>
-    <div class="flex items-center justify-start gap-8">
+    <div
+      data-aos="slide-right"
+      data-aos-delay="500"
+      data-aos-anchor-placement="top-bottom"
+      class="flex items-center justify-start gap-8"
+    >
       {stats.map((stat) => <StatBox {...stat} />)}
     </div>
   </div>
 
   <!-- Column 2 -->
-  <div class="relative">
+  <div class="relative h-fit w-full">
     <Image
+      data-aos="fade-left"
+      data-aos-duration="1000"
       src={DashboardPreview}
       alt="GitFolders Dashboard preview"
-      class="aspect-square w-full object-contain md:aspect-[6/5]"
+      class="w-full object-cover"
       loading="eager"
     />
     <div
-      class="absolute -bottom-6 -left-2 flex items-center justify-center gap-2 rounded-2xl border-1 border-black bg-slate-950 p-3 md:-left-6 md:p-4"
+      data-aos="fade-up"
+      data-aos-delay="750"
+      data-aos-duration="250"
+      data-aos-anchor-placement="top-bottom"
+      class="group absolute -bottom-6 -left-2 flex items-center justify-center gap-2 rounded-2xl border-1 border-black bg-slate-950 p-3 transition-transform duration-300 ease-in-out hover:-translate-y-2 md:-left-6 md:p-4"
     >
-      <Folder class="size-12 text-blue-600" />
-      <h3 class="font-semibold text-slate-50">
+      <Folder
+        class="size-10 text-blue-600 transition-transform delay-100 duration-300 ease-out group-hover:rotate-[360deg] md:size-12"
+      />
+      <h3 class="text-sm font-semibold text-slate-50 md:text-base">
         Smart Organization
         <br />
-        <span class="text-sm text-slate-400 italic">Like Never Before</span>
+        <span class="text-xs text-slate-400 italic md:text-sm"
+          >Like Never Before</span
+        >
       </h3>
     </div>
   </div>

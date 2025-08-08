@@ -48,11 +48,10 @@ function handleAOSForLines() {
 
   lines.forEach((line) => {
     line.setAttribute("data-aos", "fade");
-    line.setAttribute("data-aos-duration", "2000");
+    line.setAttribute("data-aos-duration", "3000");
     linesWrapper.appendChild(line);
   });
   tutorial.appendChild(linesWrapper);
-  console.log(lines);
 }
 // Function to set up LeaderLines
 function setupLeaderLines() {

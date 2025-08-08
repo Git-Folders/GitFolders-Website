@@ -27,7 +27,6 @@ switch (subscriptionType) {
 }
 ---
 
-<div class=""></div>
 <a
   href={`${AppUrl}/login`}
   data-rotation-direction={rotation}
@@ -65,6 +64,10 @@ switch (subscriptionType) {
       rotate: calc(var(--rotation-angle) * -1);
       translate: calc(var(--move-x) * -1);
     }
+    [data-rotation-direction="none"] {
+      --rotation: 0deg;
+      rotate: var(--rotation);
+    }
     [data-rotation-direction="right"] {
       --rotation-angle: 6deg;
       --move-x: 0px;
@@ -84,21 +87,33 @@ switch (subscriptionType) {
       scale: 1.1;
     }
     @supports (selector(:has(h1))) {
+      [data-rotation-direction="left"]:hover
+        ~ [data-rotation-direction="none"] {
+        --rotation: 9deg;
+      }
+      [data-rotation-direction="none"]:has(
+        + [data-rotation-direction="right"]:hover
+      ) {
+        --rotation: -9deg;
+      }
+
+      /* Next Sibling */
       .pricing-card:has(+ .pricing-card:hover),
       .pricing-card:hover + .pricing-card {
         --rotation-angle: 9deg;
-        --move-x: 24px;
+        --move-x: 18px;
         --move-y: 12px;
         opacity: 0.8;
-        scale: 0.95;
+        scale: 0.9;
       }
+      /* Next Next Sibling */
       .pricing-card:has(+ .pricing-card + .pricing-card:hover),
       .pricing-card:hover + .pricing-card + .pricing-card {
-        --rotation-angle: 12deg;
-        --move-x: 48px;
+        --rotation-angle: 18deg;
+        --move-x: 36px;
         --move-y: 24px;
         opacity: 0.7;
-        scale: 0.9;
+        scale: 0.85;
       }
     }
   }

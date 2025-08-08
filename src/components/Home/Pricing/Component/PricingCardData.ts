@@ -3,7 +3,7 @@ export type PricingCardProps = {
   pricePerMonth: number;
   totalPrice: number;
   popularityBadge: boolean;
-  rotation?: "left" | "right";
+  rotation?: "left" | "right" | "none";
 };
 
 export const PricingOptions: PricingCardProps[] = [
@@ -19,6 +19,7 @@ export const PricingOptions: PricingCardProps[] = [
     pricePerMonth: 8,
     totalPrice: 24,
     popularityBadge: true,
+    rotation: "none",
   },
   {
     subscriptionType: "annually",

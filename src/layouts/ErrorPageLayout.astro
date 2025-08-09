@@ -1,8 +1,7 @@
 ---
 import "@styles/global.css";
-import Footer from "@components/Footer/Footer.astro";
 
-import ROUTES from "../NavRoutes.ts";
+import Footer from "@components/Footer/Footer.astro";
 
 import SharedHead from "./SharedHead.astro";
 
@@ -24,22 +23,12 @@ const {
       url={Astro.url.origin}
     />
   </head>
-  <body>
-    <div
-      class="flex h-screen items-center justify-center bg-gradient-to-t from-slate-950 to-black"
-    >
-      <div
-        class="container mx-auto flex max-w-2xl flex-col items-center justify-center text-center"
-      >
+  <body class="flex min-h-screen flex-col">
+    <main class="flex flex-1">
+      <section class="flex-1 [&>*]:size-full">
         <slot />
-        <a
-          href={ROUTES.home.path}
-          class="inline-block rounded-lg bg-blue-600 p-3 text-xl text-slate-50 transition-colors hover:bg-blue-800"
-        >
-          Go to Home
-        </a>
-      </div>
-    </div>
+      </section>
+    </main>
     <Footer />
   </body>
 </html>

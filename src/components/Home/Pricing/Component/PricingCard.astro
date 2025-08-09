@@ -60,48 +60,51 @@ switch (subscriptionType) {
   @media (min-width: 768px) {
     [data-rotation-direction="left"] {
       --rotation-angle: 6deg;
-      --move-x: 0px;
       rotate: calc(var(--rotation-angle) * -1);
-      translate: calc(var(--move-x) * -1);
+      translate: calc(var(--move-x, 0px) * -1);
     }
     [data-rotation-direction="none"] {
-      --rotation: 0deg;
-      rotate: var(--rotation);
+      --hover-direction-multiplier: 0;
+      rotate: calc(var(--rotation-angle) * var(--hover-direction-multiplier));
+      translate: calc(var(--move-x, 0px) * var(--hover-direction-multiplier))
+        var(--move-y, 0px);
     }
     [data-rotation-direction="right"] {
       --rotation-angle: 6deg;
-      --move-x: 0px;
       rotate: calc(var(--rotation-angle) * 1);
-      translate: calc(var(--move-x) * 1) var(--move-y, 0px);
+      translate: calc(var(--move-x, 0px) * 1) var(--move-y, 0px);
     }
 
     .pricing-card {
       transition:
-        opacity 0.2s ease-in-out,
-        scale 0.2s ease-in-out,
-        translate 0.2s ease-in-out,
-        rotate 0.2s ease-in-out;
+        opacity 300ms ease-in-out,
+        scale 300ms ease-in-out,
+        translate 300ms linear,
+        rotate 300ms linear;
     }
 
     .pricing-card:hover {
       scale: 1.1;
     }
     @supports (selector(:has(h1))) {
+      .pricing-card:hover {
+        --rotation-angle: 0deg;
+      }
       [data-rotation-direction="left"]:hover
         ~ [data-rotation-direction="none"] {
-        --rotation: 9deg;
+        --hover-direction-multiplier: 1;
       }
       [data-rotation-direction="none"]:has(
         + [data-rotation-direction="right"]:hover
       ) {
-        --rotation: -9deg;
+        --hover-direction-multiplier: -1;
       }
 
       /* Next Sibling */
       .pricing-card:has(+ .pricing-card:hover),
       .pricing-card:hover + .pricing-card {
         --rotation-angle: 9deg;
-        --move-x: 18px;
+        --move-x: 24px;
         --move-y: 12px;
         opacity: 0.8;
         scale: 0.9;
@@ -110,7 +113,6 @@ switch (subscriptionType) {
       .pricing-card:has(+ .pricing-card + .pricing-card:hover),
       .pricing-card:hover + .pricing-card + .pricing-card {
         --rotation-angle: 18deg;
-        --move-x: 36px;
         --move-y: 24px;
         opacity: 0.7;
         scale: 0.85;
